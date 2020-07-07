@@ -1,5 +1,5 @@
 // 评论issues仓库 by.removeif https://removeif.github.io/
-var repoIssuesUrl = "https://api.github.com/repos/duskandwine/blog_comment/issues";
+var repoIssuesUrl = "https://api.github.com/repos/duskandwine/blog-comment/issues";
 // 对应仓库 clientId、clientSecret 关于这两个参数的安全问题，查看 https://removeif.github.io/2019/09/19/博客源码分享.html#1-热门推荐，最新评论：
 var clientId;// = "026e502c5861aaa75cf1";
 var clientSecret;// = "5778d6101e74046fd04ea0c429b7590eaca75eee";
