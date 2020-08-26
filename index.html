@@ -13,13 +13,13 @@
 <p>C++定义常量两种方式</p>
 <ol>
 <li><strong>#define</strong> 宏常量： <code>#define 常量名 常量值</code><ul>
-<li>==通常在文件上方定义==，表示一个常量</li>
+<li>通常在文件上方定义，表示一个常量</li>
 </ul>
 </li>
 </ol>
 <ol start="2">
 <li><strong>const</strong>修饰的变量 <code>const 数据类型 常量名 = 常量值</code><ul>
-<li>==通常在变量定义前加关键字const==，修饰该变量为常量，不可修改</li>
+<li>通常在变量定义前加关键字const，修饰该变量为常量，不可修改</li>
 </ul>
 </li>
 </ol>
@@ -164,13 +164,13 @@
 <td>(-2^63 ~ 2^63-1)</td>
 </tr>
 </tbody></table>
-<h4 id="5-2-SIZEOF关键字"><a href="#5-2-SIZEOF关键字" class="headerlink" title="5.2 SIZEOF关键字"></a>5.2 SIZEOF关键字</h4><p><strong>作用：</strong>利用sizeof关键字可以==统计数据类型所占内存大小==</p>
+<h4 id="5-2-SIZEOF关键字"><a href="#5-2-SIZEOF关键字" class="headerlink" title="5.2 SIZEOF关键字"></a>5.2 SIZEOF关键字</h4><p><strong>作用：</strong>利用sizeof关键字可以统计数据类型所占内存大小</p>
 <p><strong>语法：</strong> <code>sizeof( 数据类型 / 变量)</code></p>
 <p><strong>示例：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"short 类型所占内存空间为： "</span> &lt;&lt; <span class="keyword">sizeof</span>(short) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"int 类型所占内存空间为： "</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">int</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"long 类型所占内存空间为： "</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">long</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"long long 类型所占内存空间为： "</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">long</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p><strong>整型结论</strong>：==short &lt; int &lt;= long &lt;= long long==</p>
+<p><strong>整型结论</strong>：short &lt; int &lt;= long &lt;= long long</p>
 </blockquote>
 <h4 id="5-3浮点型"><a href="#5-3浮点型" class="headerlink" title="5.3浮点型"></a>5.3浮点型</h4><p>浮点型变量分为两种：</p>
 <ol>
@@ -207,7 +207,7 @@
 <p>注意1：在显示字符型变量时，用单引号将字符括起来，不要用双引号<br>注意2：单引号内只能有一个字符，不可以是字符串</p>
 </blockquote>
 <ul>
-<li>C和C++中字符型变量只占用==1个字节==。</li>
+<li>C和C++中字符型变量只占用1个字节。</li>
 <li>字符型变量并不是把字符本身放到内存中存储，而是将对应的ASCII编码放入到存储单元</li>
 </ul>
 <p>示例：</p>
@@ -313,9 +313,9 @@
 </li>
 </ol>
 <blockquote>
-<p>注意：C++风格字符串，需要加入头文件==#include&lt;string&gt;==</p>
+<p>注意：C++风格字符串，需要加入头文件#include&lt;string&gt;</p>
 </blockquote>
-<h4 id="5-7-布尔类型BOOL"><a href="#5-7-布尔类型BOOL" class="headerlink" title="5.7 布尔类型BOOL"></a>5.7 布尔类型BOOL</h4><p><strong>bool类型占==1个字节==大小</strong></p>
+<h4 id="5-7-布尔类型BOOL"><a href="#5-7-布尔类型BOOL" class="headerlink" title="5.7 布尔类型BOOL"></a>5.7 布尔类型BOOL</h4><p><strong>bool类型占1个字节大小</strong></p>
 <p>示例：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; flag &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">	flag = <span class="literal">false</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; flag &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"size of bool = "</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">bool</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//1</span></span><br><span class="line">	</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
