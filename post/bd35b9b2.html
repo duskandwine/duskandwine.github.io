@@ -1,117 +1,99 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><meta name="keywords" content="[object Object]"><meta name="description" content="爬虫概述"><meta name="author" content="别梧"><title>爬虫学习-1 - 别梧</title><meta description="爬虫概述"><meta property="og:type" content="article"><meta property="og:title" content="爬虫学习-1"><meta property="og:url" content="https://duskandwine.github.io/post/cd5f4d3d.html"><meta property="og:site_name" content="別梧"><meta property="og:description" content="爬虫概述"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-09-11T07:13:23.000Z"><meta property="article:modified_time" content="2020-09-19T09:14:37.718Z"><meta property="article:author" content="别梧"><meta property="article:tag" content="python"><meta property="article:tag" content="爬虫"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://duskandwine.github.io/img/logo.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://duskandwine.github.io/post/cd5f4d3d.html"},"headline":"爬虫学习-1","image":["https://duskandwine.github.io/img/log.jpg"],"datePublished":"2020-09-11T07:13:23.000Z","dateModified":"2020-09-19T09:14:37.718Z","author":{"@type":"Person","name":"别梧"},"description":"爬虫概述"}</script><link rel="alternative" href="/atom.xml" title="别梧" type="application/atom+xml"><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><link rel="stylesheet" href="/css/style.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/20200707170605.png" alt="别梧" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/message">留言</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/duskandwine"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2020-09-11  <a class="commentCountImg" href="/post/cd5f4d3d.html#comment-container"><span class="display-none-class">b89953dc57539556c6d3b05c83fbd3fc</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="b89953dc57539556c6d3b05c83fbd3fc">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>5 分钟  <i class="fas fa-pencil-alt"> </i>0.7 k</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">爬虫学习-1</h1><div class="content"><h2 id="爬虫概述"><a href="#爬虫概述" class="headerlink" title="爬虫概述"></a>爬虫概述</h2><a id="more"></a>
+<html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><meta name="keywords" content="[object Object]"><meta name="description" content="正则+bs4基础"><meta name="author" content="别梧"><title>爬虫学习-4 - 别梧</title><meta description="正则+bs4基础"><meta property="og:type" content="article"><meta property="og:title" content="爬虫学习-4"><meta property="og:url" content="https://duskandwine.github.io/post/bd35b9b2.html"><meta property="og:site_name" content="別梧"><meta property="og:description" content="正则+bs4基础"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2020-11-29T08:17:32.000Z"><meta property="article:modified_time" content="2020-11-29T14:16:35.993Z"><meta property="article:author" content="别梧"><meta property="article:tag" content="python"><meta property="article:tag" content="爬虫"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://duskandwine.github.io/img/logo.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://duskandwine.github.io/post/bd35b9b2.html"},"headline":"爬虫学习-4","image":["https://duskandwine.github.io/img/log.jpg"],"datePublished":"2020-11-29T08:17:32.000Z","dateModified":"2020-11-29T14:16:35.993Z","author":{"@type":"Person","name":"别梧"},"description":"正则+bs4基础"}</script><link rel="alternative" href="/atom.xml" title="别梧" type="application/atom+xml"><link rel="icon" href="/img/favicon.png"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><link rel="stylesheet" href="/css/style.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/20200707170605.png" alt="别梧" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/message">留言</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/duskandwine"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2020-11-29  <a class="commentCountImg" href="/post/bd35b9b2.html#comment-container"><span class="display-none-class">57c3aa92fb6e36f5dfea0cad45ec937f</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="57c3aa92fb6e36f5dfea0cad45ec937f">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>5 分钟  <i class="fas fa-pencil-alt"> </i>0.8 k</span><span class="level-item" id="busuanzi_container_page_pv"><i class="far fa-eye"></i>&nbsp;&nbsp;<span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">爬虫学习-4</h1><div class="content"><h3 id="正则-bs4基础"><a href="#正则-bs4基础" class="headerlink" title="正则+bs4基础"></a>正则+bs4基础</h3><a id="more"></a>
 
 <hr>
-<h3 id="jupyter-的基本使用"><a href="#jupyter-的基本使用" class="headerlink" title="jupyter 的基本使用"></a>jupyter 的基本使用</h3><ul>
-<li><p>new新建：</p>
+<h4 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h4><p>使用正则进行图片数据的批量解析爬取</p>
 <ul>
-<li><p>由cell组成：cell就是一行可编辑框</p>
-</li>
-<li><p>cell的作用：</p>
+<li><p>如何爬取图片数据</p>
 <ul>
-<li>根据不同的模式和笔记进行代码和笔记的编写，编写好的代码和笔记可以直接在当前文件中运行，并看到运行结果。</li>
+<li>方式1：基于requests</li>
+<li>方式2：基于urllib</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#方式一：</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> img_url = <span class="string">'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2534506313,1688529724&amp;fm=26&amp;gp=0.jpg'</span></span><br><span class="line"> response = requests.get(url=img_url, headers=headers)</span><br><span class="line"> img_data = response.content  <span class="comment"># content返回的是二进制形式的响应数据</span></span><br><span class="line"> <span class="keyword">with</span> open(<span class="string">'1.jpg'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">     fp.write(img_data)</span><br><span class="line"><span class="comment">#方式二：</span></span><br><span class="line">urllib.request.urlretrieve(img_url, <span class="string">'./2.jpg'</span>)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>cell模式：</p>
+<li><p>上述两种爬取图片的不同：</p>
+<p>使用urllib的方式无法进行UA伪装，而requests的方式可以。</p>
+</li>
+<li><p>需求：爬取<a href="http://www.521609.com/tuku/">明星图库-校花网 (521609.com)</a>中的图片数据</p>
+</li>
+<li><p>分析浏览器工具中elements和network这两个选项卡对应的页面源码呦嗬不同？</p>
+<ol>
+<li>elements中包含的显示的页面源码数据为当前页面所有的数据加载完毕之后对应的完整的页面源码数据。（包含动态加载的数据）</li>
+<li>network中显示的页面源码数据仅仅为某一个单独的请求对应的响应数据（不包含动态加载的数据）</li>
+</ol>
+</li>
+<li><p>如果在进行数据解析的时候，一定是需要对页面布局进行分析，如果页面没有动态加载数据则可以直接使用elements对页面布局进行分析，否则只可以使用network对页面数据进行分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">dirName = <span class="string">'Img'</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(dirName):</span><br><span class="line">    os.mkdir(dirName)</span><br><span class="line">url = <span class="string">'http://www.521609.com/tuku/'</span></span><br><span class="line">page_text = requests.get(url=url, headers=headers).text</span><br><span class="line"><span class="comment"># 2.从当前页面解析图片地址</span></span><br><span class="line"></span><br><span class="line">ex = <span class="string">'&lt;li&gt;.*?&lt;img src="(.*?)" alt.*?&lt;/li&gt;'</span></span><br><span class="line">img_src_list = re.findall(ex, page_text, re.S)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> src <span class="keyword">in</span> img_src_list:</span><br><span class="line">    src = <span class="string">'http://www.521609.com/'</span> + src</span><br><span class="line">    imgPath = dirName + <span class="string">'/'</span> + src.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line">    urllib.request.urlretrieve(src, imgPath)</span><br><span class="line">    print(imgPath, <span class="string">'下载成功！'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>关于split的用法<a href="https://www.runoob.com/python/att-string-split.html">Python split()方法 | 菜鸟教程 (runoob.com)</a></p>
+</li>
+</ul>
+<h4 id="bs4"><a href="#bs4" class="headerlink" title="bs4"></a>bs4</h4><ul>
+<li><p>数据解析的作用？</p>
 <ul>
-<li>code：<ul>
-<li>可以编写pyhon代码，可以编写一行或多行。</li>
-<li>特性：编写代码的顺序是无所谓的，但是代码执行的顺序一定是自上而下的。</li>
+<li>用来实现聚焦爬虫</li>
 </ul>
 </li>
-<li>markdown：编写笔记</li>
-</ul>
-</li>
-<li><p>folder：新建文件夹</p>
-</li>
-<li><p>text file：新建一个任意后缀的文本文件：</p>
+<li><p>网页显示的数据都是存在哪里的？</p>
 <ul>
-<li>可以写程序，但是不能在文件中执行。</li>
+<li>存储在html的标签中或标签的属性中</li>
 </ul>
 </li>
-<li><p>terminal：新建一个基于浏览器的终端。</p>
-</li>
-</ul>
-</li>
-<li><p>快捷键的使用：</p>
+<li><p>数据解析的原理？</p>
 <ul>
-<li>插入cell：a，b</li>
-<li>删除cell：x</li>
-<li>执行cell：shift+enter</li>
-<li>切换cell的模式：m，y</li>
-<li>cell执行后，在cell左侧双击可以回到cell的可编辑模式</li>
-<li>执行结果的收回：在执行结果左侧双击即可</li>
-<li>打开帮助文档：shift+tab</li>
-<li>tab：自动补全</li>
-<li>撤回操作：z</li>
+<li>指定标签的定位，取出标签或标签属性中的数据</li>
 </ul>
 </li>
-<li><p>jupyter的源文件导出：</p>
+<li><p>bs4解析原理</p>
 <ul>
-<li>file–&gt;download as–&gt;html</li>
+<li>实例化一个beautifulsoup的对象，且将待解析的源码数据加载到该对象中</li>
+<li>调用beautifulsoup对象中相关方法或者属性进行标签定位和文本数据提取</li>
 </ul>
 </li>
-</ul>
-<h3 id="爬虫概述-1"><a href="#爬虫概述-1" class="headerlink" title="爬虫概述"></a>爬虫概述</h3><ul>
-<li>什么是爬虫？<ul>
-<li>就是通过编写程序，让其模拟浏览器上网，然后再互联网中抓全数据的过程。<ul>
-<li>关键词抽取：<ul>
-<li>模拟：浏览器就是一个纯天然最原始的一个爬虫工具。</li>
-<li>抓取：<ul>
-<li>抓取一整张的页面源码数据</li>
-<li>抓取一整张页面的中的局部数据</li>
+<li><p>环境安装：</p>
+<ul>
+<li>pip install lxml</li>
+<li>pip install bs4</li>
 </ul>
 </li>
+<li><p>beautifulsoup对象的实例化：</p>
+<ul>
+<li>beautifulsoup(fp,’lxml’):用来将本地存储的html文档中的数据进行解析</li>
+<li>beautifulsoup(page_text,’lxml’):将互联网上请求到的页面源码数据进行解析</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>爬虫的分类：<ul>
-<li>通用爬虫：<ul>
-<li>要求我们爬取一整张页面源码数据</li>
-</ul>
-</li>
-<li>聚焦爬虫：<ul>
-<li>要求爬取一张页面中的局部的数据</li>
-<li>聚焦爬虫一定是建立在通用爬虫的基础之上的。</li>
-</ul>
-</li>
-<li>增量式爬虫：<ul>
-<li>用来监测网站数据更新的情况，一遍爬取到网站最新更新出来的数据。</li>
-</ul>
-</li>
-<li>分布式爬虫：<ul>
-<li>提高爬取效率的终极武器。 </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>反爬机制：<ul>
-<li>是作用到门户网站中。如果网站不想让爬虫轻易爬取到数据，它可以制定相关的机制或措施组织爬虫程序爬取其数据。</li>
-</ul>
-</li>
-<li>反反爬策略：<ul>
-<li>是作用在爬虫程序中。我们爬虫可以制定相关的策略破极反爬机制从而爬取到相关的数据。</li>
-</ul>
-</li>
-<li>第一个反爬机制<ul>
-<li>robots协议：(君子协议- -)<ul>
-<li>是一个纯文本的协议，协议中规定了该网站中哪些数据可以被爬虫爬取，哪些不可以被爬取。</li>
-</ul>
-</li>
-<li>破解：<ul>
-<li>主观性的不遵从该协议即可。</li>
+<li><p>标签定位</p>
+<ul>
+<li>soup.tagName：只可以定位到第一次出现的tagName标签</li>
+<li>soup.find(‘tagName’, attrName=’value’)：属性定位</li>
+<li>soup.findAll()：很find一样用作属性定位，只不过findAll返回的是列表</li>
+<li>soup.select(‘选择器’):<ul>
+<li>类选择器</li>
+<li>id选择器</li>
+<li>层及选择<ul>
+<li>‘大于号’:表示一个层级</li>
+<li>‘空格’:表示多个层级</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="https://duskandwine.github.io/post/cd5f4d3d.html">爬虫学习-1</a></li><li><strong>本文作者：</strong><a href="https://duskandwine.github.io">别梧</a></li><li><strong>本文链接：</strong><a href="https://duskandwine.github.io/post/cd5f4d3d.html">https://duskandwine.github.io/post/cd5f4d3d.html</a></li><li><strong>版权声明：</strong><span>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</span></li></ul><div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/post/bd35b9b2.html" target="_blank">爬虫学习-4</a><br></span><span>  2.<a class="is-size-6" href="/post/54561c87.html" target="_blank">爬虫学习-2</a><br></span><span>  3.<a class="is-size-6" href="/post/2203a96e.html" target="_blank">c++学习-基础</a><br></span><span>  4.<a class="is-size-6" href="/post/82c49f65.html" target="_blank">记录第一次博客踩的坑</a><br></span></div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/post/bd35b9b2.html" target="_blank">爬虫学习-4</a><br></span><span>  2.<a class="is-size-6" href="/post/23512c11.html" target="_blank">爬虫学习-3</a><br></span><span>  3.<a class="is-size-6" href="/post/54561c87.html" target="_blank">爬虫学习-2</a><br></span><span>  4.<a class="is-size-6" href="/post/cd5f4d3d.html" target="_blank">爬虫学习-1</a><br></span><span>  5.<a class="is-size-6" href="/post/2203a96e.html" target="_blank">c++学习-基础</a><br></span><span>  6.<a class="is-size-6" href="/post/82c49f65.html" target="_blank">记录第一次博客踩的坑</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221112.png" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221048.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/54561c87.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">爬虫学习-2</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/2203a96e.html"><span class="level-item">c++学习-基础</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+</li>
+<li><p>取数据</p>
+<ul>
+<li>.text 标签下所有的文本内容</li>
+<li>.string 标签下直系的文本内容</li>
+</ul>
+</li>
+<li><p>取属性</p>
+</li>
+<li><p>tag[‘attrName’] </p>
+</li>
+</ul>
+</div><ul class="post-copyright"><li><strong>本文标题：</strong><a href="https://duskandwine.github.io/post/bd35b9b2.html">爬虫学习-4</a></li><li><strong>本文作者：</strong><a href="https://duskandwine.github.io">别梧</a></li><li><strong>本文链接：</strong><a href="https://duskandwine.github.io/post/bd35b9b2.html">https://duskandwine.github.io/post/bd35b9b2.html</a></li><li><strong>版权声明：</strong><span>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</span></li></ul><div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/post/54561c87.html" target="_blank">爬虫学习-2</a><br></span><span>  2.<a class="is-size-6" href="/post/cd5f4d3d.html" target="_blank">爬虫学习-1</a><br></span><span>  3.<a class="is-size-6" href="/post/2203a96e.html" target="_blank">c++学习-基础</a><br></span><span>  4.<a class="is-size-6" href="/post/82c49f65.html" target="_blank">记录第一次博客踩的坑</a><br></span></div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/post/bd35b9b2.html" target="_blank">爬虫学习-4</a><br></span><span>  2.<a class="is-size-6" href="/post/23512c11.html" target="_blank">爬虫学习-3</a><br></span><span>  3.<a class="is-size-6" href="/post/54561c87.html" target="_blank">爬虫学习-2</a><br></span><span>  4.<a class="is-size-6" href="/post/cd5f4d3d.html" target="_blank">爬虫学习-1</a><br></span><span>  5.<a class="is-size-6" href="/post/2203a96e.html" target="_blank">c++学习-基础</a><br></span><span>  6.<a class="is-size-6" href="/post/82c49f65.html" target="_blank">记录第一次博客踩的坑</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221112.png" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221048.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/23512c11.html"><span class="level-item">爬虫学习-3</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
             var gitalk = new Gitalk({
             language:'zh-CN',
-            id: 'b89953dc57539556c6d3b05c83fbd3fc',
+            id: '57c3aa92fb6e36f5dfea0cad45ec937f',
             repo: 'blog-comment',
             owner: 'duskandwine',
             clientID: '026e502c5861aaa75cf1',
@@ -126,7 +108,7 @@
             enableHotKey: true,
             isLocked: false
         })
-        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget toc-scroll" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list toc"><li><a class="is-flex toc-item" id="toc-item-爬虫概述" href="#爬虫概述"><span>爬虫概述</span></a><ul class="menu-list toc"><li><a class="is-flex toc-item" id="toc-item-jupyter-的基本使用" href="#jupyter-的基本使用"><span>jupyter 的基本使用</span></a></li><li><a class="is-flex toc-item" id="toc-item-爬虫概述-1" href="#爬虫概述-1"><span>爬虫概述</span></a></li></ul></li></ul></div></div><script type="text/javascript" async>
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget toc-scroll" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list toc"><li><a class="is-flex toc-item" id="toc-item-正则-bs4基础" href="#正则-bs4基础"><span>正则+bs4基础</span></a><ul class="menu-list toc"><li><a class="is-flex toc-item" id="toc-item-正则" href="#正则"><span>正则</span></a></li><li><a class="is-flex toc-item" id="toc-item-bs4" href="#bs4"><span>bs4</span></a></li></ul></li></ul></div></div><script type="text/javascript" async>
         $(document).ready(function () { //参考自 https://github.com/ppoffice/hexo-theme-icarus/pull/616/files
             var observerTopMargin;
             var scrollObserver;
