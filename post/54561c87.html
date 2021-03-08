@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>爬虫学习-2 - 别梧</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="别梧"><meta name="msapplication-TileImage" content="/img/favicon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="别梧"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="学习，生活"><meta property="og:type" content="blog"><meta property="og:title" content="別梧"><meta property="og:url" content="https://duskandwine.github.io/"><meta property="og:site_name" content="別梧"><meta property="og:description" content="学习，生活"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://duskandwine.github.io/img/logo.jpg"><meta property="article:published_time" content="2020-09-19T09:12:26.000Z"><meta property="article:modified_time" content="2021-03-08T03:13:20.302Z"><meta property="article:author" content="别梧"><meta property="article:tag" content="爬虫"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/logo.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://duskandwine.github.io/"},"headline":"別梧","image":["https://duskandwine.github.io/img/log.jpg"],"datePublished":"2020-09-19T09:12:26.000Z","dateModified":"2021-03-08T03:13:20.302Z","author":{"@type":"Person","name":"别梧"},"description":"学习，生活"}</script><link rel="canonical" href="https://duskandwine.github.io/post/54561c87.html"><link rel="alternate" href="/atom.xml" title="别梧" type="application/atom+xml"><link rel="icon" href="/img/favicon.png"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.12/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><link rel="stylesheet" href="/live2d/waifu.css"><script type="text/javascript" async src="/live2d/autoload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/20200707170605.png" alt="别梧" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/duskandwine"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2020-09-19  <a class="commentCountImg" href="/post/54561c87.html#comment-container"><span class="display-none-class">81c6327999d56f05d719fa7430ced8d8</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="81c6327999d56f05d719fa7430ced8d8">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>11 分钟  <i class="fas fa-pencil-alt"> </i>1.7 k</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">爬虫学习-2</h1><div class="content"><h3 id="requests基础1"><a href="#requests基础1" class="headerlink" title="requests基础1"></a>requests基础1</h3><span id="more"></span>
+
+<hr>
+<ul>
+<li><p>爬虫中一个基于网络请求的模块<br>pip install requests</p>
+</li>
+<li><p>作用：模拟浏览器发起请求。</p>
+</li>
+<li><p>编码流程：</p>
+<ul>
+<li>1.指定url</li>
+<li>2.发起请求</li>
+<li>3.获取相应数据</li>
+<li>持久化存储</li>
+</ul>
+</li>
+<li><p>爬取搜狗首页的页面源码数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#1,指定url</span></span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/&#x27;</span></span><br><span class="line"><span class="comment">#2,发起请求 get方法的返回值为响应对象</span></span><br><span class="line">response = requests.get(url=url)</span><br><span class="line"><span class="comment">#3,获取响应数据</span></span><br><span class="line"><span class="comment">#.text:返回的是字符串形式的响应数据</span></span><br><span class="line">page_text = response.text</span><br><span class="line"><span class="comment">#4,持久化存储</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./sougou.html&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp : fp.write(page_text)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现一个简易网页采集器</p>
+<ul>
+<li><p>基于搜狗针对指定不同的关键字将其对应的页面数据进行爬取</p>
+</li>
+<li><p>参数动态化：</p>
+<ul>
+<li><p>如果请求的url携带参数，且我们想要将携带的参数进行动态化操作那么我们必须：</p>
+<ol>
+<li><p>将携带的动态参数以键值对的形式封装到一个字典中</p>
+</li>
+<li><p>将该字典作用到get方法的params参数中即可</p>
+</li>
+<li><p>需要将原始携带参数的url中将携带的参数删除</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">keyWord = <span class="built_in">input</span>(<span class="string">&#x27;输入关键字：&#x27;</span>)</span><br><span class="line"><span class="comment">#携带了请求参数的url，如果想要爬取不同关键字对应的页面，我们需要将url携带的参数进行动态化</span></span><br><span class="line"><span class="comment">#实现参数动态化：</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>: keyWord</span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/web&#x27;</span></span><br><span class="line"><span class="comment">#params参数(字典):抱球请求时url携带的参数</span></span><br><span class="line">response = requests.get(url=url, params=params)</span><br><span class="line">page_text = response.text</span><br><span class="line">fileName = keyWord+<span class="string">&#x27;.html&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fileName, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp: fp.write(page_text)</span><br><span class="line">print(fileName, <span class="string">&#x27;爬取完毕!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上述简易采集器出现的问题：</p>
+<ul>
+<li>乱码</li>
+<li>数据丢失</li>
+</ul>
+</li>
+<li><p>解决乱码：</p>
+<ol>
+<li><p>修改响应数据的编码格式</p>
+</li>
+<li><p>encoding返回的是相应数据的原始的编码格式，如果给其赋值则表示修改了相应数据的编码格式</p>
+</li>
+</ol>
+<p>在第9行后插入<code>response.encoding = &#39;utf-8&#39;</code></p>
+</li>
+<li><p>处理乱码后，页面显示[异常访问请求]导致数据丢失。</p>
+<ul>
+<li>异常的访问请求<ul>
+<li>网站后台检测出异常。</li>
+</ul>
+</li>
+<li>网站的后台是如何知道请求是否是通过浏览器发起的？<ul>
+<li>通关判定请求头中的user-agent</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>什么是user-agent</p>
+<ul>
+<li>请求载体(爬虫，浏览器)的身份标识。浏览器的身份标识是统一固定的，身份标识可以从抓包工具中获取。爬虫程序的身份标识是各自不同的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第二种反爬机制：</p>
+<ul>
+<li>UA检测：网站后台会检测请求对应的user-agent，以判定当前请求是否为异常请求</li>
+</ul>
+</li>
+<li><p>反反爬策略：</p>
+<ul>
+<li>UA伪装：被作用到了大部分网站中</li>
+<li>伪装流程：<ul>
+<li>从抓包工具中捕获到某一个基于浏览器请求的user-agent的值，将其伪装作用到一个字典中，将该字典作用到请求方法(get,post)的headers参数中即可。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">keyWord = <span class="built_in">input</span>(<span class="string">&#x27;输入关键字：&#x27;</span>)</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#携带了请求参数的url，如果想要爬取不同关键字对应的页面，我们需要将url携带的参数进行动态化</span></span><br><span class="line"><span class="comment">#实现参数动态化：</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>: keyWord</span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/web&#x27;</span></span><br><span class="line"><span class="comment">#params参数(字典):抱球请求时url携带的参数</span></span><br><span class="line">response = requests.get(url=url, params=params,headers=headers)</span><br><span class="line"><span class="comment">#修改响应数据的编码格式</span></span><br><span class="line"><span class="comment">#encoding返回的是相应数据的原始的编码格式，如果给其赋值则表示修改了相应数据的编码格式</span></span><br><span class="line">response.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line">page_text = response.text</span><br><span class="line">fileName = keyWord+<span class="string">&#x27;.html&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fileName, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp: fp.write(page_text)</span><br><span class="line">print(fileName, <span class="string">&#x27;爬取完毕!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爬取豆瓣电影中的电影详情数据</p>
+<ul>
+<li><p>url：<a target="_blank" rel="noopener" href="https://movie.douban.com/typerank?type_name=喜剧&type=24&interval_id=100:90&action=">https://movie.douban.com/typerank?type_name=%E5%96%9C%E5%89%A7&amp;type=24&amp;interval_id=100:90&amp;action=</a></p>
+</li>
+<li><p>动态加载数据的捕获</p>
+<ul>
+<li>什么叫做动态加载的数据？<br>我们通过requests模块进行数据爬取无法每次都实现可见即可得。因为有些数据是通过非浏览器地址栏中的url请求到的数据，而是其他请求请求到的数据，那么这些通过其他请求请求到的数据就是动态加载的数据。</li>
+</ul>
+</li>
+<li><p>如何检测网页中是否存在动态加载数据。</p>
+<ul>
+<li>基于抓包工具进行局部搜索。<br>在当前网页中打开抓包工具，捕获到地址栏的url对应的数据包，在该数据包的response选项卡搜索我们想要爬取的数据，如果搜索到了结果则表示数据不是动态加载的我，否则表示数据为动态加载的。</li>
+</ul>
+</li>
+<li><p>如何捕获到动态加载的数据？</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="如何捕获到动态加载的数据？"><a href="#如何捕获到动态加载的数据？" class="headerlink" title="如何捕获到动态加载的数据？"></a>如何捕获到动态加载的数据？</h3><ul>
+<li>基于抓包工具进行全局搜索<ul>
+<li>在抓包工具中进行全局搜索</li>
+</ul>
+</li>
+<li>基于抓包工具进行全局搜索不一定可以每次都能定位到动态加载数据对应的数据包。<ul>
+<li>如果动态加载的数据是经过加密的密文数据，就会搜索不到对应的数据包。(加密解密js混淆)</li>
+</ul>
+</li>
+</ul>
+<p>-定位到动态加载数据对应的数据包，从该数据包中就可以提取出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;https://movie.douban.com/j/chart/top_list&#x27;</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;24&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;interval_id&#x27;</span>: <span class="string">&#x27;100:90&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;action&#x27;</span>:<span class="string">&#x27; &#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;start&#x27;</span>: <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;limit&#x27;</span>: <span class="string">&#x27;20&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url=url,params=params,headers=headers)</span><br><span class="line"><span class="comment">#json()将获取的字符串形式的json数据序列化成字典或者列表对象</span></span><br><span class="line">page_text = response.json()</span><br><span class="line"><span class="keyword">for</span> movie <span class="keyword">in</span> page_text:</span><br><span class="line">    name = movie[<span class="string">&#x27;title&#x27;</span>]</span><br><span class="line">    score = movie[<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line">    print(name, score)</span><br></pre></td></tr></table></figure>
+
+<h3 id="分页数据的爬取操作"><a href="#分页数据的爬取操作" class="headerlink" title="分页数据的爬取操作"></a>分页数据的爬取操作</h3><ul>
+<li><p>爬取肯德基的餐厅位置数据</p>
+<ul>
+<li>url：<a target="_blank" rel="noopener" href="http://www.kfc.com.cn/kfccda/storelist/index.aspx">http://www.kfc.com.cn/kfccda/storelist/index.aspx</a></li>
+</ul>
+</li>
+<li><p>分析</p>
+<ul>
+<li>在录入关键字的文本框中录入关键字按下搜索按钮，发起的是一个ajax请求<ul>
+<li>当前页面刷仙出来的位置信息一定是通过ajax请求请求到的数据</li>
+</ul>
+</li>
+<li>基于抓包工具定位到该ajax请求的数据包，从该数据包中捕获到：<ol>
+<li>请求的url</li>
+<li>请求方式</li>
+<li>请求携带的参数</li>
+<li>看到响应数据</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#爬取单页</span></span><br><span class="line">url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=keyword&#x27;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pid&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;keyword&#x27;</span>: <span class="string">&#x27;广州&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pageIndex&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pageSize&#x27;</span>: <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url=url,data=data,headers=headers)</span><br><span class="line">page_text = response.json()</span><br><span class="line"><span class="keyword">for</span> canting <span class="keyword">in</span> page_text[<span class="string">&#x27;Table1&#x27;</span>]:</span><br><span class="line">    title = canting[<span class="string">&#x27;storeName&#x27;</span>]</span><br><span class="line">    address = canting[<span class="string">&#x27;addressDetail&#x27;</span>]</span><br><span class="line">    print(title, address)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取多页</span></span><br><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">3</span>):</span><br><span class="line">    url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=keyword&#x27;</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;pid&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;keyword&#x27;</span>: <span class="string">&#x27;广州&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;pageIndex&#x27;</span>: <span class="built_in">str</span>(page),</span><br><span class="line">        <span class="string">&#x27;pageSize&#x27;</span>: <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    response = requests.post(url=url,data=data,headers=headers)</span><br><span class="line">    page_text = response.json()</span><br><span class="line">    <span class="keyword">for</span> canting <span class="keyword">in</span> page_text[<span class="string">&#x27;Table1&#x27;</span>]:</span><br><span class="line">        title = canting[<span class="string">&#x27;storeName&#x27;</span>]</span><br><span class="line">        address = canting[<span class="string">&#x27;addressDetail&#x27;</span>]</span><br><span class="line">        print(title, address)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>爬虫学习-2</p><p><a href="https://duskandwine.github.io/post/54561c87.html">https://duskandwine.github.io/post/54561c87.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://duskandwine.github.io"><p>别梧</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-09-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-03-08</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/post/ac7ecc7d.html" target="_blank">爬虫学习-10</a><br></span><span>  2.<a class="is-size-6" href="/post/c384c50f.html" target="_blank">爬虫学习-9</a><br></span><span>  3.<a class="is-size-6" href="/post/b483f599.html" target="_blank">爬虫学习-8</a><br></span><span>  4.<a class="is-size-6" href="/post/243ce808.html" target="_blank">爬虫学习-7</a><br></span><span>  5.<a class="is-size-6" href="/post/533bd89e.html" target="_blank">爬虫学习-6</a><br></span><span>  6.<a class="is-size-6" href="/post/ca328924.html" target="_blank">爬虫学习-5</a><br></span><span>  7.<a class="is-size-6" href="/post/bd35b9b2.html" target="_blank">爬虫学习-4</a><br></span><span>  8.<a class="is-size-6" href="/post/23512c11.html" target="_blank">爬虫学习-3</a><br></span></div><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 推荐文章</span><br><span>  1.<a class="is-size-6" href="/post/ac7ecc7d.html" target="_blank">爬虫学习-10</a><br></span><span>  2.<a class="is-size-6" href="/post/c384c50f.html" target="_blank">爬虫学习-9</a><br></span><span>  3.<a class="is-size-6" href="/post/b483f599.html" target="_blank">爬虫学习-8</a><br></span><span>  4.<a class="is-size-6" href="/post/243ce808.html" target="_blank">爬虫学习-7</a><br></span><span>  5.<a class="is-size-6" href="/post/533bd89e.html" target="_blank">爬虫学习-6</a><br></span><span>  6.<a class="is-size-6" href="/post/ca328924.html" target="_blank">爬虫学习-5</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221112.png" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://raw.githubusercontent.com/duskandwine/blog_image/master/img/2020/20200707221048.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/23512c11.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">爬虫学习-3</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/cd5f4d3d.html"><span class="level-item">爬虫学习-1</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+            var gitalk = new Gitalk({
+            language:'zh-CN',
+            id: '81c6327999d56f05d719fa7430ced8d8',
+            repo: 'blog-comment',
+            owner: 'duskandwine',
+            clientID: '026e502c5861aaa75cf1',
+            clientSecret: '5778d6101e74046fd04ea0c429b7590eaca75eee',
+            admin: ["duskandwine"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex is-mobile" href="#requests基础1"><span>requests基础1</span></a></li><li><a class="is-flex is-mobile" href="#如何捕获到动态加载的数据？"><span>如何捕获到动态加载的数据？</span></a></li><li><a class="is-flex is-mobile" href="#分页数据的爬取操作"><span>分页数据的爬取操作</span></a></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/logo.jpg" alt="別梧"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">別梧</p><p class="is-size-6 is-block">无常逐一升起和熄灭。</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>舒适区</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">1</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.weibo.com/pianzhiguang/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/duskandwine"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Weibo" href="https://www.weibo.com/pianzhiguang/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo&amp;is_all=1"><i class="fab fa-weibo"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="mailto:duskandwine@outlook.com"><i class="fa fa-envelope"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/atom.xml"><i class="fas fa-rss"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新评论</h3><span class="body_hot_comment">加载中，最新评论有1分钟缓存...</span></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-07T08:00:31.000Z">2021-03-07</time></p><p class="title"><a href="/post/ac7ecc7d.html">爬虫学习-10</a></p><p class="categories"><a href="/categories/python/">python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-07T00:55:16.000Z">2021-03-07</time></p><p class="title"><a href="/post/c384c50f.html">爬虫学习-9</a></p><p class="categories"><a href="/categories/python/">python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-05T09:59:49.000Z">2021-03-05</time></p><p class="title"><a href="/post/b483f599.html">爬虫学习-8</a></p><p class="categories"><a href="/categories/python/">python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-04T01:15:54.000Z">2021-03-04</time></p><p class="title"><a href="/post/243ce808.html">爬虫学习-7</a></p><p class="categories"><a href="/categories/python/">python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-03-03T07:42:56.000Z">2021-03-03</time></p><p class="title"><a href="/post/533bd89e.html">爬虫学习-6</a></p><p class="categories"><a href="/categories/python/">python</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/c/"><span class="level-start"><span class="level-item">c++</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/python/"><span class="level-start"><span class="level-item">python</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E7%88%AC%E8%99%AB/"><span class="tag">爬虫</span><span class="tag is-grey-lightest">10</span></a></div></div></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button is-primary" type="submit" value="订阅"></div></div><p class="help">输入邮箱开始订阅，更博后邮件通知！</p></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/20200707170605.png" alt="别梧" height="28"></a><p class="size-small"><span>&copy; 2021 别梧</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br />&nbsp;&nbsp;&nbsp;&nbsp;方便于网友与自己学习交流，如有侵权，请<a href="/message" target="_blank">留言</a>，立即处理]<br /></span><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2020/07/01 00:00:0')", 250,"");</script><br></span><div class="size-small"><span>❤️感谢 <strong><span id="busuanzi_value_site_uv">99+</span></strong> 小伙伴的 <strong><span id="busuanzi_value_site_pv">99+</span></strong> 次光临！❤️</span></div></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/duskandwine"><i class="fab fa-github"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="2364053447" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.12/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script>$.getScript('/js/comment-issue-data.js',function(){loadIssueData('026e502c5861aaa75cf1','5778d6101e74046fd04ea0c429b7590eaca75eee','duskandwine','blog-comment',false);})</script><link rel="stylesheet" href="/css/insight.css"><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"></div></div></div></div><script>(function (window) {
+            var INSIGHT_CONFIG = {
+                TRANSLATION: {
+                    POSTS: 'insight.posts',
+                    PAGES: 'insight.pages',
+                    CATEGORIES: 'insight.categories',
+                    TAGS: 'insight.tags',
+                    UNTITLED: 'insight.untitled',
+                },
+                CONTENT_URL: '/content.json',
+            };
+            window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+        })(window);</script><script src="/js/insight.js" defer></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(true){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('026e502c5861aaa75cf1','5778d6101e74046fd04ea0c429b7590eaca75eee','duskandwine','blog-comment',false);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
