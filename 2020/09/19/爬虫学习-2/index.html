@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>爬虫学习-2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="requests基础1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫学习-2">
+<meta property="og:url" content="http://example.com/2020/09/19/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="requests基础1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-19T09:12:26.000Z">
+<meta property="article:modified_time" content="2021-03-08T03:13:20.302Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-爬虫学习-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/19/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-2/" class="article-date">
+  <time datetime="2020-09-19T09:12:26.000Z" itemprop="datePublished">2020-09-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/python/">python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      爬虫学习-2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="requests基础1"><a href="#requests基础1" class="headerlink" title="requests基础1"></a>requests基础1</h3><span id="more"></span>
+
+<hr>
+<ul>
+<li><p>爬虫中一个基于网络请求的模块<br>pip install requests</p>
+</li>
+<li><p>作用：模拟浏览器发起请求。</p>
+</li>
+<li><p>编码流程：</p>
+<ul>
+<li>1.指定url</li>
+<li>2.发起请求</li>
+<li>3.获取相应数据</li>
+<li>持久化存储</li>
+</ul>
+</li>
+<li><p>爬取搜狗首页的页面源码数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment">#1,指定url</span></span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/&#x27;</span></span><br><span class="line"><span class="comment">#2,发起请求 get方法的返回值为响应对象</span></span><br><span class="line">response = requests.get(url=url)</span><br><span class="line"><span class="comment">#3,获取响应数据</span></span><br><span class="line"><span class="comment">#.text:返回的是字符串形式的响应数据</span></span><br><span class="line">page_text = response.text</span><br><span class="line"><span class="comment">#4,持久化存储</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./sougou.html&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp : fp.write(page_text)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现一个简易网页采集器</p>
+<ul>
+<li><p>基于搜狗针对指定不同的关键字将其对应的页面数据进行爬取</p>
+</li>
+<li><p>参数动态化：</p>
+<ul>
+<li><p>如果请求的url携带参数，且我们想要将携带的参数进行动态化操作那么我们必须：</p>
+<ol>
+<li><p>将携带的动态参数以键值对的形式封装到一个字典中</p>
+</li>
+<li><p>将该字典作用到get方法的params参数中即可</p>
+</li>
+<li><p>需要将原始携带参数的url中将携带的参数删除</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">keyWord = <span class="built_in">input</span>(<span class="string">&#x27;输入关键字：&#x27;</span>)</span><br><span class="line"><span class="comment">#携带了请求参数的url，如果想要爬取不同关键字对应的页面，我们需要将url携带的参数进行动态化</span></span><br><span class="line"><span class="comment">#实现参数动态化：</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>: keyWord</span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/web&#x27;</span></span><br><span class="line"><span class="comment">#params参数(字典):抱球请求时url携带的参数</span></span><br><span class="line">response = requests.get(url=url, params=params)</span><br><span class="line">page_text = response.text</span><br><span class="line">fileName = keyWord+<span class="string">&#x27;.html&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fileName, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp: fp.write(page_text)</span><br><span class="line">print(fileName, <span class="string">&#x27;爬取完毕!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>上述简易采集器出现的问题：</p>
+<ul>
+<li>乱码</li>
+<li>数据丢失</li>
+</ul>
+</li>
+<li><p>解决乱码：</p>
+<ol>
+<li><p>修改响应数据的编码格式</p>
+</li>
+<li><p>encoding返回的是相应数据的原始的编码格式，如果给其赋值则表示修改了相应数据的编码格式</p>
+</li>
+</ol>
+<p>在第9行后插入<code>response.encoding = &#39;utf-8&#39;</code></p>
+</li>
+<li><p>处理乱码后，页面显示[异常访问请求]导致数据丢失。</p>
+<ul>
+<li>异常的访问请求<ul>
+<li>网站后台检测出异常。</li>
+</ul>
+</li>
+<li>网站的后台是如何知道请求是否是通过浏览器发起的？<ul>
+<li>通关判定请求头中的user-agent</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>什么是user-agent</p>
+<ul>
+<li>请求载体(爬虫，浏览器)的身份标识。浏览器的身份标识是统一固定的，身份标识可以从抓包工具中获取。爬虫程序的身份标识是各自不同的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第二种反爬机制：</p>
+<ul>
+<li>UA检测：网站后台会检测请求对应的user-agent，以判定当前请求是否为异常请求</li>
+</ul>
+</li>
+<li><p>反反爬策略：</p>
+<ul>
+<li>UA伪装：被作用到了大部分网站中</li>
+<li>伪装流程：<ul>
+<li>从抓包工具中捕获到某一个基于浏览器请求的user-agent的值，将其伪装作用到一个字典中，将该字典作用到请求方法(get,post)的headers参数中即可。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">keyWord = <span class="built_in">input</span>(<span class="string">&#x27;输入关键字：&#x27;</span>)</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>:<span class="string">&#x27;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#携带了请求参数的url，如果想要爬取不同关键字对应的页面，我们需要将url携带的参数进行动态化</span></span><br><span class="line"><span class="comment">#实现参数动态化：</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;query&#x27;</span>: keyWord</span><br><span class="line">&#125;</span><br><span class="line">url = <span class="string">&#x27;https://www.sogou.com/web&#x27;</span></span><br><span class="line"><span class="comment">#params参数(字典):抱球请求时url携带的参数</span></span><br><span class="line">response = requests.get(url=url, params=params,headers=headers)</span><br><span class="line"><span class="comment">#修改响应数据的编码格式</span></span><br><span class="line"><span class="comment">#encoding返回的是相应数据的原始的编码格式，如果给其赋值则表示修改了相应数据的编码格式</span></span><br><span class="line">response.encoding = <span class="string">&#x27;utf-8&#x27;</span></span><br><span class="line">page_text = response.text</span><br><span class="line">fileName = keyWord+<span class="string">&#x27;.html&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(fileName, <span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp: fp.write(page_text)</span><br><span class="line">print(fileName, <span class="string">&#x27;爬取完毕!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爬取豆瓣电影中的电影详情数据</p>
+<ul>
+<li><p>url：<a target="_blank" rel="noopener" href="https://movie.douban.com/typerank?type_name=喜剧&type=24&interval_id=100:90&action=">https://movie.douban.com/typerank?type_name=%E5%96%9C%E5%89%A7&amp;type=24&amp;interval_id=100:90&amp;action=</a></p>
+</li>
+<li><p>动态加载数据的捕获</p>
+<ul>
+<li>什么叫做动态加载的数据？<br>我们通过requests模块进行数据爬取无法每次都实现可见即可得。因为有些数据是通过非浏览器地址栏中的url请求到的数据，而是其他请求请求到的数据，那么这些通过其他请求请求到的数据就是动态加载的数据。</li>
+</ul>
+</li>
+<li><p>如何检测网页中是否存在动态加载数据。</p>
+<ul>
+<li>基于抓包工具进行局部搜索。<br>在当前网页中打开抓包工具，捕获到地址栏的url对应的数据包，在该数据包的response选项卡搜索我们想要爬取的数据，如果搜索到了结果则表示数据不是动态加载的我，否则表示数据为动态加载的。</li>
+</ul>
+</li>
+<li><p>如何捕获到动态加载的数据？</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="如何捕获到动态加载的数据？"><a href="#如何捕获到动态加载的数据？" class="headerlink" title="如何捕获到动态加载的数据？"></a>如何捕获到动态加载的数据？</h3><ul>
+<li>基于抓包工具进行全局搜索<ul>
+<li>在抓包工具中进行全局搜索</li>
+</ul>
+</li>
+<li>基于抓包工具进行全局搜索不一定可以每次都能定位到动态加载数据对应的数据包。<ul>
+<li>如果动态加载的数据是经过加密的密文数据，就会搜索不到对应的数据包。(加密解密js混淆)</li>
+</ul>
+</li>
+</ul>
+<p>-定位到动态加载数据对应的数据包，从该数据包中就可以提取出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">url = <span class="string">&#x27;https://movie.douban.com/j/chart/top_list&#x27;</span></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;24&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;interval_id&#x27;</span>: <span class="string">&#x27;100:90&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;action&#x27;</span>:<span class="string">&#x27; &#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;start&#x27;</span>: <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;limit&#x27;</span>: <span class="string">&#x27;20&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(url=url,params=params,headers=headers)</span><br><span class="line"><span class="comment">#json()将获取的字符串形式的json数据序列化成字典或者列表对象</span></span><br><span class="line">page_text = response.json()</span><br><span class="line"><span class="keyword">for</span> movie <span class="keyword">in</span> page_text:</span><br><span class="line">    name = movie[<span class="string">&#x27;title&#x27;</span>]</span><br><span class="line">    score = movie[<span class="string">&#x27;score&#x27;</span>]</span><br><span class="line">    print(name, score)</span><br></pre></td></tr></table></figure>
+
+<h3 id="分页数据的爬取操作"><a href="#分页数据的爬取操作" class="headerlink" title="分页数据的爬取操作"></a>分页数据的爬取操作</h3><ul>
+<li><p>爬取肯德基的餐厅位置数据</p>
+<ul>
+<li>url：<a target="_blank" rel="noopener" href="http://www.kfc.com.cn/kfccda/storelist/index.aspx">http://www.kfc.com.cn/kfccda/storelist/index.aspx</a></li>
+</ul>
+</li>
+<li><p>分析</p>
+<ul>
+<li>在录入关键字的文本框中录入关键字按下搜索按钮，发起的是一个ajax请求<ul>
+<li>当前页面刷仙出来的位置信息一定是通过ajax请求请求到的数据</li>
+</ul>
+</li>
+<li>基于抓包工具定位到该ajax请求的数据包，从该数据包中捕获到：<ol>
+<li>请求的url</li>
+<li>请求方式</li>
+<li>请求携带的参数</li>
+<li>看到响应数据</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#爬取单页</span></span><br><span class="line">url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=keyword&#x27;</span></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pid&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;keyword&#x27;</span>: <span class="string">&#x27;广州&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pageIndex&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;pageSize&#x27;</span>: <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">response = requests.post(url=url,data=data,headers=headers)</span><br><span class="line">page_text = response.json()</span><br><span class="line"><span class="keyword">for</span> canting <span class="keyword">in</span> page_text[<span class="string">&#x27;Table1&#x27;</span>]:</span><br><span class="line">    title = canting[<span class="string">&#x27;storeName&#x27;</span>]</span><br><span class="line">    address = canting[<span class="string">&#x27;addressDetail&#x27;</span>]</span><br><span class="line">    print(title, address)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 爬取多页</span></span><br><span class="line"><span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">3</span>):</span><br><span class="line">    url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=keyword&#x27;</span></span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;pid&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;keyword&#x27;</span>: <span class="string">&#x27;广州&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;pageIndex&#x27;</span>: <span class="built_in">str</span>(page),</span><br><span class="line">        <span class="string">&#x27;pageSize&#x27;</span>: <span class="string">&#x27;10&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    response = requests.post(url=url,data=data,headers=headers)</span><br><span class="line">    page_text = response.json()</span><br><span class="line">    <span class="keyword">for</span> canting <span class="keyword">in</span> page_text[<span class="string">&#x27;Table1&#x27;</span>]:</span><br><span class="line">        title = canting[<span class="string">&#x27;storeName&#x27;</span>]</span><br><span class="line">        address = canting[<span class="string">&#x27;addressDetail&#x27;</span>]</span><br><span class="line">        print(title, address)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/19/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-2/" data-id="cklyvusdc000qkguc1flu8a17" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/23/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          爬虫学习-3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/11/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">爬虫学习-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/c/">c++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/07/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-10/">爬虫学习-10</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/07/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-9/">爬虫学习-9</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/05/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-8/">爬虫学习-8</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/04/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-7/">爬虫学习-7</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/03/%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0-6/">爬虫学习-6</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
