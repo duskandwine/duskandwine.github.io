@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>software on duskandwine</title>
+        <link>https://duskandwine.github.io/categories/software/</link>
+        <description>Recent content in software on duskandwine</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 13 Apr 2022 10:37:03 +0800</lastBuildDate><atom:link href="https://duskandwine.github.io/categories/software/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Obsidian配置及基本用法</title>
+        <link>https://duskandwine.github.io/p/obsidian%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</link>
+        <pubDate>Wed, 13 Apr 2022 10:37:03 +0800</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/obsidian%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/</guid>
+        <description>&lt;img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413120850084.png" alt="Featured image of post Obsidian配置及基本用法" /&gt;&lt;p&gt;obsidian的优点有很多支持Markdown、丰富的插件系统、本地化的资料库、支持同步、最新版本也支持和typora一样的实时预览等等。尽管它是一款优秀的软件，但是还是不要追求all in one，我认为这会导致你记录的东西非常混乱。&lt;/p&gt;
+&lt;p&gt;对于我来说obsidian的定位不是信息收集工具(我使用sidenotes和自带的记事本文件)，不是word，不是时间管理工具(sorted3)，当然这些功能都可以在obsidian上实现。obsidian应该是进行对所学知识的管理工具，以及对自己输出的结构化和整理后的想法和换点的整合工具，例如书评影评等。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;人在使用工具的时候，工具也在改变人，obsidian会逼着我们建立知识间的连接，迫使我们把知识单元清晰化。人可以主动选择工具，让工具的逻辑来改变自己做事既有的混乱状态。你在选择工具的时候，工具也会反过来塑造你。当我们再去使用新的工具时，要去想这些新的工具能为我们带来什么新的思考模式或者是新的工作流程，不要为了使用新的东西而去使用新的东西。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;基础配置&#34;&gt;基础配置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;文件与链接&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413114336903.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220413114336903&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;建议打开的核心插件，日记插件可根据资料库情况选择性打开
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413114804765.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220413114804765&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不同的资料库是无法设置双链的。在建立资料库时要对资料库的定位有清晰的认识。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;每个资料库的配置都是不同的，当建立新的资料库时需要重新配置所有设置。每个资料库的设置存放在该资料库下的.obsidian文件夹下，可以直接复制该文件夹到新资料库以更新配置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;双链使用&#34;&gt;双链使用&lt;/h2&gt;
+&lt;p&gt;双链是什么具体就不再介绍，这里单介绍一下在obsidian中使用双链的方法。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;链接到文章：[[1.Obsidian简介]]。&lt;/li&gt;
+&lt;li&gt;链接到某个标题：[[1.Obsidian简介#3 Obsidian定位]]。&lt;/li&gt;
+&lt;li&gt;链接到文本块(段落)：[[1.Obsidian简介#^e3f585]]。^后的代码是自动生成的，也可以去到原文章该段落末尾以&lt;code&gt;空格&lt;/code&gt;+&lt;code&gt;^&lt;/code&gt;+&lt;code&gt;xxx&lt;/code&gt;的形式自己设定。&lt;/li&gt;
+&lt;li&gt;链接别名：[[1.Obsidiani简介#^e3f585|Obsidian中文名]]。&lt;/li&gt;
+&lt;li&gt;使链接的内容展示在当前页面：![[1.Obsidian简介]]。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编辑模式下需要按住control再移动鼠标到双链上查看。&lt;/p&gt;
+&lt;p&gt;为什么要使用双链：简单的说双链可以让你的知识产生关联，不是线性的增长。做自己的百科。&lt;/p&gt;
+&lt;h2 id=&#34;基础技巧&#34;&gt;基础技巧&lt;/h2&gt;
+&lt;h3 id=&#34;模板&#34;&gt;模板&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;日记功能的模板是独立调用的。在如下面板进行配置：
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413165207511.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220413165207511&#34;
+	
+	
+&gt;
+这样在左侧侧面栏新建日记的时候就会自动调用模板。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;其他文章如果需要使用模板则需要在创建好文档后在侧边栏的插入模板中打开新的模板。注意：应该提前在模板插件中配置模板所放文件夹。
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413165634843.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220413165634843&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;关于模板中可以使用的一些通配符说明：&lt;a class=&#34;link&#34; href=&#34;https://help.obsidian.md/Plugins/Templates&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Templates - Obsidian Help&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;内容同步&#34;&gt;内容同步&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Apple全家桶推荐使用iCloud。直接把所有资料库放在iCloud的中就好了，其他平台的同步方式有百度云坚果云等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;命令面板&#34;&gt;命令面板&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;mac：command+p/window：ctrl+p调出命令面板。很多第三方插件的功能需要通过命令面板实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;快捷键&#34;&gt;快捷键&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;建议深度使用之后再为自己常用的操作设置快捷键。我暂时没有设置快捷键，mac下软件快捷键太多了，不但容易引发冲突还难记。应该为自己系统的全局快捷键和常用软件中的常用快捷键撰写一份文档。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;社区插件&#34;&gt;社区插件&lt;/h2&gt;
+&lt;p&gt;推荐插件：
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413192138642.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20220413192138642&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;功能复杂插件的说明及教程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1CA411A71P/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Obsidian 插件之 QuickAdd 使用教程_哔哩哔哩_bilibili&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://silentvoid13.github.io/Templater/introduction.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Introduction - Templater (silentvoid13.github.io)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/read/cv14259903/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;【效率办公】Obsidain插件之Tasks-任务管理利器 - 哔哩哔哩 (bilibili.com)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

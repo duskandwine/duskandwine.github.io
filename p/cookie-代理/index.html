@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='cookie
+是存储在客户端的一组键值对。
+web中cookie的典型应用
+免密登录 登录状态 cookie和爬虫的关系
+对页面请求时，如果请求的过程中不携带cookie，无法请求到正确的页面数据。所以是它是常见的反爬机制。 cookie的处理方式 手动处理 复制粘贴 弊端：有有效时长 自动处理 基于session对象实现自动处理 requests.session（） session对象的作用： 该对象可以像requests一样调用get和post发起指定的请求。只不过如果在使用session发请求的过程中产生了cookie，则cookie会被自动存储在session对象中，那么下次再次使用session请求时，就携带cookie进行了请求。 在使用session的时候，session对象至少会被使用两次。 例：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 需求：爬取雪球网中的咨询信息。https://xueqiu.com/ # 分析：判定爬取的数据是否是动态加载：部分数据是动态加载 # 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据 import requests headers = { &amp;#39;User-Agent&amp;#39;: &amp;#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&amp;#39; } session = requests.session() # 创建session main_url = &amp;#39;https://xueqiu.com/&amp;#39; session.get(main_url, headers=headers) # 捕获且存储cookie url = &amp;#39;https://xueqiu.'><title>cookie&#43;代理</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/cookie-%E4%BB%A3%E7%90%86/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='cookie&#43;代理'>
+<meta property='og:description' content='cookie
+是存储在客户端的一组键值对。
+web中cookie的典型应用
+免密登录 登录状态 cookie和爬虫的关系
+对页面请求时，如果请求的过程中不携带cookie，无法请求到正确的页面数据。所以是它是常见的反爬机制。 cookie的处理方式 手动处理 复制粘贴 弊端：有有效时长 自动处理 基于session对象实现自动处理 requests.session（） session对象的作用： 该对象可以像requests一样调用get和post发起指定的请求。只不过如果在使用session发请求的过程中产生了cookie，则cookie会被自动存储在session对象中，那么下次再次使用session请求时，就携带cookie进行了请求。 在使用session的时候，session对象至少会被使用两次。 例：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 需求：爬取雪球网中的咨询信息。https://xueqiu.com/ # 分析：判定爬取的数据是否是动态加载：部分数据是动态加载 # 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据 import requests headers = { &amp;#39;User-Agent&amp;#39;: &amp;#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&amp;#39; } session = requests.session() # 创建session main_url = &amp;#39;https://xueqiu.com/&amp;#39; session.get(main_url, headers=headers) # 捕获且存储cookie url = &amp;#39;https://xueqiu.'>
+<meta property='og:url' content='https://duskandwine.github.io/p/cookie-%E4%BB%A3%E7%90%86/'>
+<meta property='og:site_name' content='duskandwine'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爬虫' /><meta property='article:published_time' content='2021-03-04T01:00:00&#43;02:00'/><meta property='article:modified_time' content='2021-03-04T01:00:00&#43;02:00'/>
+<meta name="twitter:title" content="cookie&#43;代理">
+<meta name="twitter:description" content="cookie
+是存储在客户端的一组键值对。
+web中cookie的典型应用
+免密登录 登录状态 cookie和爬虫的关系
+对页面请求时，如果请求的过程中不携带cookie，无法请求到正确的页面数据。所以是它是常见的反爬机制。 cookie的处理方式 手动处理 复制粘贴 弊端：有有效时长 自动处理 基于session对象实现自动处理 requests.session（） session对象的作用： 该对象可以像requests一样调用get和post发起指定的请求。只不过如果在使用session发请求的过程中产生了cookie，则cookie会被自动存储在session对象中，那么下次再次使用session请求时，就携带cookie进行了请求。 在使用session的时候，session对象至少会被使用两次。 例：
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 需求：爬取雪球网中的咨询信息。https://xueqiu.com/ # 分析：判定爬取的数据是否是动态加载：部分数据是动态加载 # 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据 import requests headers = { &amp;#39;User-Agent&amp;#39;: &amp;#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&amp;#39; } session = requests.session() # 创建session main_url = &amp;#39;https://xueqiu.com/&amp;#39; session.get(main_url, headers=headers) # 捕获且存储cookie url = &amp;#39;https://xueqiu.">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">duskandwine</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/duskandwine'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>about</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
+                python
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/cookie-%E4%BB%A3%E7%90%86/">cookie&#43;代理</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 04, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <ul>
+<li>
+<p>cookie</p>
+<ul>
+<li>
+<p>是存储在客户端的一组键值对。</p>
+</li>
+<li>
+<p>web中cookie的典型应用</p>
+<ul>
+<li>免密登录</li>
+<li>登录状态</li>
+</ul>
+</li>
+<li>
+<p>cookie和爬虫的关系</p>
+<ul>
+<li>对页面请求时，如果请求的过程中不携带cookie，无法请求到正确的页面数据。所以是它是常见的反爬机制。</li>
+<li>cookie的处理方式
+<ul>
+<li>手动处理
+<ul>
+<li>复制粘贴</li>
+<li>弊端：有有效时长</li>
+</ul>
+</li>
+<li>自动处理
+<ul>
+<li>基于session对象实现自动处理</li>
+<li>requests.session（）</li>
+<li>session对象的作用：
+<ul>
+<li>该对象可以像requests一样调用get和post发起指定的请求。只不过如果在使用session发请求的过程中产生了cookie，则cookie会被自动存储在session对象中，那么下次再次使用session请求时，就携带cookie进行了请求。</li>
+<li>在使用session的时候，session对象至少会被使用两次。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 需求：爬取雪球网中的咨询信息。https://xueqiu.com/</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 分析：判定爬取的数据是否是动态加载：部分数据是动态加载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>  <span class="c1"># 创建session</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_url</span> <span class="o">=</span> <span class="s1">&#39;https://xueqiu.com/&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">main_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>   <span class="c1"># 捕获且存储cookie</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://xueqiu.com/statuses/hot/listV2.json?since_id=-1&amp;max_id=176631&amp;size=15&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">page_text</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">page_text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>代理机制</p>
+<ul>
+<li>
+<p>在爬虫中代理就是代理服务器</p>
+</li>
+<li>
+<p>代理服务器的作用是转发请求和响应。</p>
+</li>
+<li>
+<p>短时间内对服务器发起了高频的请求，那么服务器会检测到这样的一个异常的行为请求，就会将该请求对应设备的ip禁掉。</p>
+</li>
+<li>
+<p>如果ip被禁，则可以使用代理服务器。</p>
+</li>
+<li>
+<p>代理服务器不同的匿名程度：</p>
+<ul>
+<li>透明代理：server知道你使用了代理且知道你的真实ip</li>
+<li>匿名代理：知道你使用了代理，但是不知道你的真实ip</li>
+<li>高匿代理：不知道你是使用了代理也不知道你的真实ip</li>
+</ul>
+</li>
+<li>
+<p>代理的类型：</p>
+<ul>
+<li>https：只能转发https协议的请求</li>
+<li>http：转发http的请求</li>
+</ul>
+</li>
+<li>
+<p>代理服务器：</p>
+<ul>
+<li>
+<p>快代理</p>
+</li>
+<li>
+<p>西祠代理</p>
+</li>
+<li>
+<p>goubanjia</p>
+</li>
+<li>
+<p>代理精灵</p>
+</li>
+<li>
+<p>封装代理池</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 代理池</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;放代理地址&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">page_text</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">page_text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">proxy_list</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//body//text()&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">http_proxy</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">proxy</span> <span class="ow">in</span> <span class="n">proxy_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;http&#39;</span><span class="p">:</span> <span class="n">proxy</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">http_proxy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dic</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用代理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># request = requests.get(url, headers=headers,  proxies={&#39;http&#39;:ip:port})</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># xpath解析式中不能出现tbody标签</span>
+</span></span><span class="line"><span class="cl"><span class="n">request</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">http_proxy</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>验证码识别</p>
+<ul>
+<li>
+<p>基于线上的打码平台识别验证码</p>
+</li>
+<li>
+<p>打码平台</p>
+<ul>
+<li>
+<p>超级鹰</p>
+<ul>
+<li>
+<p>创建软件id</p>
+</li>
+<li>
+<p>下载示例代码</p>
+</li>
+<li>
+<p>封装功能</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">chaojiying</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tanfoormImgCode</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chaojiying1</span> <span class="o">=</span> <span class="n">chaojiying</span><span class="o">.</span><span class="n">Chaojiying_Client</span><span class="p">(</span><span class="s1">&#39;用户名&#39;</span><span class="p">,</span> <span class="s1">&#39;密码&#39;</span><span class="p">,</span> <span class="s1">&#39;软件id&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">im</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chaojiying1</span><span class="o">.</span><span class="n">PostPic</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="nb">type</span><span class="p">)[</span><span class="s1">&#39;pic_str&#39;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>云打码</p>
+</li>
+<li>
+<p>打码兔</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>模拟登录</p>
+<ul>
+<li>流程：
+<ul>
+<li>对点击登录按钮对应的请求进行发送(get)</li>
+<li>处理请求参数：
+<ul>
+<li>用户名</li>
+<li>密码</li>
+<li>验证码</li>
+<li>其他防伪参数
+<ul>
+<li>cookie(session)</li>
+<li>乱序请求参数(可能动态)
+<ul>
+<li>处理方式1：一般动态变化的请求参数会被隐藏在前台页面中，在页面源码中搜索即可。</li>
+<li>处理方式2：如果前台页面没有，则机遇抓包工具进行全局搜索。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">chaojiying</span> <span class="kn">import</span> <span class="n">tanfoormImgCode</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 识别验证码</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span> <span class="c1"># 创建session捕获cookie</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://so.gushiwen.cn/user/login.aspx?from=http://so.gushiwen.cn/user/collect.aspx&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">page_text</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">page_text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">img_src</span> <span class="o">=</span> <span class="s1">&#39;https://so.gushiwen.cn&#39;</span> <span class="o">+</span> <span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&#34;imgCode&#34;]&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">img_data</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_src</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./code.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 识别验证码</span>
+</span></span><span class="line"><span class="cl"><span class="n">code_text</span> <span class="o">=</span> <span class="n">tanfoormImgCode</span><span class="p">(</span><span class="s1">&#39;./code.jpg&#39;</span><span class="p">,</span> <span class="mi">1902</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">login_url</span> <span class="o">=</span> <span class="s1">&#39;https://so.gushiwen.cn/user/login.aspx?from=http</span><span class="si">%3a%2f%2f</span><span class="s1">so.gushiwen.cn</span><span class="si">%2f</span><span class="s1">user</span><span class="si">%2f</span><span class="s1">collect.aspx&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;__VIEWSTATE&#39;</span><span class="p">:</span> <span class="s1">&#39;9Qg1T/fXvI3ef41DzaaaK7bfCyhDl4c3E3RS1rYNfMx4QF5zKHU43xQ2JKqM2PVNkn228ZRjSIh5F0yXq5gYfAdSZSSBctGUiqunsGgE/NKcajrSMIqiXihWMj0=&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;__VIEWSTATEGENERATOR&#39;</span><span class="p">:</span> <span class="s1">&#39;C93BE1AE&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;from&#39;</span><span class="p">:</span> <span class="s1">&#39;http://so.gushiwen.cn/user/collect.aspx&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;33192475@qq.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;pwd&#39;</span><span class="p">:</span> <span class="s1">&#39;j33192475&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="n">code_text</span><span class="p">,</span> <span class="c1"># 动态订婚</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;denglu&#39;</span><span class="p">:</span> <span class="s1">&#39;登录&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对点击登录发起请求</span>
+</span></span><span class="line"><span class="cl"><span class="n">page_text_login</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">page_text_login</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#  TODO jupyter魔法指令</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  TODO 正则</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  TODO 梨视频爬取</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>基于百度AI实现的爬虫功能</p>
+<ul>
+<li>图像识别</li>
+<li>语音识别&amp;合成</li>
+<li>自然语言处理</li>
+<li>使用流程：
+<ul>
+<li>登录后在相应功能下创建app</li>
+<li>选择对应的pythonSDK文档进行代码实现</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>梨视频爬取思路</p>
+<ul>
+<li>将每一个视频详情页的url进行解析</li>
+<li>对视频详情页的url进行请求发送</li>
+<li>在视频详情页的页面源码中进行全局搜索，发现没有找到video标签
+<ul>
+<li>video是动态加载</li>
+<li>动态加载的数据方式
+<ul>
+<li>ajax</li>
+<li>js</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过正则匹配出视频地址</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/scrapy/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">scrapy</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/selenium/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SELENIUM</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">异步爬虫</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/xpath%E8%A7%A3%E6%9E%90/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">xpath解析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/bs4%E5%AE%9E%E6%88%98-xpath%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">bs4实战&#43;xpath基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "duskandwine" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 duskandwine
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

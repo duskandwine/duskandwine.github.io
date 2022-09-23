@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='tmux和vim常用命令，以及一些练习。'><title>tmux和vim</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/tmux%E5%92%8Cvim/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='tmux和vim'>
+<meta property='og:description' content='tmux和vim常用命令，以及一些练习。'>
+<meta property='og:url' content='https://duskandwine.github.io/p/tmux%E5%92%8Cvim/'>
+<meta property='og:site_name' content='duskandwine'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tools' /><meta property='article:published_time' content='2021-10-01T01:00:00&#43;02:00'/><meta property='article:modified_time' content='2021-10-01T01:00:00&#43;02:00'/>
+<meta name="twitter:title" content="tmux和vim">
+<meta name="twitter:description" content="tmux和vim常用命令，以及一些练习。">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">duskandwine</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/duskandwine'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>about</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/linux/" style="background-color: #2a9d8f; color: #fff;">
+                linux
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/tmux%E5%92%8Cvim/">tmux和vim</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            tmux和vim常用命令，以及一些练习。
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 01, 2021</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h4 id="1tmux教程">1、tmux教程</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">功能：
+</span></span><span class="line"><span class="cl">    (1) 分屏。
+</span></span><span class="line"><span class="cl">    (2) 允许断开Terminal连接后，继续运行进程。
+</span></span><span class="line"><span class="cl">结构：
+</span></span><span class="line"><span class="cl">    一个tmux可以包含多个session，一个session可以包含多个window，一个window可以包含多个pane。
+</span></span><span class="line"><span class="cl">    实例：
+</span></span><span class="line"><span class="cl">        tmux:
+</span></span><span class="line"><span class="cl">            session 0:
+</span></span><span class="line"><span class="cl">                window 0:
+</span></span><span class="line"><span class="cl">                    pane 0
+</span></span><span class="line"><span class="cl">                    pane 1
+</span></span><span class="line"><span class="cl">                    pane 2
+</span></span><span class="line"><span class="cl">                    ...
+</span></span><span class="line"><span class="cl">                window 1
+</span></span><span class="line"><span class="cl">                window 2
+</span></span><span class="line"><span class="cl">                ...
+</span></span><span class="line"><span class="cl">            session 1
+</span></span><span class="line"><span class="cl">            session 2
+</span></span><span class="line"><span class="cl">            ...
+</span></span><span class="line"><span class="cl">操作：
+</span></span><span class="line"><span class="cl">    (1) tmux：新建一个session，其中包含一个window，window中包含一个pane，pane里打开了一个shell对话框。
+</span></span><span class="line"><span class="cl">    (2) 按下Ctrl + a后手指松开，然后按%：将当前pane左右平分成两个pane。
+</span></span><span class="line"><span class="cl">    (3) 按下Ctrl + a后手指松开，然后按&#34;（注意是双引号&#34;）：将当前pane上下平分成两个pane。
+</span></span><span class="line"><span class="cl">    (4) Ctrl + d：关闭当前pane；如果当前window的所有pane均已关闭，则自动关闭window；如果当前session的所有window均已关闭，则自动关闭session。
+</span></span><span class="line"><span class="cl">    (5) 鼠标点击可以选pane。
+</span></span><span class="line"><span class="cl">    (6) 按下ctrl + a后手指松开，然后按方向键：选择相邻的pane。
+</span></span><span class="line"><span class="cl">    (7) 鼠标拖动pane之间的分割线，可以调整分割线的位置。
+</span></span><span class="line"><span class="cl">    (8) 按住ctrl + a的同时按方向键，可以调整pane之间分割线的位置。
+</span></span><span class="line"><span class="cl">    (9) 按下ctrl + a后手指松开，然后按z：将当前pane全屏/取消全屏。
+</span></span><span class="line"><span class="cl">    (10) 按下ctrl + a后手指松开，然后按d：挂起当前session。
+</span></span><span class="line"><span class="cl">    (11) tmux a：打开之前挂起的session。
+</span></span><span class="line"><span class="cl">    (12) 按下ctrl + a后手指松开，然后按s：选择其它session。
+</span></span><span class="line"><span class="cl">        方向键 —— 上：选择上一项 session/window/pane
+</span></span><span class="line"><span class="cl">        方向键 —— 下：选择下一项 session/window/pane
+</span></span><span class="line"><span class="cl">        方向键 —— 右：展开当前项 session/window
+</span></span><span class="line"><span class="cl">        方向键 —— 左：闭合当前项 session/window
+</span></span><span class="line"><span class="cl">    (13) 按下Ctrl + a后手指松开，然后按c：在当前session中创建一个新的window。
+</span></span><span class="line"><span class="cl">    (14) 按下Ctrl + a后手指松开，然后按w：选择其他window，操作方法与(12)完全相同。
+</span></span><span class="line"><span class="cl">    (15) 按下Ctrl + a后手指松开，然后按PageUp：翻阅当前pane内的内容。
+</span></span><span class="line"><span class="cl">    (16) 鼠标滚轮：翻阅当前pane内的内容。
+</span></span><span class="line"><span class="cl">    (17) 在tmux中选中文本时，需要按住shift键。（仅支持Windows和Linux，不支持Mac，不过该操作并不是必须的，因此影响不大）
+</span></span><span class="line"><span class="cl">    (18) tmux中复制/粘贴文本的通用方式：
+</span></span><span class="line"><span class="cl">        (1) 按下Ctrl + a后松开手指，然后按[
+</span></span><span class="line"><span class="cl">        (2) 用鼠标选中文本，被选中的文本会被自动复制到tmux的剪贴板
+</span></span><span class="line"><span class="cl">        (3) 按下Ctrl + a后松开手指，然后按]，会将剪贴板中的内容粘贴到光标处
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关于以上ctrl+a快捷键的问题，tmux默认快捷键是ctrl+b，该版本的配置文件是y总以前在旷视实习时他的前辈传给他的，ctrl+a更容易按到hhh，当然还有下面的vim也是经过配置的，当然y总把配置文件也给我们了hhh，acwinglinux传家宝了。</p>
+<p>&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;</p>
+<h4 id="2vim教程">2、vim教程</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">功能：
+</span></span><span class="line"><span class="cl">    (1) 命令行模式下的文本编辑器。
+</span></span><span class="line"><span class="cl">    (2) 根据文件扩展名自动判别编程语言。支持代码缩进、代码高亮等功能。
+</span></span><span class="line"><span class="cl">    (3) 使用方式：vim filename
+</span></span><span class="line"><span class="cl">        如果已有该文件，则打开它。
+</span></span><span class="line"><span class="cl">        如果没有该文件，则打开个一个新的文件，并命名为filename
+</span></span><span class="line"><span class="cl">模式：
+</span></span><span class="line"><span class="cl">    (1) 一般命令模式
+</span></span><span class="line"><span class="cl">        默认模式。命令输入方式：类似于打游戏放技能，按不同字符，即可进行不同操作。可以复制、粘贴、删除文本等。
+</span></span><span class="line"><span class="cl">    (2) 编辑模式
+</span></span><span class="line"><span class="cl">        在一般命令模式里按下i，会进入编辑模式。
+</span></span><span class="line"><span class="cl">        按下ESC会退出编辑模式，返回到一般命令模式。
+</span></span><span class="line"><span class="cl">    (3) 命令行模式
+</span></span><span class="line"><span class="cl">        在一般命令模式里按下:/?三个字母中的任意一个，会进入命令行模式。命令行在最下面。
+</span></span><span class="line"><span class="cl">        可以查找、替换、保存、退出、配置编辑器等。
+</span></span><span class="line"><span class="cl">操作：
+</span></span><span class="line"><span class="cl">    (1) i：进入编辑模式
+</span></span><span class="line"><span class="cl">    (2) ESC：进入一般命令模式
+</span></span><span class="line"><span class="cl">    (3) h 或 左箭头键：光标向左移动一个字符
+</span></span><span class="line"><span class="cl">    (4) j 或 向下箭头：光标向下移动一个字符
+</span></span><span class="line"><span class="cl">    (5) k 或 向上箭头：光标向上移动一个字符
+</span></span><span class="line"><span class="cl">    (6) l 或 向右箭头：光标向右移动一个字符
+</span></span><span class="line"><span class="cl">    (7) n<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>：n表示数字，按下数字后再按空格，光标会向右移动这一行的n个字符
+</span></span><span class="line"><span class="cl">    (8) 0 或 功能键[Home]：光标移动到本行开头
+</span></span><span class="line"><span class="cl">    (9) $或功能键[End]：光标移动到本行末尾
+</span></span><span class="line"><span class="cl">    (10) G：光标移动到最后一行
+</span></span><span class="line"><span class="cl">    (11) :n 或 nG：n为数字，光标移动到第n行
+</span></span><span class="line"><span class="cl">    (12) gg：光标移动到第一行，相当于1G
+</span></span><span class="line"><span class="cl">    (13) n<span class="p">&lt;</span><span class="nt">Enter</span><span class="p">&gt;</span>：n为数字，光标向下移动n行
+</span></span><span class="line"><span class="cl">    (14) /word：向光标之下寻找第一个值为word的字符串。
+</span></span><span class="line"><span class="cl">    (15) ?word：向光标之上寻找第一个值为word的字符串。
+</span></span><span class="line"><span class="cl">    (16) n：重复前一个查找操作
+</span></span><span class="line"><span class="cl">    (17) N：反向重复前一个查找操作
+</span></span><span class="line"><span class="cl">    (18) :n1,n2s/word1/word2/g：n1与n2为数字，在第n1行与n2行之间寻找word1这个字符串，并将该字符串替换为word2
+</span></span><span class="line"><span class="cl">    (19) :1,s/word1/word2/g：将全文的word1替换为word2
+</span></span><span class="line"><span class="cl">    (20) :1,$s/word1/word2/gc：将全文的word1替换为word2，且在替换前要求用户确认。
+</span></span><span class="line"><span class="cl">    (21) v：选中文本
+</span></span><span class="line"><span class="cl">    (22) d：删除选中的文本
+</span></span><span class="line"><span class="cl">    (23) dd: 删除当前行
+</span></span><span class="line"><span class="cl">    (24) y：复制选中的文本
+</span></span><span class="line"><span class="cl">    (25) yy: 复制当前行
+</span></span><span class="line"><span class="cl">    (26) p: 将复制的数据在光标的下一行/下一个位置粘贴
+</span></span><span class="line"><span class="cl">    (27) u：撤销
+</span></span><span class="line"><span class="cl">    (28) Ctrl + r：取消撤销
+</span></span><span class="line"><span class="cl">    (29) 大于号 &gt;：将选中的文本整体向右缩进一次
+</span></span><span class="line"><span class="cl">    (30) 小于号 <span class="err">&lt;</span>：将选中的文本整体向左缩进一次
+</span></span><span class="line"><span class="cl">    (31) :w 保存
+</span></span><span class="line"><span class="cl">    (32) :w! 强制保存
+</span></span><span class="line"><span class="cl">    (33) :q 退出
+</span></span><span class="line"><span class="cl">    (34) :q! 强制退出
+</span></span><span class="line"><span class="cl">    (35) :wq 保存并退出
+</span></span><span class="line"><span class="cl">    (36) :set paste 设置成粘贴模式，取消代码自动缩进
+</span></span><span class="line"><span class="cl">    (37) :set nopaste 取消粘贴模式，开启代码自动缩进
+</span></span><span class="line"><span class="cl">    (38) :set nu 显示行号
+</span></span><span class="line"><span class="cl">    (39) :set nonu 隐藏行号
+</span></span><span class="line"><span class="cl">    (40) gg=G：将全文代码格式化
+</span></span><span class="line"><span class="cl">    (41) :noh 关闭查找关键词高亮
+</span></span><span class="line"><span class="cl">    (42) Ctrl + q：当vim卡死时，可以取消当前正在执行的命令
+</span></span><span class="line"><span class="cl">异常处理：
+</span></span><span class="line"><span class="cl">    每次用vim编辑文件时，会自动创建一个.filename.swp的临时文件。
+</span></span><span class="line"><span class="cl">    如果打开某个文件时，该文件的swp文件已存在，则会报错。此时解决办法有两种：
+</span></span><span class="line"><span class="cl">        (1) 找到正在打开该文件的程序，并退出
+</span></span><span class="line"><span class="cl">        (2) 直接删掉该swp文件即可
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>声明：以上教程内容转载自AcWing中Linux基础课课件，链接：<code>https://www.acwing.com/file_system/file/content/whole/index/content/2855620/</code>，版权所有：y总(闫学灿)~</p>
+<p>&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;&laquo;</p>
+<h4 id="本课作业">本课作业</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">(0) 进入homework_0文件夹，创建文件names.txt，并顺次将下列姓名写入该文件，每个名字占一行。
+</span></span><span class="line"><span class="cl">    AcWing、yxc、Bob、张强、李明、Alice
+</span></span><span class="line"><span class="cl">(1) 进入homework_1文件夹，打开problem.txt，并依次删除下列字符：
+</span></span><span class="line"><span class="cl">    [1] 最后一行第101个字符
+</span></span><span class="line"><span class="cl">    [2] 第3行第8个字符
+</span></span><span class="line"><span class="cl">    [3] 第1行第30个字符
+</span></span><span class="line"><span class="cl">    [4] 第16行第55个字符
+</span></span><span class="line"><span class="cl">    [5] 第9行第80个字符
+</span></span><span class="line"><span class="cl">    最后保存文件并退出。
+</span></span><span class="line"><span class="cl">(2) 进入homework_2文件夹，打开problem.txt，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 在第1个&#34;two&#34;的后面添加&#34;abc&#34;
+</span></span><span class="line"><span class="cl">    [2] 在第2个&#34;two&#34;的前面添加&#34;def&#34;
+</span></span><span class="line"><span class="cl">    [3] 将第3个&#34;two&#34;后面的连续12个字符删掉
+</span></span><span class="line"><span class="cl">    [4] 将第4个&#34;two&#34;所在的行删掉
+</span></span><span class="line"><span class="cl">    最后保存文件并退出。
+</span></span><span class="line"><span class="cl">(3) 进入homework_3文件夹，打开problem.txt，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 将第5行至第15行中所有of替换成OF。
+</span></span><span class="line"><span class="cl">    [2] 将全文中所有的the替换成THE。
+</span></span><span class="line"><span class="cl">    [3] 将第偶数个is替换成IS，第奇数个is不变。下标从1开始。
+</span></span><span class="line"><span class="cl">(4) 进入homework_4文件夹，打开problem.txt，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 删除第11行
+</span></span><span class="line"><span class="cl">    [2] 将所删除的行粘贴到文件最后一行的下一行
+</span></span><span class="line"><span class="cl">    [3] 复制第5行
+</span></span><span class="line"><span class="cl">    [4] 将所复制的行粘贴到文件当前最后一行的下一行
+</span></span><span class="line"><span class="cl">(5) 进入homework_5文件夹，打开problem.txt，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 删除第11行第15个字符（包含该字符）至第13行第5个字符（包含该字符）
+</span></span><span class="line"><span class="cl">    [2] 将所删除的内容粘贴到文件末尾（注意不要另起一行）
+</span></span><span class="line"><span class="cl">    [3] 复制第5行第88个字符（包含该字符）至第7行第6个字符（包含该字符）
+</span></span><span class="line"><span class="cl">    [4] 将所复制的内容粘贴到当前文件末尾（注意不要另起一行）
+</span></span><span class="line"><span class="cl">(6) 进入homework_6文件夹，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 清空source0.cpp
+</span></span><span class="line"><span class="cl">    [2] 将source1.cpp中的第1-3行和第12-24行复制到source0.cpp中
+</span></span><span class="line"><span class="cl">(7) 进入homework_7文件夹，格式化source.cpp
+</span></span><span class="line"><span class="cl">(8) 进入homework_8文件夹，打开source.cpp，并依次执行如下操作：
+</span></span><span class="line"><span class="cl">    [1] 将第15-21行向右缩进2次。
+</span></span><span class="line"><span class="cl">    [2] 将第22-23行向左缩进1次。
+</span></span><span class="line"><span class="cl">(9) 进入homework_9文件夹，打开链接：https://www.acwing.com/activity/content/code/content/1694465/
+</span></span><span class="line"><span class="cl">    新建文件source.cpp，将链接中的代码抄进source.cpp文件中。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="vim作业解答">vim作业解答</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">1. 
+</span></span><span class="line"><span class="cl">homework 2 create 
+</span></span><span class="line"><span class="cl">cd homework/lesson_2/homework_0
+</span></span><span class="line"><span class="cl">vim names.txt <span class="ni">#i插入</span> 输入完成后按esc退出编辑模式，按：后输入wq保存并推出
+</span></span><span class="line"><span class="cl">homwork 2 test <span class="ni">#第一个正确</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 
+</span></span><span class="line"><span class="cl">cd ../homework_1
+</span></span><span class="line"><span class="cl">vim problem.txt <span class="ni">#按G跳转最后一行</span>，输入101G跳到第101个字符，按i进入编辑模式后删除，按3G跳转第3行……依次完成
+</span></span><span class="line"><span class="cl">homework 2 test
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. 
+</span></span><span class="line"><span class="cl">cd ../homework_2
+</span></span><span class="line"><span class="cl">vim problem.txt <span class="ni">#输入/two查找two</span>，n/N控制上一个下一个，然后在相应的two进行相应的操作，dd为删除该行，输入`:noh` 关闭查找关键词高亮
+</span></span><span class="line"><span class="cl">homework 2 test
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. 
+</span></span><span class="line"><span class="cl">cd ../homework_3
+</span></span><span class="line"><span class="cl">vim problem.txt <span class="ni">#输入</span><span class="sb">`:5,15s/of/OF/g`</span>,输入`1,s/the/THE/g`，输入`1,$s/is/IS/gc`
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. 
+</span></span><span class="line"><span class="cl">cd ../homework_4
+</span></span><span class="line"><span class="cl">vim problem.txt <span class="ni">#11G</span>，yy,dd,G,p,5G,yy,G,p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">6. 
+</span></span><span class="line"><span class="cl">cd ../homework_5
+</span></span><span class="line"><span class="cl">vim problem.txt <span class="ni">#11G</span>,15<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,←,v,13G,5<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,y,11G,15<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,←,v,13G,5<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,d,G,end,p,5G,88<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,v,←,7G,6<span class="p">&lt;</span><span class="nt">Space</span><span class="p">&gt;</span>,y,G,$,p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">7. 
+</span></span><span class="line"><span class="cl">cd ../homework_6
+</span></span><span class="line"><span class="cl">vim source1.cpp <span class="ni">#1G</span>,v,3G,$,y,:wq
+</span></span><span class="line"><span class="cl">vim source0.cpp <span class="ni">#gg</span>,v,G,$,d,p
+</span></span><span class="line"><span class="cl">vim source1.cpp <span class="ni">#12G</span>,v,24G,$,y
+</span></span><span class="line"><span class="cl">vim source0.cpp <span class="ni">#G</span>,$,i,→，回车,esc,p
+</span></span><span class="line"><span class="cl">homework 2 test
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">8.
+</span></span><span class="line"><span class="cl">cd ../homework_7
+</span></span><span class="line"><span class="cl">vim source.cpp <span class="ni">#gg</span>=G
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">9. 
+</span></span><span class="line"><span class="cl">cd ../homework_8
+</span></span><span class="line"><span class="cl">vim source.cpp <span class="ni">#21G</span>,&gt;,15G,21G,&gt;,15G,22G,<span class="err">&lt;</span>,23G
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">10. 
+</span></span><span class="line"><span class="cl">cd ../homework_9
+</span></span><span class="line"><span class="cl">vim source.cpp <span class="ni">#:set</span> paste,粘贴
+</span></span><span class="line"><span class="cl">homework 2 test
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/tools/">tools</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/linux%E4%B9%8Bgit/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux之git</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "duskandwine" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 duskandwine
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#1tmux教程">1、tmux教程</a></li>
+            <li><a href="#2vim教程">2、vim教程</a></li>
+            <li><a href="#本课作业">本课作业</a></li>
+            <li><a href="#vim作业解答">vim作业解答</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

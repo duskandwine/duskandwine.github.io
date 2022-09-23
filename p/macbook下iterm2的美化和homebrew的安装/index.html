@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='从windows迁移到mac的记录'><title>MacBook下iterm2的美化和homebrew的安装</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='MacBook下iterm2的美化和homebrew的安装'>
+<meta property='og:description' content='从windows迁移到mac的记录'>
+<meta property='og:url' content='https://duskandwine.github.io/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/'>
+<meta property='og:site_name' content='duskandwine'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='tools' /><meta property='article:published_time' content='2022-03-17T17:35:15&#43;08:00'/><meta property='article:modified_time' content='2022-03-17T17:35:15&#43;08:00'/><meta property='og:image' content='https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/20220317/wallhaven-k7vjg7.4f2z7m5bi160.jpg' />
+<meta name="twitter:title" content="MacBook下iterm2的美化和homebrew的安装">
+<meta name="twitter:description" content="从windows迁移到mac的记录"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/20220317/wallhaven-k7vjg7.4f2z7m5bi160.jpg' />
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">duskandwine</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/duskandwine'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>about</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/">
+                
+                    <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/20220317/wallhaven-k7vjg7.4f2z7m5bi160.jpg" loading="lazy" alt="Featured image of post MacBook下iterm2的美化和homebrew的安装" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/">MacBook下iterm2的美化和homebrew的安装</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            从windows迁移到mac的记录
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 17, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>最近新换了MacBookPro16 m1max，当然少不了一番折腾，从软件到各样的编译环境配置，还是耗费了不少时间。值得一说的是经过两天Safari的体验，最后还是投入edge的怀抱：</p>
+<p>1.Safari的拓展实在是太少了，尽管可以装油猴，但是我有一个浏览网页的使用习惯是看到不理解的文本直接选中拖拽一下会打开新的标签页自动搜索，也就是超级拖拽，奈何Safari没有相关拓展且禁止安装应用商店以外的插件，最后我还是在应用商店找到了一个叫superdrag的拓展，但是收费，咬了咬牙12大洋还是买了，但是根本没用，哭。</p>
+<p>2.打开收藏时切换不同文件夹(我收藏的标签很多都是以文件夹形式分类)时有卡顿，而且不支持右键删除收藏网址，体验非常差。</p>
+<p>3.垂直标签页太香了，用习惯离不开了。</p>
+<p>其余软件部分参考这篇文章：<a class="link" href="https://github.com/qianguyihao/Mac"  target="_blank" rel="noopener"
+    >Mac系统、Mac软件的操作和使用技巧整理</a>，这里主要说一下iterm2以及homebrew的安装。</p>
+<hr>
+<h3 id="iterm2">Iterm2</h3>
+<ul>
+<li>
+<p>刚换过之后感觉原生的terminal也不错，但是在一些网站被安利了iterm2，体验了一下感觉还不错，diy之后发现比原生终端好看一点。</p>
+</li>
+<li>
+<p>Iterm2官网：https://iterm2.com
+还有汉化版本(v3.4.10)：https://www.macwk.com/soft/iterm2</p>
+</li>
+<li>
+<p>进入github克隆这个项目：https://github.com/mbadolato/iTerm2-Color-Schemes，这里的主题也支持原生terminal和windowterminal等等之类，我们需要进入scheme文件夹然后选择自己喜欢自己喜欢的主题，简介中有各种主题的预览，我这里选择了德古拉主题(我的vscode也是这个主题)。</p>
+</li>
+<li>
+<p>接下来需要安装一下powerlevel10k，这是美化的关键，github地址：<a class="link" href="https://github.com/romkatv/powerlevel10k"  target="_blank" rel="noopener"
+    >romkatv/powerlevel10k: A Zsh theme (github.com)</a>，跟着文档操作就可以了，如果安装之后想更改设置，可以在终端输入<code>p10k configure</code>重新进行设置。</p>
+</li>
+<li>
+<p>之后还可以进行语法补全和语法高亮插件的安装：</p>
+<ul>
+<li>自动补全：https://github.com/zsh-users/zsh-autosuggestions</li>
+<li>语法高亮：https://github.com/zsh-users/zsh-syntax-highlighting</li>
+</ul>
+</li>
+<li>
+<p>这里推荐一个b站up主的视频可以跟着他一步一步操作：</p>
+
+  
+  
+  
+  
+  
+      
+  
+  
+  <div class="video-wrapper">
+      <iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;high_quality=1&amp;page=1&bvid=BV12r4y1e7ED"
+              scrolling="no"
+              frameborder="no"
+              framespacing="0"
+              allowfullscreen="true"
+      >
+      </iframe>
+  </div>
+
+</li>
+</ul>
+<h3 id="homebrew">homebrew</h3>
+<ul>
+<li>
+<p>homebrew是mac下一款管安装理软件、环境和各种工具的包，用之前我还有点抗拒，使用过后就是真香。</p>
+</li>
+<li>
+<p>官网：<a class="link" href="https://brew.sh/"  target="_blank" rel="noopener"
+    >The Missing Package Manager for macOS (or Linux) — Homebrew</a>，网站支持中文。</p>
+</li>
+<li>
+<p>国内安装的话换源应该可以加快安装速度而且不会报错，我这里使用了代理就直接复制了官网的安装命令，我这里使用的是clashx，直接在菜单里复制终端命令粘贴进终端就可以。测试代理是否生效时不要使用ping，而要使用<code>curl -vv https://www.github.com</code>,因为ping使用的是icmp协议，不支持代理。</p>
+</li>
+<li>
+<p>homebrew常用命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">brew –help             <span class="ni">#查看brew的帮助</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew install git        <span class="ni">#安装git软件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew uninstall git     <span class="ni">#卸载git软件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew search git        <span class="ni">#搜索git软件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew list                   <span class="ni">#显示已经安装软件列表</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew update            <span class="ni">#更新软件</span>，把所有的Formula目录更新，并且会对本机已经安装并有更新的软件用*标明。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew upgrade git      <span class="ni">#更新某具体软件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew [info | home] [FORMULA…] <span class="ni">#查看软件信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew cleanup git       <span class="ni">#单个软件删除</span>，和upgrade一样
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew cleanup           <span class="ni">#删除所有</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew outdated         <span class="ni">#查看那些已安装的程序需要更新</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew home  *          <span class="ni">#用浏览器打开</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew info *              <span class="ni">#显示软件内容信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew deps *             <span class="ni">#显示包依赖</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">brew config             <span class="ni">#查看brew配置</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>安装完成之后使用<code>brew update</code>命令时报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">fatal: Could not resolve HEAD to a revision
+</span></span><span class="line"><span class="cl">Already up-to-date.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解决方法：</p>
+<ol>
+<li><code>brew update --verbose</code></li>
+<li>打开报错路径：<code>cd /opt/homebrew/Library/Taps/homebrew/homebrew-core</code></li>
+<li>执行：<code>ls -al</code></li>
+<li>执行<code>git fetch --prune origin</code></li>
+<li>执行<code>git pull --rebase origin master</code></li>
+<li>成功后即可执行更新：<code>brew update</code></li>
+</ol>
+</li>
+<li>
+<p>这里我在装一些工具的时候会自动下载依赖环境python，导致我系统里python环境紊乱，推荐装一下pyenv来管理python环境。如果遇到切换全局环境失败请参考这篇文章：<a class="link" href="https://www.jianshu.com/p/7656896265ab"  target="_blank" rel="noopener"
+    >Mac OS 安装pyenv pyenv切换版本失败 - 简书 (jianshu.com)</a></p>
+</li>
+<li>
+<p>最后记录一下目前我通过brew安装过的工具：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">aom			hugo			libvmaf			python@3.10
+</span></span><span class="line"><span class="cl">aria2			icu4c			libvorbis		python@3.9
+</span></span><span class="line"><span class="cl">autoconf		imath			libvpx			rav1e
+</span></span><span class="line"><span class="cl">autojump		isl			libx11			readline
+</span></span><span class="line"><span class="cl">bdw-gc			jpeg			libxau			rtmpdump
+</span></span><span class="line"><span class="cl">brotli			jpeg-xl			libxcb			rubberband
+</span></span><span class="line"><span class="cl">ca-certificates		lame			libxdmcp		sdl2
+</span></span><span class="line"><span class="cl">cairo			leptonica		libxext			snappy
+</span></span><span class="line"><span class="cl">cjson			libarchive		libxrender		speex
+</span></span><span class="line"><span class="cl">cmocka			libass			little-cms2		sqlite
+</span></span><span class="line"><span class="cl">dav1d			libb2			lz4			srt
+</span></span><span class="line"><span class="cl">ffmpeg			libbluray		lzo			tcl-tk
+</span></span><span class="line"><span class="cl">flac			libevent		m4			tesseract
+</span></span><span class="line"><span class="cl">fontconfig		libffi			mbedtls			thefuck
+</span></span><span class="line"><span class="cl">freetype		libidn2			mpdecimal		theora
+</span></span><span class="line"><span class="cl">frei0r			libmpc			mpfr			tmux
+</span></span><span class="line"><span class="cl">fribidi			libnghttp2		ncurses			tree
+</span></span><span class="line"><span class="cl">gcc			libogg			nettle			unbound
+</span></span><span class="line"><span class="cl">gdbm			libpng			nvm			utf8proc
+</span></span><span class="line"><span class="cl">gettext			libpthread-stubs	opencore-amr		webp
+</span></span><span class="line"><span class="cl">giflib			librist			openexr			wget
+</span></span><span class="line"><span class="cl">git			libsamplerate		openjpeg		x264
+</span></span><span class="line"><span class="cl">git-gui			libsndfile		openssl@1.1		x265
+</span></span><span class="line"><span class="cl">glib			libsodium		opus			xorgproto
+</span></span><span class="line"><span class="cl">gmp			libsoxr			p11-kit			xvid
+</span></span><span class="line"><span class="cl">gnutls			libssh2			pcre			xz
+</span></span><span class="line"><span class="cl">go			libtasn1		pcre2			you-get
+</span></span><span class="line"><span class="cl">gobject-introspection	libtiff			pixman			zeromq
+</span></span><span class="line"><span class="cl">graphite2		libtool			pkg-config		zimg
+</span></span><span class="line"><span class="cl">guile			libunistring		pyenv			zstd
+</span></span><span class="line"><span class="cl">harfbuzz		libvidstab		pyenv-virtualenv
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/tools/">tools</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "duskandwine" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 duskandwine
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#iterm2">Iterm2</a></li>
+        <li><a href="#homebrew">homebrew</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
