@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='爬虫之requests模块'><title>requests基础2</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='爬虫之requests模块'>
+<title>requests基础2</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/requests%E5%9F%BA%E7%A1%802/'>
 
@@ -9,7 +10,7 @@
 <meta property='og:description' content='爬虫之requests模块'>
 <meta property='og:url' content='https://duskandwine.github.io/p/requests%E5%9F%BA%E7%A1%802/'>
 <meta property='og:site_name' content='duskandwine'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='爬虫' /><meta property='article:published_time' content='2020-09-23T01:00:00&#43;02:00'/><meta property='article:modified_time' content='2020-09-23T01:00:00&#43;02:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Spider' /><meta property='article:published_time' content='2020-09-23T01:00:00&#43;02:00'/><meta property='article:modified_time' content='2020-09-23T01:00:00&#43;02:00'/>
 <meta name="twitter:title" content="requests基础2">
 <meta name="twitter:description" content="爬虫之requests模块">
     <link rel="shortcut icon" href="img/yourfavicon.png" />
@@ -78,6 +79,7 @@
                         href='https://github.com/duskandwine'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -96,7 +98,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -117,7 +118,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -138,7 +138,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -158,7 +157,6 @@
         </li>
         
         
-
         <li >
             <a href='/about/' >
                 
@@ -204,7 +202,47 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#如何捕获到动态加载的数据">如何捕获到动态加载的数据？</a></li>
+        <li><a href="#分页数据的爬取操作">分页数据的爬取操作</a></li>
+        <li><a href="#练习">练习</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
@@ -231,6 +269,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -268,6 +309,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -500,7 +542,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E7%88%AC%E8%99%AB/">爬虫</a>
+            <a href="/tags/spider/">Spider</a>
         
     </section>
 
@@ -659,7 +701,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.19.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -743,45 +785,6 @@
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#如何捕获到动态加载的数据">如何捕获到动态加载的数据？</a></li>
-        <li><a href="#分页数据的爬取操作">分页数据的爬取操作</a></li>
-        <li><a href="#练习">练习</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"

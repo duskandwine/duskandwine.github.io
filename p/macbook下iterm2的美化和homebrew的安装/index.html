@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='从windows迁移到mac的记录'><title>MacBook下iterm2的美化和homebrew的安装</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='从windows迁移到mac的记录'>
+<title>MacBook下iterm2的美化和homebrew的安装</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/'>
 
@@ -79,6 +80,7 @@
                         href='https://github.com/duskandwine'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -97,7 +99,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -118,7 +119,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -139,7 +139,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -159,7 +158,6 @@
         </li>
         
         
-
         <li >
             <a href='/about/' >
                 
@@ -205,7 +203,46 @@
         </div>
     </ol>
 </aside>
-<main class="main full-width">
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#iterm2">Iterm2</a></li>
+        <li><a href="#homebrew">homebrew</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
@@ -218,6 +255,14 @@
     
 
     <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/software/" style="background-color: #2a9d8f; color: #fff;">
+                software
+            </a>
+        
+    </header>
     
 
     <div class="article-title-wrapper">
@@ -232,6 +277,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -269,6 +317,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -374,35 +423,35 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">brew –help             #查看brew的帮助
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">brew –help             <span class="ni">#查看brew的帮助</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew install git        #安装git软件
+</span></span><span class="line"><span class="cl">brew install git        <span class="ni">#安装git软件</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew uninstall git     #卸载git软件
+</span></span><span class="line"><span class="cl">brew uninstall git     <span class="ni">#卸载git软件</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew search git        #搜索git软件
+</span></span><span class="line"><span class="cl">brew search git        <span class="ni">#搜索git软件</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew list                   #显示已经安装软件列表
+</span></span><span class="line"><span class="cl">brew list                   <span class="ni">#显示已经安装软件列表</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew update            #更新软件，把所有的Formula目录更新，并且会对本机已经安装并有更新的软件用*标明。
+</span></span><span class="line"><span class="cl">brew update            <span class="ni">#更新软件</span>，把所有的Formula目录更新，并且会对本机已经安装并有更新的软件用*标明。
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew upgrade git      #更新某具体软件
+</span></span><span class="line"><span class="cl">brew upgrade git      <span class="ni">#更新某具体软件</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew [info | home] [FORMULA…] #查看软件信息
+</span></span><span class="line"><span class="cl">brew [info | home] [FORMULA…] <span class="ni">#查看软件信息</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew cleanup git       #单个软件删除，和upgrade一样
+</span></span><span class="line"><span class="cl">brew cleanup git       <span class="ni">#单个软件删除</span>，和upgrade一样
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew cleanup           #删除所有
+</span></span><span class="line"><span class="cl">brew cleanup           <span class="ni">#删除所有</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew outdated         #查看那些已安装的程序需要更新
+</span></span><span class="line"><span class="cl">brew outdated         <span class="ni">#查看那些已安装的程序需要更新</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew home  *          #用浏览器打开
+</span></span><span class="line"><span class="cl">brew home  *          <span class="ni">#用浏览器打开</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew info *              #显示软件内容信息
+</span></span><span class="line"><span class="cl">brew info *              <span class="ni">#显示软件内容信息</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew deps *             #显示包依赖
+</span></span><span class="line"><span class="cl">brew deps *             <span class="ni">#显示包依赖</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">brew config             #查看brew配置
+</span></span><span class="line"><span class="cl">brew config             <span class="ni">#查看brew配置</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -539,6 +588,34 @@
 
     
 
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/obsidian%E9%85%8D%E7%BD%AE%E5%8F%8A%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413120850084.png" loading="lazy" data-key="" data-hash="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20220413120850084.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Obsidian配置及基本用法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
      
     
         
@@ -597,7 +674,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.19.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -681,44 +758,6 @@
             >
 
             </main>
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">Table of contents</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#iterm2">Iterm2</a></li>
-        <li><a href="#homebrew">homebrew</a></li>
-      </ol>
-    </li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
-
         </div>
         <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
