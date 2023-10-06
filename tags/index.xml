@@ -6,15 +6,7 @@
         <description>Recent content in Tags on Yuzuo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 30 Aug 2023 11:19:19 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>MachineLearning</title>
-        <link>https://duskandwine.github.io/tags/machinelearning/</link>
-        <pubDate>Wed, 30 Aug 2023 11:19:19 +1000</pubDate>
-        
-        <guid>https://duskandwine.github.io/tags/machinelearning/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Mon, 27 Jun 2022 21:21:26 +0800</lastBuildDate><atom:link href="https://duskandwine.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Django</title>
         <link>https://duskandwine.github.io/tags/django/</link>
         <pubDate>Mon, 27 Jun 2022 21:21:26 +0800</pubDate>
