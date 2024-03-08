@@ -5,7 +5,8 @@
 线程池
 1 from multiprocessing.dummy import Pool map(callback, list)
 可以使用callback对list中的每一个元素进行指定形式的异步操作
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 import requests import time from multiprocessing.dummy import Pool def get_request(url): page_text = requests.get(url=url).text return len(page_text) # if __name__ == &amp;#34;__main__&amp;#34;: # start = time.time() # urls = [ # &amp;#39;http://127.'><title>异步爬虫</title>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 import requests import time from multiprocessing.dummy import Pool def get_request(url): page_text = requests.get(url=url).text return len(page_text) # if __name__ == &amp;#34;__main__&amp;#34;: # start = time.time() # urls = [ # &amp;#39;http://127.'>
+<title>异步爬虫</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/%E5%BC%82%E6%AD%A5%E7%88%AC%E8%99%AB/'>
 
@@ -90,6 +91,7 @@
                         href='https://github.com/nohairblingbling'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -108,7 +110,6 @@
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -129,7 +130,6 @@
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -150,7 +150,6 @@
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -170,7 +169,6 @@
         </li>
         
         
-
         <li >
             <a href='/about/' >
                 
@@ -189,9 +187,10 @@
             </a>
         </li>
         
+    </ol>
+    <div class="menu-bottom-section">
+        <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
             
                 <li id="dark-mode-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -213,10 +212,13 @@
                     <span>Dark Mode</span>
                 </li>
             
-        </div>
-    </ol>
+        </ol>
+    </div>
 </aside>
-<main class="main full-width">
+
+    
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
@@ -239,6 +241,9 @@
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -276,6 +281,7 @@
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -562,9 +568,9 @@
 
     
 
-<aside class="related-contents--wrapper">
-    <h2 class="section-title">Related contents</h2>
-    <div class="related-contents">
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
         <div class="flex article-list--tile">
             
                 
@@ -578,6 +584,7 @@
         </div>
     </a>
 </article>
+
             
                 
 <article class="">
@@ -590,6 +597,7 @@
         </div>
     </a>
 </article>
+
             
                 
 <article class="">
@@ -602,6 +610,7 @@
         </div>
     </a>
 </article>
+
             
                 
 <article class="">
@@ -614,6 +623,7 @@
         </div>
     </a>
 </article>
+
             
                 
 <article class="">
@@ -626,6 +636,7 @@
         </div>
     </a>
 </article>
+
             
         </div>
     </div>
@@ -668,7 +679,7 @@
 
 <script>
     window.addEventListener('onColorSchemeChange', (e) => {
-        if (DISQUS) {
+        if (typeof DISQUS == 'object') {
             DISQUS.reset({
                 reload: true
             });
@@ -689,7 +700,7 @@
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.23.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -766,18 +777,16 @@
                 >
             </script><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
             ><link 
                 rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
             </main>
-    
-
         </div>
         <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
             </script><script type="text/javascript" src="/ts/main.js" defer></script>
