@@ -6,7 +6,81 @@
         <description>Recent content on Yuzuo</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 06 Oct 2023 18:30:49 +1100</lastBuildDate><atom:link href="https://duskandwine.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Mar 2024 09:14:53 +1100</lastBuildDate><atom:link href="https://duskandwine.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>PyTorch_Fundamental_1</title>
+        <link>https://duskandwine.github.io/p/pytorch_fundamental_1/</link>
+        <pubDate>Fri, 08 Mar 2024 09:14:53 +1100</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/pytorch_fundamental_1/</guid>
+        <description>&lt;hr&gt;
+&lt;h3 id=&#34;what-deep-learning-is-good-for&#34;&gt;What deep learning is good for&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;**Problems with long lists of rules****一when the traditional approach fails, machine learning/deep learning may help.&lt;/li&gt;
+&lt;li&gt;**Continually changing environments****一deep learning canadapt (‘learn’) to new scenarios.&lt;/li&gt;
+&lt;li&gt;**Discovering insights within large collections of data****一can you imagine trying to hand-craft rules for what 101 different kinds of food look like?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;what-deep-learning-is-not-good-for&#34;&gt;What deep learning is not good for&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;When you need explainability&lt;/strong&gt;一the patterns learned by a deep learning model are typically uninterpretable by a human.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;When the traditional approach is a better option&lt;/strong&gt;一if you can accomplish what you need with a simple rule-based system.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;When errors are unacceptable&lt;/strong&gt;一since the outputs of deeplearning model aren&amp;rsquo;t always predictable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;When you don&amp;rsquo;t have much data&lt;/strong&gt;一deep learning models usually require a fairly large amount of data to produce great resulits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;machine-learning-vs-deep-learning&#34;&gt;Machine Learning VS. Deep Learning&lt;/h3&gt;
+&lt;p&gt;Machine learning(more suited for structured data):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Random forest&lt;/li&gt;
+&lt;li&gt;Gradient boosted models&lt;/li&gt;
+&lt;li&gt;Naive Bayes&lt;/li&gt;
+&lt;li&gt;Nearest neighbour&lt;/li&gt;
+&lt;li&gt;Support vector machine&lt;/li&gt;
+&lt;li&gt;&amp;hellip;many more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Deep learning(more suited for unstructured data):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neural networks&lt;/li&gt;
+&lt;li&gt;Fully connected neural network&lt;/li&gt;
+&lt;li&gt;Convolutional neural network&lt;/li&gt;
+&lt;li&gt;Recurrent neuralnetwork&lt;/li&gt;
+&lt;li&gt;Transtormer&lt;/li&gt;
+&lt;li&gt;&amp;hellip;many more&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;what-are-neural-networks&#34;&gt;What are neural networks?&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240308094423565.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240308094423565&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;types-of-learning&#34;&gt;Types of Learning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Supervised Learning&lt;/li&gt;
+&lt;li&gt;Unsupervised &amp;amp; Self -supervised Learning&lt;/li&gt;
+&lt;li&gt;Transfer Learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;what-is-deep-learning-actually-used-for&#34;&gt;What is deep learning actually used for?&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Recommendation&lt;/li&gt;
+&lt;li&gt;Translation, Speech recognition&lt;/li&gt;
+&lt;li&gt;Computer Vision, NLP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;what-is-the-pytorch&#34;&gt;What is the pytorch&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Most popular research deep learning framework&lt;/li&gt;
+&lt;li&gt;Write fast deep learning code in Python (able to run on a GPU/many GPUs)&lt;/li&gt;
+&lt;li&gt;Able to access many pre-built deep learning models(Torch Hub, torchvision.models)&lt;/li&gt;
+&lt;li&gt;Whole stack: preprocess data, model data, deploy model in your application/cloud&lt;/li&gt;
+&lt;li&gt;Originally designed and Used in-house by Facebook/Meta (now open- source and Used by companies SUch as Tesla, Microsoft, OpenAl)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;what-is-a-tensor&#34;&gt;What is a tensor？&lt;/h4&gt;
+&lt;p&gt;Go google hahahaha&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Fundamentals_of_HTML/CSS</title>
         <link>https://duskandwine.github.io/p/fundamentals_of_html/css/</link>
         <pubDate>Fri, 06 Oct 2023 18:30:49 +1100</pubDate>

@@ -7,7 +7,8 @@ selenium和爬虫的关联
 便捷的捕获到任意形式动态加载的数据(可见即可得) 实现模拟登录 谷歌驱动下载地址：下载对应版本的驱动
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 from selenium import webdriver from time import sleep # 1.基于浏览器的驱动程序实例化一个浏览器对象 bro = webdriver.Chrome(executable_path=&amp;#39;./chromedriver.exe&amp;#39;) # 对目的网站发请求 bro.get(&amp;#39;https://www.jd.com/&amp;#39;) # 定位标签 search_text = bro.find_element_by_xpath(&amp;#39;//*[@id=&amp;#34;key&amp;#34;]&amp;#39;) # 像标签中录入数据 search_text.send_keys(&amp;#39;iPhone11&amp;#39;) btn = bro.find_element_by_xpath(&amp;#39;//*[@id=&amp;#34;search&amp;#34;]/div/div[2]/button&amp;#39;) btn.click() sleep(5) # 在搜索结果页面进行滚轮向下滑动的操作(执行j操作：js注入) bro.execute_script(&amp;#39;window.scrollTo(0,document.body.scrollHeight)&amp;#39;) sleep(5) bro.quit() 爬取数据
 古诗词网为例：https://www.gushiwen.org/
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from selenium import webdriver from time import sleep from lxml import etree url = &amp;#39;https://www.'><title>SELENIUM</title>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from selenium import webdriver from time import sleep from lxml import etree url = &amp;#39;https://www.'>
+<title>SELENIUM</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/selenium/'>
 
@@ -96,6 +97,7 @@ selenium和爬虫的关联
                         href='https://github.com/nohairblingbling'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -114,7 +116,6 @@ selenium和爬虫的关联
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -135,7 +136,6 @@ selenium和爬虫的关联
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -156,7 +156,6 @@ selenium和爬虫的关联
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -176,7 +175,6 @@ selenium和爬虫的关联
         </li>
         
         
-
         <li >
             <a href='/about/' >
                 
@@ -195,9 +193,10 @@ selenium和爬虫的关联
             </a>
         </li>
         
+    </ol>
+    <div class="menu-bottom-section">
+        <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
             
                 <li id="dark-mode-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -219,10 +218,13 @@ selenium和爬虫的关联
                     <span>Dark Mode</span>
                 </li>
             
-        </div>
-    </ol>
+        </ol>
+    </div>
 </aside>
-<main class="main full-width">
+
+    
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
@@ -245,6 +247,9 @@ selenium和爬虫的关联
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -282,6 +287,7 @@ selenium和爬虫的关联
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -765,12 +771,12 @@ selenium和爬虫的关联
         
             2020 - 
         
-        2023 Yuzuo
+        2024 Yuzuo
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.23.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -854,8 +860,6 @@ selenium和爬虫的关联
             >
 
             </main>
-    
-
         </div>
         <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"

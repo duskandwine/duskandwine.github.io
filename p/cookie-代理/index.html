@@ -6,7 +6,8 @@
 web中cookie的典型应用
 免密登录 登录状态 cookie和爬虫的关系
 对页面请求时，如果请求的过程中不携带cookie，无法请求到正确的页面数据。所以是它是常见的反爬机制。 cookie的处理方式 手动处理 复制粘贴 弊端：有有效时长 自动处理 基于session对象实现自动处理 requests.session（） session对象的作用： 该对象可以像requests一样调用get和post发起指定的请求。只不过如果在使用session发请求的过程中产生了cookie，则cookie会被自动存储在session对象中，那么下次再次使用session请求时，就携带cookie进行了请求。 在使用session的时候，session对象至少会被使用两次。 例：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 需求：爬取雪球网中的咨询信息。https://xueqiu.com/ # 分析：判定爬取的数据是否是动态加载：部分数据是动态加载 # 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据 import requests headers = { &amp;#39;User-Agent&amp;#39;: &amp;#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&amp;#39; } session = requests.session() # 创建session main_url = &amp;#39;https://xueqiu.com/&amp;#39; session.get(main_url, headers=headers) # 捕获且存储cookie url = &amp;#39;https://xueqiu.'><title>cookie&#43;代理</title>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 # 需求：爬取雪球网中的咨询信息。https://xueqiu.com/ # 分析：判定爬取的数据是否是动态加载：部分数据是动态加载 # 定位到ajax请求的数据包，提取处请求的url，响应数据为json形式的数据 import requests headers = { &amp;#39;User-Agent&amp;#39;: &amp;#39;User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0&amp;#39; } session = requests.session() # 创建session main_url = &amp;#39;https://xueqiu.com/&amp;#39; session.get(main_url, headers=headers) # 捕获且存储cookie url = &amp;#39;https://xueqiu.'>
+<title>cookie&#43;代理</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/cookie-%E4%BB%A3%E7%90%86/'>
 
@@ -93,6 +94,7 @@ web中cookie的典型应用
                         href='https://github.com/nohairblingbling'
                         target="_blank"
                         title="GitHub"
+                        rel="me"
                     >
                         
                         
@@ -111,7 +113,6 @@ web中cookie的典型应用
         
         
         
-
         <li >
             <a href='/' >
                 
@@ -132,7 +133,6 @@ web中cookie的典型应用
         </li>
         
         
-
         <li >
             <a href='/archives/' >
                 
@@ -153,7 +153,6 @@ web中cookie的典型应用
         </li>
         
         
-
         <li >
             <a href='/search/' >
                 
@@ -173,7 +172,6 @@ web中cookie的典型应用
         </li>
         
         
-
         <li >
             <a href='/about/' >
                 
@@ -192,9 +190,10 @@ web中cookie的典型应用
             </a>
         </li>
         
+    </ol>
+    <div class="menu-bottom-section">
+        <ol class="menu">
 
-        <div class="menu-bottom-section">
-            
             
                 <li id="dark-mode-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -216,10 +215,13 @@ web中cookie的典型应用
                     <span>Dark Mode</span>
                 </li>
             
-        </div>
-    </ol>
+        </ol>
+    </div>
 </aside>
-<main class="main full-width">
+
+    
+
+            <main class="main full-width">
     <article class="main-article">
     <header class="article-header">
 
@@ -242,6 +244,9 @@ web中cookie的典型应用
         
     </div>
 
+    
+    
+    
     
     <footer class="article-time">
         
@@ -279,6 +284,7 @@ web中cookie的典型应用
 
     
 </div>
+
 </header>
 
     <section class="article-content">
@@ -833,12 +839,12 @@ web中cookie的典型应用
         
             2020 - 
         
-        2023 Yuzuo
+        2024 Yuzuo
     </section>
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.12.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.23.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
@@ -922,8 +928,6 @@ web中cookie的典型应用
             >
 
             </main>
-    
-
         </div>
         <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
