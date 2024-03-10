@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Introduction to Tensors Creating tensors PyTorch tenssors are created using torch.Tensor()= https://pytorch.org/docs/stable/tensors.html
+1 2 3 import torch scalar = torch.tensor(7) scalar 1 2 # Get tensor back as Python int scalar.item() 1 2 3 # Vector vector = torch.tensor([7, 7]) vector 1 vector.ndim #number of dimensions 1 vector.shape 1 2 3 4 MATRIX = torch.tensor([ [7, 8], [9, 10] ]) MATRIX 1 MATRIX.ndim 1 MATRIX.shape 1 2 3 4 TENSOR = torch.'><title>PyTorch_Fundamental_2</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/pytorch_fundamental_2/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='PyTorch_Fundamental_2'>
+<meta property='og:description' content='Introduction to Tensors Creating tensors PyTorch tenssors are created using torch.Tensor()= https://pytorch.org/docs/stable/tensors.html
+1 2 3 import torch scalar = torch.tensor(7) scalar 1 2 # Get tensor back as Python int scalar.item() 1 2 3 # Vector vector = torch.tensor([7, 7]) vector 1 vector.ndim #number of dimensions 1 vector.shape 1 2 3 4 MATRIX = torch.tensor([ [7, 8], [9, 10] ]) MATRIX 1 MATRIX.ndim 1 MATRIX.shape 1 2 3 4 TENSOR = torch.'>
+<meta property='og:url' content='https://duskandwine.github.io/p/pytorch_fundamental_2/'>
+<meta property='og:site_name' content='Yuzuo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='pytorch' /><meta property='article:published_time' content='2024-03-09T09:14:53&#43;11:00'/><meta property='article:modified_time' content='2024-03-09T09:14:53&#43;11:00'/>
+<meta name="twitter:title" content="PyTorch_Fundamental_2">
+<meta name="twitter:description" content="Introduction to Tensors Creating tensors PyTorch tenssors are created using torch.Tensor()= https://pytorch.org/docs/stable/tensors.html
+1 2 3 import torch scalar = torch.tensor(7) scalar 1 2 # Get tensor back as Python int scalar.item() 1 2 3 # Vector vector = torch.tensor([7, 7]) vector 1 vector.ndim #number of dimensions 1 vector.shape 1 2 3 4 MATRIX = torch.tensor([ [7, 8], [9, 10] ]) MATRIX 1 MATRIX.ndim 1 MATRIX.shape 1 2 3 4 TENSOR = torch.">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Yuzuo</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/nohairblingbling'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>about</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/deeplearning/" >
+                Deeplearning
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/pytorch_fundamental_2/">PyTorch_Fundamental_2</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 09, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <hr>
+<h2 id="introduction-to-tensors">Introduction to Tensors</h2>
+<h3 id="creating-tensors">Creating tensors</h3>
+<p>PyTorch tenssors are created using <code>torch.Tensor()</code>= <a class="link" href="https://pytorch.org/docs/stable/tensors.html"  target="_blank" rel="noopener"
+    >https://pytorch.org/docs/stable/tensors.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="n">scalar</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">scalar</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Get tensor back as Python int</span>
+</span></span><span class="line"><span class="cl"><span class="n">scalar</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Vector</span>
+</span></span><span class="line"><span class="cl"><span class="n">vector</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">vector</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">vector</span><span class="o">.</span><span class="n">ndim</span> <span class="c1">#number of dimensions</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">vector</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">MATRIX</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">MATRIX</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">MATRIX</span><span class="o">.</span><span class="n">ndim</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">MATRIX</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">TENSOR</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">]])</span>
+</span></span><span class="line"><span class="cl"><span class="n">TENSOR</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">TENSOR</span><span class="o">.</span><span class="n">ndim</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">TENSOR</span><span class="o">.</span><span class="n">shape</span>    <span class="c1">#The first dimension has a length of 1, indicating that the tensor contains only one element.</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">#The second dimension has a length of 3, indicating that the tensor contains 3 sublists.</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">#The third dimension has a length of 2, indicating that each sublist contains 2 elements.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://raw.githubusercontent.com/mrdbourke/pytorch-deep-learning/main/images/00-pytorch-different-tensor-dimensions.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1.png"
+	
+	
+>
+<img src="https://raw.githubusercontent.com/mrdbourke/pytorch-deep-learning/main/images/00-scalar-vector-matrix-tensor.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2.png"
+	
+	
+></p>
+<h3 id="conclusion">Conclusion</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>What is it?</th>
+<th>Number of dimensions</th>
+<th>Lower or upper (usually/example)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scalar</td>
+<td>a single number</td>
+<td>0</td>
+<td>Lower (a)</td>
+</tr>
+<tr>
+<td>vector</td>
+<td>a number with direction (e.g. wind speed with direction) but can also have many other numbers</td>
+<td>1</td>
+<td>Lower (y)</td>
+</tr>
+<tr>
+<td>matrix</td>
+<td>a 2-dimensional array of numbers</td>
+<td>2</td>
+<td>Upper (Q)</td>
+</tr>
+<tr>
+<td>tensor</td>
+<td>an n-dimensional array of numbers can be any number, a 0-dimension tensor is a scalar, a 1-dimension tensor is a vector</td>
+<td>can be any number, a 0-dimension tensor is a scalar, a 1-dimension tensor is a vector</td>
+<td>Upper (X)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="random-tensors">Random tensors</h3>
+<p>Why random tensors?</p>
+<p>Random tensors are important because the way many neural networks learn is that they start with tensors full of random numbers and then adjust those random numbers to better represent the data.</p>
+<p><code>Start with random numbers -&gt; look at data -&gt; update random numbers -&gt; 1look at data -&gt; update random numbers</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># Create a random tensor of (3, 4)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">random_tensor</span><span class="o">.</span><span class="n">ndim</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">#Create a random tensor with similar shape to an image tensor</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_image_size_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_image_size_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">random_image_size_tensor</span><span class="o">.</span><span class="n">ndim</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You could represent an image as a tensor with shape [3, 224, 224] which would mean [colour_channels, height, width], as in the image has 3 colour channels (red, green, blue), a height of 224 pixels and a width of 224 pixels.
+<img src="https://raw.githubusercontent.com/mrdbourke/pytorch-deep-learning/main/images/00-tensor-shape-example-of-image.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="3.png"
+	
+	
+></p>
+<h3 id="zeros-and-ones">Zeros and ones</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">zeros</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">zero</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">ones</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ones</span><span class="o">.</span><span class="n">dtype</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="creating-a-range-of-tensors-and-tensors-like">Creating a range of tensors and tensors-like</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">one_to_hundred</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">one_to_hundred</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ten_zeros</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">one_to_hundred</span><span class="p">)</span> <span class="c1">#same shape</span>
+</span></span><span class="line"><span class="cl"><span class="n">ten_zeros</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="tensor-datatypes">Tensor datatypes</h3>
+<p><strong>Note</strong>: Tensor datatypes is one of the 3 big errors you&rsquo;ll run into with PyTorch &amp; deep learning:</p>
+<ol>
+<li>Tensor not right datatype</li>
+<li>Tensor not right shape</li>
+<li>Tensor not on the right device</li>
+</ol>
+<p>Precision in computing: <a class="link" href="https://en.wikipedia.org/wiki/Precision_%28computer_science%29#:~:text=ln%20computer%20science%2C%20the%20precision,used%20to%20express%20a%20value"  target="_blank" rel="noopener"
+    >https://en.wikipedia.org/wiki/Precision_(computer_science)#:~:text=ln%20computer%20science%2C%20the%20precision,used%20to%20express%20a%20value</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">float_32_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span> 
+</span></span><span class="line"><span class="cl">                              <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">requires_grad</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">float_32_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">float_32_tensor</span><span class="o">.</span><span class="n">dtype</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In PyTorch, <code>dtype</code>, <code>device</code>, and <code>requires_grad</code> are key parameters of the <code>torch.tensor()</code> function used to define the tensor&rsquo;s data type, device, and gradient computation settings.</p>
+<p><strong>dtype:</strong> Represents the data type of the tensor. Common data types include floating-point numbers, integers, etc. Different data types can be used when creating tensors. Common data types include <code>torch.float32</code> (default), <code>torch.float64</code>, <code>torch.int32</code>, etc.</p>
+<p>Optional parameters:</p>
+<ul>
+<li><code>torch.float32</code> (or <code>torch.float</code>): 32-bit floating-point numbers</li>
+<li><code>torch.float64</code> (or <code>torch.double</code>): 64-bit floating-point numbers</li>
+<li><code>torch.int8</code>, <code>torch.int16</code>, <code>torch.int32</code>, <code>torch.int64</code>: Represent 8-bit, 16-bit, 32-bit, and 64-bit signed integers, respectively</li>
+<li><code>torch.uint8</code>: 8-bit unsigned integers</li>
+</ul>
+<p><strong>device:</strong> Indicates the device on which the tensor resides, such as CPU or GPU. PyTorch supports creating tensors on different devices, and tensors can be placed on specific devices by setting the <code>device</code> parameter.</p>
+<p>Optional parameters:</p>
+<ul>
+<li><code>torch.device('cpu')</code>: Place the tensor on the CPU</li>
+<li><code>torch.device('cuda')</code>: Place the tensor on the default CUDA device (GPU)</li>
+<li><code>torch.device('cuda:0')</code>: Place the tensor on the specified CUDA device, e.g., the first GPU</li>
+<li><code>torch.device('cuda:1')</code>: Place the tensor on the specified CUDA device, e.g., the second GPU</li>
+</ul>
+<p><strong>requires_grad:</strong> Indicates whether the gradients of the tensor need to be computed. If set to True, it means that all operations performed on the tensor will be tracked for subsequent gradient computation. This is crucial for parameter optimization and backpropagation in neural networks.</p>
+<p>Optional parameters:</p>
+<ul>
+<li><code>True</code>: Indicates that gradients need to be computed</li>
+<li><code>False</code>: Indicates that gradients do not need to be computed</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">float_16_tensor</span> <span class="o">=</span> <span class="n">float_32_tensor</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">float_16_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">float_16_tensor</span> <span class="o">*</span> <span class="n">float_32_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">p</span><span class="o">.</span><span class="n">dtype</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="getting-information-from-tensors">Getting information from tensors</h3>
+<ol>
+<li>Tensors not right datatype - to do get datatype from a tensor, can use <code>tensor.dtype</code></li>
+<li>Tensors not right shape - to get shape from a tensor, can use <code>tensor.shape</code></li>
+<li>Tensors not on the right device - to get device from a tensor, can use <code>tensor.device</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">some_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">some_tensor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Datatypte pof tensor: </span><span class="si">{</span><span class="n">some_tensor</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Size pof tensor: </span><span class="si">{</span><span class="n">some_tensor</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Device pof tensor: </span><span class="si">{</span><span class="n">some_tensor</span><span class="o">.</span><span class="n">device</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>      
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="manipulating-tensors-tensor-operations">Manipulating Tensors (tensor operations)</h3>
+<p>Tensor opertions include:</p>
+<ul>
+<li>Addition</li>
+<li>Subtraction</li>
+<li>Multiplication (element-wise)</li>
+<li>Division</li>
+<li>Matrix multiplication</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">,</span><span class="n">tensor</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">tensor</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">,</span><span class="n">tensor</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="matrix-multiplication">Matrix multiplication</h3>
+<p>Two main ways of performing multiplication in neural networks and deep learning:</p>
+<ol>
+<li>Element-wise mutltiplicaiton</li>
+<li>Matrix mutliplicaiton(dot product)</li>
+</ol>
+<p>More information - <a class="link" href="https://www.mathsisfun.com/algebra/matrix-multiplying.html"  target="_blank" rel="noopener"
+    >https://www.mathsisfun.com/algebra/matrix-multiplying.html</a></p>
+<p>There are two main rules that performing matrix mutliplication needs to satisfy:</p>
+<pre><code>  1. The **inner dimensions**  must match:
+     - `(3, 2) @ (3, 2)` won't work
+     - `(2, 3) @ (3, 2)` will work
+     - `(3, 2) @ (2, 3)` will work
+  2. The resulting matrix has the shape of the **outer dimensions**:
+     - `(2, 3) @ (3, 2)` -&gt; `(2, 2)`
+     - `(3, 2) @ (2, 3)` -&gt; `(3, 3)`
+</code></pre>
+<p>More information: <a class="link" href="http://matrixmultiplication.xyz"  target="_blank" rel="noopener"
+    >http://matrixmultiplication.xyz</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor</span> <span class="o">*</span> <span class="n">tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%%</span><span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tensor</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value</span><span class="o">+=</span> <span class="n">tensor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">tensor</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">value</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">%%</span><span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="one-of-the-most-common-errors-in-deep-learning-shape-errors">One of the most common errors in deep learning: shape errors</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor_A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">tensor_A</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor_B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">tensor_B</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># torch.mm(tensor_A, tensor_B) # torch.mm is  the same  as torch.matmul</span>
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tensor_A</span><span class="p">,</span> <span class="n">tensor_B</span><span class="p">)</span> <span class="c1"># it will not work</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To fix our tensor shape issues, we can manipulate the shape of one of our tensors using a <strong>transpose</strong>.</p>
+<p>A <strong>transpose</strong> switches the axes or dimensions of a given tensor.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor_B</span><span class="o">.</span><span class="n">T</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">tensor_A</span><span class="p">,</span> <span class="n">tensor_B</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="finding-the-min-max-mean-sum-etctensor-aggregation">Finding the min, max, mean, sum, etc(tensor aggregation)</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)),</span> <span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="finding-the-postional-min-and-max">Finding the postional min and max</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="n">argmax</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reshaping-stacking-squeezing-and-unsqueezing-tensors">Reshaping, stacking, squeezing and unsqueezing tensors</h3>
+<ul>
+<li>Reshaping- reshapes an input tensor to a defined shape</li>
+<li>View - Return a view of an input tensor of certain shape but keep the same memory as the original tensor</li>
+<li>Stacking - combine multiple tensors on top of each other(vstack) or side by side (hstack)</li>
+<li>Squeeze - removes all 1 dimensions from a tensor</li>
+<li>Unsqueeze - add a 1 dimension to a target tensor</li>
+<li>Permute - Return a view of the input with dimensions permuted (swapped) in a certain way</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">11.</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">#keep the mumber of elements same</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">111</span> <span class="c1">#changing d changges b</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="p">,</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">b_stacked</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">b_stacked</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="indexing-selecting-data-from-tensors">Indexing (selecting data from tensors)</h3>
+<p>Indexing with PyTorch is similar to indexing with NumPy.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="pytorch-tensors----numpy">PyTorch tensors  &amp;  NumPy</h3>
+<p>NumPy is a popular scientific Python numer ical computing 1ibrary .</p>
+<p>And because of this, PyTorch has functionality to interact with it.</p>
+<ul>
+<li>
+<p>Data in NumPy,want in PyTorch tensor -&gt; <code>torch.from_numpy(ndarray)</code></p>
+</li>
+<li>
+<p>PyTorch tensor-&gt; NumPy -&gt; <code>torch.Tensor.numpy()</code></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">array</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">array</span><span class="p">,</span> <span class="n">tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">dtype</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">numpy_tensor</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">tensor</span><span class="p">,</span> <span class="n">numpy_tensor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reproducbility-trying-to-take-random-out-of-random">Reproducbility (trying to take random out of random)</h3>
+<p>In short how a neural network learns:</p>
+<p><code>start with random numbers -&gt;  tensor operations -&gt;  update random numbers to try and make them of the data -&gt; again -&gt; again -&gt; again...</code></p>
+<p>To reduce the randomness in neural networks and PyTorch comes the concept of a <strong>random seed</strong>.</p>
+<p>Essentially what the random seed does is &ldquo;flavour&rdquo; the randomness.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">random_tensor_A</span> <span class="o">=</span>  <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_tensor_B</span> <span class="o">=</span>  <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">random_tensor_A</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">random_tensor_B</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">random_tensor_A</span>  <span class="o">==</span> <span class="n">random_tensor_B</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">42</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_tensor_C</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_tensor_D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">random_tensor_C</span> <span class="o">==</span> <span class="n">random_tensor_D</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="running-tensors-and-pytorch-objects-on-the-gpus-and-making-faster-computations">Running tensors and PyTorch objects on the GPUs (and making faster computations)</h3>
+<p>GPUs = faster computation on numbers, thanks to CUDA + NVIDIA hardware + PyTorch working behind the scenes
+dory (good).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">torch</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#device = &#34;mps&#34; if torch.cuda.is_available() else &#34;cpu&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#device</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># if use macbook</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">device</span> <span class="o">=</span> <span class="s2">&#34;mps&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">device</span> <span class="o">=</span> <span class="s2">&#34;cpu&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Using device:&#34;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义一个卷积神经网络</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SimpleCNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">(</span><span class="n">SimpleCNN</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 展平</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">test_performance</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Testing on </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">model</span> <span class="o">=</span> <span class="n">SimpleCNN</span><span class="p">()</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># 假设输入像 MNIST 图像</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 开始计时</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 运行模型</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 计算总时间</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Total time on </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">total_time</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> seconds</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查 MPS 支持</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test_performance</span><span class="p">(</span><span class="s2">&#34;mps&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;MPS not available. Testing only on CPU.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试 CPU 性能</span>
+</span></span><span class="line"><span class="cl"><span class="n">test_performance</span><span class="p">(</span><span class="s2">&#34;cpu&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/pytorch/">pytorch</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/pytorch_fundamental_1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">PyTorch_Fundamental_1</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "Yuzuo" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Yuzuo
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction-to-tensors">Introduction to Tensors</a>
+      <ol>
+        <li><a href="#creating-tensors">Creating tensors</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#random-tensors">Random tensors</a></li>
+        <li><a href="#zeros-and-ones">Zeros and ones</a></li>
+        <li><a href="#creating-a-range-of-tensors-and-tensors-like">Creating a range of tensors and tensors-like</a></li>
+        <li><a href="#tensor-datatypes">Tensor datatypes</a></li>
+        <li><a href="#getting-information-from-tensors">Getting information from tensors</a></li>
+        <li><a href="#manipulating-tensors-tensor-operations">Manipulating Tensors (tensor operations)</a></li>
+        <li><a href="#matrix-multiplication">Matrix multiplication</a></li>
+        <li><a href="#one-of-the-most-common-errors-in-deep-learning-shape-errors">One of the most common errors in deep learning: shape errors</a></li>
+        <li><a href="#finding-the-min-max-mean-sum-etctensor-aggregation">Finding the min, max, mean, sum, etc(tensor aggregation)</a></li>
+        <li><a href="#finding-the-postional-min-and-max">Finding the postional min and max</a></li>
+        <li><a href="#reshaping-stacking-squeezing-and-unsqueezing-tensors">Reshaping, stacking, squeezing and unsqueezing tensors</a></li>
+        <li><a href="#indexing-selecting-data-from-tensors">Indexing (selecting data from tensors)</a></li>
+        <li><a href="#pytorch-tensors----numpy">PyTorch tensors  &amp;  NumPy</a></li>
+        <li><a href="#reproducbility-trying-to-take-random-out-of-random">Reproducbility (trying to take random out of random)</a></li>
+        <li><a href="#running-tensors-and-pytorch-objects-on-the-gpus-and-making-faster-computations">Running tensors and PyTorch objects on the GPUs (and making faster computations)</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
