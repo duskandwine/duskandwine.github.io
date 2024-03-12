@@ -215,7 +215,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/deeplearning/" >
+            <a href="/categories/deeplearning/" style="background-color: #2a9d8f; color: #fff;">
                 Deeplearning
             </a>
         
@@ -721,14 +721,21 @@
 <p>More information - <a class="link" href="https://www.mathsisfun.com/algebra/matrix-multiplying.html"  target="_blank" rel="noopener"
     >https://www.mathsisfun.com/algebra/matrix-multiplying.html</a></p>
 <p>There are two main rules that performing matrix mutliplication needs to satisfy:</p>
-<pre><code>  1. The **inner dimensions**  must match:
-     - `(3, 2) @ (3, 2)` won't work
-     - `(2, 3) @ (3, 2)` will work
-     - `(3, 2) @ (2, 3)` will work
-  2. The resulting matrix has the shape of the **outer dimensions**:
-     - `(2, 3) @ (3, 2)` -&gt; `(2, 2)`
-     - `(3, 2) @ (2, 3)` -&gt; `(3, 3)`
-</code></pre>
+<ol>
+<li>The <strong>inner dimensions</strong>  must match:
+<ul>
+<li><code>(3, 2) @ (3, 2)</code> won&rsquo;t work</li>
+<li><code>(2, 3) @ (3, 2)</code> will work</li>
+<li><code>(3, 2) @ (2, 3)</code> will work</li>
+</ul>
+</li>
+<li>The resulting matrix has the shape of the <strong>outer dimensions</strong>:
+<ul>
+<li><code>(2, 3) @ (3, 2)</code> -&gt; <code>(2, 2)</code></li>
+<li><code>(3, 2) @ (2, 3)</code> -&gt; <code>(3, 3)</code></li>
+</ul>
+</li>
+</ol>
 <p>More information: <a class="link" href="http://matrixmultiplication.xyz"  target="_blank" rel="noopener"
     >http://matrixmultiplication.xyz</a></p>
 <div class="highlight"><div class="chroma">
