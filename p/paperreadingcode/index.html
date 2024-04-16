@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Paper Reading Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation
+European Conference On Computer Vision
+Cite: 2106
+Background 本文主要研究基于Swin Transformer的纯Transformer结构用于医学图像分割的应用。
+Algorithm Design 架构组件：
+编码器：编码器部分由多个Swin Transformer块构成，每个块都进行一次降采样以减少特征图的分辨率并增加特征维度。这一过程通过patch merging层实现，它将相邻的小块特征合并，实现特征的深度整合。
+瓶颈层：瓶颈层位于编码器和解码器之间，使用两个连续的Swin Transformer块进行深层特征的学习，不改变特征维度或分辨率。
+解码器：解码器镜像编码器的结构，采用patch expanding层进行特征图的上采样，逐步恢复分辨率，并通过Swin Transformer块处理特征。解码器中的每一步都会与编码器中对应的特征进行跳跃连接，以保留和利用高分辨率特征信息。
+关键技术：
+Swin Transformer块：基于移动窗口策略，这种块设计了窗口内和窗口间的多头自注意力（W-MSA和SW-MSA）。这种设计允许模型在保持计算效率的同时，捕捉更广泛的上下文信息。
+跳跃连接：类似于U-Net，使用跳跃连接可以有效地恢复图像中的空间信息，对于高质量的医学图像分割至关重要。这些连接帮助解码器访问未经降采样的初级特征。
+Compare Different Algorithms Swin-Unet与U-Net 联系：
+基础结构：Swin-Unet借鉴了U-Net的基本结构设计，即一个对称的编码器-解码器架构，中间通过跳跃连接（skip connections）来融合编码器和解码器的特征。 应用目的：两者都旨在进行图像分割，特别是在医学图像处理领域中，用于从复杂背景中准确地分割出目标结构。 不同：
+核心技术：U-Net主要依赖于卷积层来提取特征，而Swin-Unet完全基于Swin Transformer块，这意味着它依赖于自注意力机制来捕捉全局依赖关系，而非局部卷积操作。 特征处理：U-Net通过重复的卷积和池化操作来获得不同级别的特征，而Swin-Unet通过不同级别的Swin Transformer块来处理特征，其中包括窗口化的自注意力机制来增强模型的感受野。 Swin-Unet与Swin Transformer 联系：
+基本单元：Swin-Unet使用Swin Transformer作为其构建块，直接借用了Swin Transformer的结构设计，如层归一化、多头自注意力和移动窗口技术。 注意力机制：两者都采用了Swin Transformer特有的窗口化自注意力，这种设计有助于在较低的计算成本下处理大尺度数据。 不同：
+架构设计：Swin Transformer主要设计为用于图像识别和分类的通用特征提取器，而Swin-Unet特别设计为用于图像分割任务的编码器-解码器结构。 输出：Swin Transformer通常输出类别标签或特征表示，适用于分类或检测任务；而Swin-Unet的输出是像素级的图像分割图，直接对图像各部分进行语义标注。 特征/模型 U-Net Swin Transformer Swin-Unet 核心构件 卷积层 Transformer块 Swin Transformer块 主要技术 卷积和池化 自注意力、移动窗口 自注意力、移动窗口 架构设计 对称的编码器-解码器结构，跳跃连接 通用特征提取器，多层Transformer结构 对称的编码器-解码器结构，跳跃连接 处理方式 局部特征提取 全局依赖关系处理 全局和局部特征融合 输出 像素级图像分割图 类别标签或特征表示 像素级图像分割图 应用领域 图像分割（特别是医学图像） 图像识别、分类 图像分割（特别是医学图像） 优势 结构简单，易于实现和理解 强大的全局信息处理能力 结合全局信息处理与高效的图像分割结构 性能与效率 在局部特征提取方面表现良好 需要较大的数据集和计算资源进行训练 旨在提供高效率和高性能的分割 Thinking 能否将Swin-Unet应用于遥感图像分割：'><title>PaperReading&amp;Code</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/paperreadingcode/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='PaperReading&amp;Code'>
+<meta property='og:description' content='Paper Reading Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation
+European Conference On Computer Vision
+Cite: 2106
+Background 本文主要研究基于Swin Transformer的纯Transformer结构用于医学图像分割的应用。
+Algorithm Design 架构组件：
+编码器：编码器部分由多个Swin Transformer块构成，每个块都进行一次降采样以减少特征图的分辨率并增加特征维度。这一过程通过patch merging层实现，它将相邻的小块特征合并，实现特征的深度整合。
+瓶颈层：瓶颈层位于编码器和解码器之间，使用两个连续的Swin Transformer块进行深层特征的学习，不改变特征维度或分辨率。
+解码器：解码器镜像编码器的结构，采用patch expanding层进行特征图的上采样，逐步恢复分辨率，并通过Swin Transformer块处理特征。解码器中的每一步都会与编码器中对应的特征进行跳跃连接，以保留和利用高分辨率特征信息。
+关键技术：
+Swin Transformer块：基于移动窗口策略，这种块设计了窗口内和窗口间的多头自注意力（W-MSA和SW-MSA）。这种设计允许模型在保持计算效率的同时，捕捉更广泛的上下文信息。
+跳跃连接：类似于U-Net，使用跳跃连接可以有效地恢复图像中的空间信息，对于高质量的医学图像分割至关重要。这些连接帮助解码器访问未经降采样的初级特征。
+Compare Different Algorithms Swin-Unet与U-Net 联系：
+基础结构：Swin-Unet借鉴了U-Net的基本结构设计，即一个对称的编码器-解码器架构，中间通过跳跃连接（skip connections）来融合编码器和解码器的特征。 应用目的：两者都旨在进行图像分割，特别是在医学图像处理领域中，用于从复杂背景中准确地分割出目标结构。 不同：
+核心技术：U-Net主要依赖于卷积层来提取特征，而Swin-Unet完全基于Swin Transformer块，这意味着它依赖于自注意力机制来捕捉全局依赖关系，而非局部卷积操作。 特征处理：U-Net通过重复的卷积和池化操作来获得不同级别的特征，而Swin-Unet通过不同级别的Swin Transformer块来处理特征，其中包括窗口化的自注意力机制来增强模型的感受野。 Swin-Unet与Swin Transformer 联系：
+基本单元：Swin-Unet使用Swin Transformer作为其构建块，直接借用了Swin Transformer的结构设计，如层归一化、多头自注意力和移动窗口技术。 注意力机制：两者都采用了Swin Transformer特有的窗口化自注意力，这种设计有助于在较低的计算成本下处理大尺度数据。 不同：
+架构设计：Swin Transformer主要设计为用于图像识别和分类的通用特征提取器，而Swin-Unet特别设计为用于图像分割任务的编码器-解码器结构。 输出：Swin Transformer通常输出类别标签或特征表示，适用于分类或检测任务；而Swin-Unet的输出是像素级的图像分割图，直接对图像各部分进行语义标注。 特征/模型 U-Net Swin Transformer Swin-Unet 核心构件 卷积层 Transformer块 Swin Transformer块 主要技术 卷积和池化 自注意力、移动窗口 自注意力、移动窗口 架构设计 对称的编码器-解码器结构，跳跃连接 通用特征提取器，多层Transformer结构 对称的编码器-解码器结构，跳跃连接 处理方式 局部特征提取 全局依赖关系处理 全局和局部特征融合 输出 像素级图像分割图 类别标签或特征表示 像素级图像分割图 应用领域 图像分割（特别是医学图像） 图像识别、分类 图像分割（特别是医学图像） 优势 结构简单，易于实现和理解 强大的全局信息处理能力 结合全局信息处理与高效的图像分割结构 性能与效率 在局部特征提取方面表现良好 需要较大的数据集和计算资源进行训练 旨在提供高效率和高性能的分割 Thinking 能否将Swin-Unet应用于遥感图像分割：'>
+<meta property='og:url' content='https://duskandwine.github.io/p/paperreadingcode/'>
+<meta property='og:site_name' content='Yuzuo'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-04-16T13:19:30&#43;10:00'/><meta property='article:modified_time' content='2024-04-16T13:19:30&#43;10:00'/>
+<meta name="twitter:title" content="PaperReading&amp;Code">
+<meta name="twitter:description" content="Paper Reading Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation
+European Conference On Computer Vision
+Cite: 2106
+Background 本文主要研究基于Swin Transformer的纯Transformer结构用于医学图像分割的应用。
+Algorithm Design 架构组件：
+编码器：编码器部分由多个Swin Transformer块构成，每个块都进行一次降采样以减少特征图的分辨率并增加特征维度。这一过程通过patch merging层实现，它将相邻的小块特征合并，实现特征的深度整合。
+瓶颈层：瓶颈层位于编码器和解码器之间，使用两个连续的Swin Transformer块进行深层特征的学习，不改变特征维度或分辨率。
+解码器：解码器镜像编码器的结构，采用patch expanding层进行特征图的上采样，逐步恢复分辨率，并通过Swin Transformer块处理特征。解码器中的每一步都会与编码器中对应的特征进行跳跃连接，以保留和利用高分辨率特征信息。
+关键技术：
+Swin Transformer块：基于移动窗口策略，这种块设计了窗口内和窗口间的多头自注意力（W-MSA和SW-MSA）。这种设计允许模型在保持计算效率的同时，捕捉更广泛的上下文信息。
+跳跃连接：类似于U-Net，使用跳跃连接可以有效地恢复图像中的空间信息，对于高质量的医学图像分割至关重要。这些连接帮助解码器访问未经降采样的初级特征。
+Compare Different Algorithms Swin-Unet与U-Net 联系：
+基础结构：Swin-Unet借鉴了U-Net的基本结构设计，即一个对称的编码器-解码器架构，中间通过跳跃连接（skip connections）来融合编码器和解码器的特征。 应用目的：两者都旨在进行图像分割，特别是在医学图像处理领域中，用于从复杂背景中准确地分割出目标结构。 不同：
+核心技术：U-Net主要依赖于卷积层来提取特征，而Swin-Unet完全基于Swin Transformer块，这意味着它依赖于自注意力机制来捕捉全局依赖关系，而非局部卷积操作。 特征处理：U-Net通过重复的卷积和池化操作来获得不同级别的特征，而Swin-Unet通过不同级别的Swin Transformer块来处理特征，其中包括窗口化的自注意力机制来增强模型的感受野。 Swin-Unet与Swin Transformer 联系：
+基本单元：Swin-Unet使用Swin Transformer作为其构建块，直接借用了Swin Transformer的结构设计，如层归一化、多头自注意力和移动窗口技术。 注意力机制：两者都采用了Swin Transformer特有的窗口化自注意力，这种设计有助于在较低的计算成本下处理大尺度数据。 不同：
+架构设计：Swin Transformer主要设计为用于图像识别和分类的通用特征提取器，而Swin-Unet特别设计为用于图像分割任务的编码器-解码器结构。 输出：Swin Transformer通常输出类别标签或特征表示，适用于分类或检测任务；而Swin-Unet的输出是像素级的图像分割图，直接对图像各部分进行语义标注。 特征/模型 U-Net Swin Transformer Swin-Unet 核心构件 卷积层 Transformer块 Swin Transformer块 主要技术 卷积和池化 自注意力、移动窗口 自注意力、移动窗口 架构设计 对称的编码器-解码器结构，跳跃连接 通用特征提取器，多层Transformer结构 对称的编码器-解码器结构，跳跃连接 处理方式 局部特征提取 全局依赖关系处理 全局和局部特征融合 输出 像素级图像分割图 类别标签或特征表示 像素级图像分割图 应用领域 图像分割（特别是医学图像） 图像识别、分类 图像分割（特别是医学图像） 优势 结构简单，易于实现和理解 强大的全局信息处理能力 结合全局信息处理与高效的图像分割结构 性能与效率 在局部特征提取方面表现良好 需要较大的数据集和计算资源进行训练 旨在提供高效率和高性能的分割 Thinking 能否将Swin-Unet应用于遥感图像分割：">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Yuzuo</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/nohairblingbling'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>about</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/paperreadingcode/">PaperReading&amp;Code</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 16, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="paper-reading">Paper Reading</h1>
+<p>Swin-Unet: Unet-like Pure Transformer for Medical Image Segmentation</p>
+<p>European Conference On Computer Vision</p>
+<p>Cite: 2106</p>
+<h2 id="background">Background</h2>
+<p>本文主要研究基于Swin Transformer的纯Transformer结构用于医学图像分割的应用。</p>
+<h2 id="algorithm-design">Algorithm Design</h2>
+<ol>
+<li>
+<p>架构组件：</p>
+<ul>
+<li>
+<p><strong>编码器</strong>：编码器部分由多个Swin Transformer块构成，每个块都进行一次降采样以减少特征图的分辨率并增加特征维度。这一过程通过patch merging层实现，它将相邻的小块特征合并，实现特征的深度整合。</p>
+</li>
+<li>
+<p><strong>瓶颈层</strong>：瓶颈层位于编码器和解码器之间，使用两个连续的Swin Transformer块进行深层特征的学习，不改变特征维度或分辨率。</p>
+</li>
+<li>
+<p><strong>解码器</strong>：解码器镜像编码器的结构，采用patch expanding层进行特征图的上采样，逐步恢复分辨率，并通过Swin Transformer块处理特征。解码器中的每一步都会与编码器中对应的特征进行跳跃连接，以保留和利用高分辨率特征信息。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>关键技术：</p>
+<ul>
+<li>
+<p><strong>Swin Transformer块</strong>：基于移动窗口策略，这种块设计了窗口内和窗口间的多头自注意力（W-MSA和SW-MSA）。这种设计允许模型在保持计算效率的同时，捕捉更广泛的上下文信息。</p>
+</li>
+<li>
+<p><strong>跳跃连接</strong>：类似于U-Net，使用跳跃连接可以有效地恢复图像中的空间信息，对于高质量的医学图像分割至关重要。这些连接帮助解码器访问未经降采样的初级特征。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="compare-different-algorithms">Compare Different Algorithms</h3>
+<h4 id="swin-unet与u-net">Swin-Unet与U-Net</h4>
+<p><strong>联系</strong>：</p>
+<ul>
+<li><strong>基础结构</strong>：Swin-Unet借鉴了U-Net的基本结构设计，即一个对称的编码器-解码器架构，中间通过跳跃连接（skip connections）来融合编码器和解码器的特征。</li>
+<li><strong>应用目的</strong>：两者都旨在进行图像分割，特别是在医学图像处理领域中，用于从复杂背景中准确地分割出目标结构。</li>
+</ul>
+<p><strong>不同</strong>：</p>
+<ul>
+<li><strong>核心技术</strong>：U-Net主要依赖于卷积层来提取特征，而Swin-Unet完全基于Swin Transformer块，这意味着它依赖于自注意力机制来捕捉全局依赖关系，而非局部卷积操作。</li>
+<li><strong>特征处理</strong>：U-Net通过重复的卷积和池化操作来获得不同级别的特征，而Swin-Unet通过不同级别的Swin Transformer块来处理特征，其中包括窗口化的自注意力机制来增强模型的感受野。</li>
+</ul>
+<h4 id="swin-unet与swin-transformer">Swin-Unet与Swin Transformer</h4>
+<p><strong>联系</strong>：</p>
+<ul>
+<li><strong>基本单元</strong>：Swin-Unet使用Swin Transformer作为其构建块，直接借用了Swin Transformer的结构设计，如层归一化、多头自注意力和移动窗口技术。</li>
+<li><strong>注意力机制</strong>：两者都采用了Swin Transformer特有的窗口化自注意力，这种设计有助于在较低的计算成本下处理大尺度数据。</li>
+</ul>
+<p><strong>不同</strong>：</p>
+<ul>
+<li><strong>架构设计</strong>：Swin Transformer主要设计为用于图像识别和分类的通用特征提取器，而Swin-Unet特别设计为用于图像分割任务的编码器-解码器结构。</li>
+<li><strong>输出</strong>：Swin Transformer通常输出类别标签或特征表示，适用于分类或检测任务；而Swin-Unet的输出是像素级的图像分割图，直接对图像各部分进行语义标注。</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>特征/模型</th>
+<th>U-Net</th>
+<th>Swin Transformer</th>
+<th>Swin-Unet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心构件</strong></td>
+<td>卷积层</td>
+<td>Transformer块</td>
+<td>Swin Transformer块</td>
+</tr>
+<tr>
+<td><strong>主要技术</strong></td>
+<td>卷积和池化</td>
+<td>自注意力、移动窗口</td>
+<td>自注意力、移动窗口</td>
+</tr>
+<tr>
+<td><strong>架构设计</strong></td>
+<td>对称的编码器-解码器结构，跳跃连接</td>
+<td>通用特征提取器，多层Transformer结构</td>
+<td>对称的编码器-解码器结构，跳跃连接</td>
+</tr>
+<tr>
+<td><strong>处理方式</strong></td>
+<td>局部特征提取</td>
+<td>全局依赖关系处理</td>
+<td>全局和局部特征融合</td>
+</tr>
+<tr>
+<td><strong>输出</strong></td>
+<td>像素级图像分割图</td>
+<td>类别标签或特征表示</td>
+<td>像素级图像分割图</td>
+</tr>
+<tr>
+<td><strong>应用领域</strong></td>
+<td>图像分割（特别是医学图像）</td>
+<td>图像识别、分类</td>
+<td>图像分割（特别是医学图像）</td>
+</tr>
+<tr>
+<td><strong>优势</strong></td>
+<td>结构简单，易于实现和理解</td>
+<td>强大的全局信息处理能力</td>
+<td>结合全局信息处理与高效的图像分割结构</td>
+</tr>
+<tr>
+<td><strong>性能与效率</strong></td>
+<td>在局部特征提取方面表现良好</td>
+<td>需要较大的数据集和计算资源进行训练</td>
+<td>旨在提供高效率和高性能的分割</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="thinking">Thinking</h2>
+<p>能否将Swin-Unet应用于遥感图像分割：</p>
+<p>Swin-Unet优点：</p>
+<ol>
+<li><strong>高级特征学习能力</strong>：
+<ul>
+<li><strong>深层语义信息处理</strong>：Swin-Unet中的Transformer架构使得它能够有效地学习和处理遥感图像中的深层语义信息。这对于理解和分割包含复杂地物和地形的遥感图像尤其重要。</li>
+<li><strong>长距离依赖建模</strong>：与传统的卷积网络相比，Swin-Unet能够捕捉图像中跨越较大空间距离的依赖关系，这有助于在遥感图像中识别和分割连续的地理特征。</li>
+</ul>
+</li>
+<li><strong>改进的分割精度</strong>：
+<ul>
+<li><strong>细节恢复</strong>：通过编码器-解码器结构和跳跃连接，Swin-Unet可以有效地恢复在编码阶段可能丢失的图像细节，从而提高遥感图像分割的精度和质量。</li>
+<li><strong>多尺度特征融合</strong>：Swin-Unet的层次化结构支持多尺度特征的融合，这对于处理具有不同分辨率和尺度变化的遥感图像比较关键。</li>
+</ul>
+</li>
+</ol>
+<p>可能的问题：</p>
+<ol>
+<li>泛化能力不足：数据具有高度的异质性，可能会导致泛化能力不足？</li>
+</ol>
+<h1 id="code">Code</h1>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "Yuzuo" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2024 Yuzuo
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#algorithm-design">Algorithm Design</a>
+      <ol>
+        <li><a href="#compare-different-algorithms">Compare Different Algorithms</a>
+          <ol>
+            <li><a href="#swin-unet与u-net">Swin-Unet与U-Net</a></li>
+            <li><a href="#swin-unet与swin-transformer">Swin-Unet与Swin Transformer</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#thinking">Thinking</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
