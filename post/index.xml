@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on Lorcan_blog</title>
+        <title>Posts on Lorcan</title>
         <link>https://duskandwine.github.io/post/</link>
-        <description>Recent content in Posts on Lorcan_blog</description>
+        <description>Recent content in Posts on Lorcan</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 16 Apr 2024 13:19:30 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
