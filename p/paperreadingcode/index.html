@@ -305,7 +305,7 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
 
 
                 <time class="article-time--reading">
-                    1 minute read
+                    2 minute read
                 </time>
             </div>
         
@@ -458,6 +458,434 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
 <li>泛化能力不足：数据具有高度的异质性，可能会导致泛化能力不足？</li>
 </ol>
 <h1 id="code">Code</h1>
+<h2 id="代码运行">代码运行</h2>
+<p>Pytorch支持MacBook原生的GPU，于是想测在本机上测试下：</p>
+<ul>
+<li>
+<p>更换device为mps</p>
+<ul>
+<li><code>eval.py</code>, <code>infer.py</code>, <code>train.py</code>中的：<code>device = torch.device(&quot;cuda:0&quot; if torch.cuda.is_available() else &quot;cpu&quot;)</code>更改为<code>device = torch.device(&quot;mps&quot; if torch.backends.mps.is_available() else &quot;cpu&quot;)</code></li>
+<li><code>.cuda()</code>更改为<code>.to(device)</code></li>
+</ul>
+</li>
+<li>
+<p>运行结果：</p>
+<ul>
+<li>train.py<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419102232350.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240419102232350"
+	
+	
+><!-- raw HTML omitted --></li>
+<li>eval.py<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419102310433.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240419102310433"
+	
+	
+></li>
+</ul>
+</li>
+<li>
+<p>训练运行时间对比，汗流浃背了</p>
+<ul>
+<li>RTX 4090，25.2 GB显存，用时2分48秒：<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419104037866.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240419104037866"
+	
+	
+></li>
+<li>MacBook，Apple M1 Max 64GB，用时38分7秒：<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419110449430.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20240419110449430"
+	
+	
+></li>
+</ul>
+</li>
+</ul>
+<h2 id="代码简要分析">代码简要分析</h2>
+<h3 id="代码结构">代码结构</h3>
+<ol>
+<li>一级目录</li>
+</ol>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>一级目录/文件</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>configs/</td>
+<td>包含模型和训练配置文件，用于定义训练参数、模型结构和数据处理方法。</td>
+</tr>
+<tr>
+<td>datasets/</td>
+<td>存放实际的图像数据和标签，用于模型训练和验证。包含数据加载和处理的脚本，负责从当前目录下读取数据并进行预处理。</td>
+</tr>
+<tr>
+<td>models/</td>
+<td>包含不同的模型实现代码，如 SegFormer 和 HRNet，以及模型创建的中心函数。</td>
+</tr>
+<tr>
+<td>results/</td>
+<td>存放模型训练和评估的结果，如模型预测的输出图像、度量和分析结果。</td>
+</tr>
+<tr>
+<td>runs/</td>
+<td>包含模型运行的日志、检查点和输出图，如训练日志、最佳和最后的模型状态。</td>
+</tr>
+<tr>
+<td>tools/</td>
+<td>包含辅助工具脚本，如数据分析、模型工具和投票机制。</td>
+</tr>
+<tr>
+<td>utils/</td>
+<td>提供日志记录、配置管理、图像处理等跨项目支持的实用工具。</td>
+</tr>
+<tr>
+<td>requirements.txt</td>
+<td>所需的依赖和库。</td>
+</tr>
+<tr>
+<td>train.py</td>
+<td>主训练脚本，用于训练模型。依赖于 <code>models/</code>, <code>datasets/</code>, <code>utils/</code>。</td>
+</tr>
+<tr>
+<td>eval.py</td>
+<td>评估脚本，用于评估已经训练的模型。依赖于 <code>models/</code>, <code>datasets/</code>, <code>utils/</code>。</td>
+</tr>
+<tr>
+<td>infer.py</td>
+<td>推理脚本，用于在新数据上运行模型以生成预测。依赖于 <code>models/</code>, <code>utils/</code>。</td>
+</tr>
+</tbody>
+</table></div>
+<ol start="2">
+<li>二级目录</li>
+</ol>
+<p>Models 目录：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>文件/文件夹名</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>init</strong>.py</td>
+<td>提供 <code>create_model</code> 函数，用于根据配置创建指定的模型实例。</td>
+</tr>
+<tr>
+<td>hrnet/</td>
+<td>包含 HRNet 模型的定义，适用于高分辨率图像处理任务。</td>
+</tr>
+<tr>
+<td>segformer/</td>
+<td>包含 SegFormer 模型的定义，这是一个基于 Transformer 的图像分割模型。</td>
+</tr>
+</tbody>
+</table></div>
+<p>tools 目录：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_analysis.py</td>
+<td>提供数据分析相关功能。</td>
+</tr>
+<tr>
+<td>make_gid5_256.py</td>
+<td>用于 GID-5 数据集的预处理，如裁剪图像块和准备训练/验证数据。</td>
+</tr>
+<tr>
+<td>model_tools.py</td>
+<td>包含模型相关的工具，如加载和处理模型检查点。</td>
+</tr>
+<tr>
+<td>vote.py</td>
+<td>实现投票机制，用于集成多个模型或策略的预测结果。</td>
+</tr>
+</tbody>
+</table></div>
+<p>utils 目录：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init.py</td>
+<td>初始化文件，用于管理 <code>utils</code> 目录的命名空间。</td>
+</tr>
+<tr>
+<td>cutmix.py</td>
+<td>实现 CutMix 数据增强策略，以增强模型的泛化能力，用于训练时的图像处理。</td>
+</tr>
+<tr>
+<td>help.py</td>
+<td>提供一些辅助函数，支持其他脚本的功能。</td>
+</tr>
+<tr>
+<td>image.py</td>
+<td>包含图像处理相关的函数，如调整图像大小、应用滤镜等。</td>
+</tr>
+<tr>
+<td>losses.py</td>
+<td>定义了多种损失函数，支持模型训练过程中的误差计算，包括常见的和定制的损失函数，如 MSE、BCE 和它们的变体。</td>
+</tr>
+<tr>
+<td>lr_scheduler.py</td>
+<td>提供学习率调度器，用于控制训练过程中的学习率变化。</td>
+</tr>
+<tr>
+<td>metric.py</td>
+<td>包含度量计算函数，用于评估模型性能。</td>
+</tr>
+<tr>
+<td>optimzer.py</td>
+<td>包含优化器配置和实现，用于模型的参数更新。</td>
+</tr>
+<tr>
+<td>print.py</td>
+<td>提供增强的打印功能，用于在控制台中显示彩色文本。</td>
+</tr>
+<tr>
+<td>segment.py</td>
+<td>包含图像分割相关的实用工具和函数。</td>
+</tr>
+<tr>
+<td>utils.py</td>
+<td>提供项目中常用的工具函数，如时间转换、配置管理等。</td>
+</tr>
+</tbody>
+</table></div>
+<p>runs/ 目录：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>文件/文件夹名</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unet_resnet/</td>
+<td>特定模型的运行实例目录，可能是使用 UNet 架构和 ResNet 编码器的训练运行。</td>
+</tr>
+<tr>
+<td>ckpt/</td>
+<td>存放训练过程中保存的模型检查点，包括最佳性能的模型（best.pt）和最终模型（last.pt）。</td>
+</tr>
+<tr>
+<td>*.log</td>
+<td>包含训练、评估和其他过程中生成的日志文件。</td>
+</tr>
+<tr>
+<td>events.out.tfevents.*</td>
+<td>TensorBoard 的日志文件，用于训练过程的可视化分析。</td>
+</tr>
+<tr>
+<td>plot.png</td>
+<td>通常包含损失和度量的可视化图表，如训练和验证损失曲线。</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="主要代码分析">主要代码分析</h3>
+<ol>
+<li>
+<p>train.py:</p>
+<ul>
+<li>
+<p><code>Trainer</code>类负责设置和执行整个训练过程。初始化函数接收配置字典<code>cfg</code>，设置各种路径、数据加载器、模型、优化器、学习率调度器和损失函数。</p>
+<ul>
+<li><code>self.cfg</code>等属性存储配置信息。</li>
+<li>创建日志目录和检查点目录来保存训练日志和模型。</li>
+<li>数据加载器负责批量加载数据，并进行相应的转换。</li>
+<li>模型通过<code>create_model</code>函数创建，并转移到相应的设备（GPU或CPU）。</li>
+<li>使用<code>AdamW</code>优化器，它是Adam优化器的一种变种，添加了权重衰减。</li>
+<li>学习率调度器<code>PolyScheduler</code>调整学习率。</li>
+</ul>
+</li>
+<li>
+<p><code>training</code>方法包含了模型在训练集上的训练过程。它使用一个循环遍历数据加载器中的数据批次，计算损失，执行反向传播，并更新模型的权重。</p>
+<ul>
+<li>使用<code>zero_grad</code>清除优化器的梯度。</li>
+<li>数据通过模型前向传播得到预测。</li>
+<li>计算损失并执行反向传播。</li>
+<li>优化器执行一个更新步骤。</li>
+<li>使用<code>ExpSmoothing</code>和<code>AverageMeter</code>跟踪损失的平均值和平滑值。</li>
+</ul>
+</li>
+<li>
+<p><code>validation</code>方法：</p>
+<ul>
+<li>
+<p>使用<code>@torch.no_grad()</code>装饰器来确保在验证阶段不会计算梯度，这有助于节省内存和计算时间。</p>
+</li>
+<li>
+<p><code>self.model.eval()</code>将模型置于评估模式，这通常会改变某些层的行为（例如dropout和batch normalization层）。</p>
+</li>
+<li>
+<p>使用<code>AverageMeter</code>来跟踪整个epoch的平均损失，并使用<code>ExpSmoothing</code>平滑损失值。</p>
+</li>
+<li>
+<p>通过<code>Metric</code>类（这可能是一个自定义类，用于计算例如IoU这样的评估指标）来评估预测的质量。</p>
+</li>
+<li>
+<p>使用<code>DataLoader</code>在验证数据集上迭代，并对每个批次执行以下操作：</p>
+<ol>
+<li>
+<p>计算模型预测和实际标签之间的损失。</p>
+</li>
+<li>
+<p>使用<code>softmax</code>和<code>argmax</code>操作将模型的原始输出转换为最终的类别预测。</p>
+</li>
+<li>
+<p>使用<code>Metric</code>实例更新评估指标。</p>
+</li>
+<li>
+<p>使用<code>tqdm</code>显示实时损失信息。</p>
+</li>
+<li>
+<p>使用<code>SummaryWriter</code>将验证损失写入TensorBoard。</p>
+</li>
+<li>
+<p>在完成所有批次的处理后，使用<code>Metric.evaluate()</code>来计算所有批次的评估指标，并记录日志。</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>finishing</code>方法在训练过程结束时被调用：</p>
+<ul>
+<li>使用<code>@torch.no_grad()</code>装饰器来确保不会计算梯度。</li>
+<li>保存最后一个epoch的模型状态和优化器状态到检查点文件中。</li>
+<li>如果有测试数据集，还可能在测试数据集上评估模型性能。</li>
+<li>可以使用<code>matplotlib</code>生成和保存训练和验证损失以及学习率的可视化图表。</li>
+</ul>
+</li>
+<li>
+<p>程序入口<code>main</code>:</p>
+<ul>
+<li>解析命令行参数并获取配置文件和设备信息。</li>
+<li>设置随机种子以确保可复现性。</li>
+<li>创建<code>Trainer</code>类的实例并使用给定的配置。</li>
+<li>执行训练循环，对每个epoch调用训练和验证方法。</li>
+<li>在所有epoch完成后调用<code>finishing</code>方法保存最终模型并进行可选的测试集评估。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>eval.py</p>
+<ul>
+<li><code>run</code>方法：
+<ul>
+<li>使用<code>load_config</code>函数载入配置文件（由命令行参数指定）。</li>
+<li>获取测试数据集，通过<code>DualDataset</code>类加载，并应用验证时的转换操作。</li>
+<li>创建模型实例，并将模型状态加载为指定权重文件的状态。</li>
+<li>设置模型为评估模式，并打印模型摘要。</li>
+<li>初始化评估指标计算类<code>PixelMetric</code>。</li>
+<li>通过测试数据集上的所有样本进行迭代，使用训练好的模型生成预测，并计算指标。</li>
+<li>在全部样本上评估完成后，使用<code>metric.summary_all()</code>打印总结的评估指标。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>infer.py</p>
+<ul>
+<li><code>Segmenter</code>的类：
+<ul>
+<li>类初始化<code>__init__</code>函数加载配置文件，并设置模型为评估模式。如果配置中启用了测试时数据增强（TTA），则用<code>tta</code>库的相关功能包装模型。</li>
+<li><code>predict</code>函数对单个图像执行预测。它首先对图像应用转换，然后使用模型进行推理，并返回预测结果。</li>
+<li><code>predict_folder</code>函数在整个文件夹的图像上执行预测，并将结果保存在指定的输出目录。对于每个图像，它还可以生成并保存一个叠加了语义分割掩码的颜色版本。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>unet_resnet.yml：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode</td>
+<td>运行模式，这里设为&quot;train&quot;。</td>
+</tr>
+<tr>
+<td>run_name</td>
+<td>运行的名称，用于标识不同的训练过程。</td>
+</tr>
+<tr>
+<td>run_dir</td>
+<td>保存日志和模型的目录路径。</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>这次运行的备注信息。</td>
+</tr>
+<tr>
+<td>print_freq</td>
+<td>日志打印频率。</td>
+</tr>
+<tr>
+<td>dataset</td>
+<td>数据集的配置参数，包括路径和类别信息。</td>
+</tr>
+<tr>
+<td>network</td>
+<td>网络配置，指定了网络类型、架构、编码器等。</td>
+</tr>
+<tr>
+<td>optimizer</td>
+<td>优化器配置，包括类型、学习率和权重衰减。</td>
+</tr>
+<tr>
+<td>train</td>
+<td>训练配置，如周期数、批量大小、模型保存间隔等。</td>
+</tr>
+<tr>
+<td>infer</td>
+<td>推理配置，包括窗口大小、重叠像素大小等。</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ol>
 
 </section>
 
@@ -663,6 +1091,16 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
       </ol>
     </li>
     <li><a href="#thinking">Thinking</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#代码运行">代码运行</a></li>
+    <li><a href="#代码简要分析">代码简要分析</a>
+      <ol>
+        <li><a href="#代码结构">代码结构</a></li>
+        <li><a href="#主要代码分析">主要代码分析</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
