@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>CV on Lorcan</title>
+        <link>https://duskandwine.github.io/tags/cv/</link>
+        <description>Recent content in CV on Lorcan</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Wed, 19 Apr 2023 19:07:53 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/tags/cv/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Introduction_of_CV</title>
+        <link>https://duskandwine.github.io/p/introduction_of_cv/</link>
+        <pubDate>Wed, 19 Apr 2023 19:07:53 +1000</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/introduction_of_cv/</guid>
+        <description>&lt;h1 id=&#34;what-is-the-computer-vison&#34;&gt;What is the Computer Vison&lt;/h1&gt;
+&lt;p&gt;Computer Vision is the process by which a machine or a system generates an understanding of visual information by invoking one or more algorithms acting on the information provided.&lt;/p&gt;
+&lt;p&gt;The understandings are then translated into decisions, classifications, pattern observation, and many more.&lt;/p&gt;
+&lt;h2 id=&#34;chanllenge-of-cv&#34;&gt;Chanllenge of CV&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Feature extraction is difficult&lt;/li&gt;
+&lt;li&gt;Large amount of calculation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cnn&#34;&gt;CNN&lt;/h2&gt;
+&lt;p&gt;A Convolutional Neural Network (CNN) is a Deep Learning algorithm which can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image and be able to differentiate one from the other.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419192553372.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240419192553372&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;category-of-cv&#34;&gt;Category of CV&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Image classification
+Image Recognition is the task of identifying objects of interest within an image and recognizing which category they belong to.&lt;/li&gt;
+&lt;li&gt;Object detection&lt;br&gt;
+Object detection is a computer vision technique that allows us to identify and locate objects in an image or video.&lt;/li&gt;
+&lt;li&gt;Semantic segmentation
+Semantic segmentation is the task of clustering parts of an image together which belong to the same object class.&lt;/li&gt;
+&lt;li&gt;Instance segmentation
+Instance segmentation is the task of detecting and delineating each distinct object of interest appearing in an image.&lt;/li&gt;
+&lt;li&gt;Video classification
+Video Classification is the task of producing a label that is relevant to the video given its frames.&lt;/li&gt;
+&lt;li&gt;Human key point detection
+Human Pose Estimation is defined as the problem of localization of human joints (also known as keypoints - elbows, wrists, etc) in images or videos.&lt;/li&gt;
+&lt;li&gt;Scene text recognition
+Scene text recognition is the task of recognizing character sequences in natural scenes.&lt;/li&gt;
+&lt;li&gt;Target tracking
+Object tracking is the task of taking an initial set of object detections,      creating a unique ID for each of the initial detections, and then tracking each of the objects as they move around frames in a video, maintaining the ID assignment.&lt;/li&gt;
+&lt;li&gt;More
+Multimodal learning suggests that when a number of our senses - visual, auditory, kinaesthetic- are being engaged during learning, we understand and remember more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;what-is-image&#34;&gt;What is Image&lt;/h2&gt;
+&lt;p&gt;Definition: a visible impression obtained by a camera, telescope, microscope, or other device, or displayed on a computer or video screen.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Binary Images&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In a binary image,each pixel assumes one of only two discrete values.&lt;/li&gt;
+&lt;li&gt;Essentially, these two values correspond to on and off.&lt;/li&gt;
+&lt;li&gt;A binary image is stored as a logical array of 0&amp;rsquo;s (off pixels) and 1&amp;rsquo;s (on pixels).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Color Space&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;3 Channels: Red Green Blue&lt;/li&gt;
+&lt;li&gt;Black:  (0,0,0), White:  (255，255，255)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419200452510.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240419200452510&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;HSL and HSV&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419200533096.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240419200533096&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240419200552689.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20240419200552689&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;opencv&#34;&gt;OpenCV&lt;/h2&gt;
+&lt;p&gt;OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine  learning software library.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Color Preset Mode of OpenCV&amp;ndash;&amp;gt;BGR, transfer to RGB: &lt;code&gt;cv2.cvtColor(imgname, cv2.COLOR_BGR2RGB)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;RGB to Grey scale: &lt;code&gt;cv2.cvtColor(imgname, cv2.COLOR_BGR2GRAY)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
