@@ -12,7 +12,8 @@
         <pubDate>Thu, 01 Feb 2024 15:15:35 +1000</pubDate>
         
         <guid>https://duskandwine.github.io/p/successfully-using-latex-to-render-mathematical-formulas-in-hugo/</guid>
-        <description>&lt;p&gt;When building a blog or website with Hugo, we often need to insert mathematical formulas into articles. However, by default, Hugo cannot directly render these mathematical formulas. Previously, there were many solutions available online, but recently, starting from Hugo v0.122.0, official support for mathematical formulas has been introduced. With some configuration and steps, we can successfully achieve LaTeX mathematical formula rendering in Hugo. For official documentation, you can refer to &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/mathematics/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <description>&lt;hr&gt;
+&lt;p&gt;When building a blog or website with Hugo, we often need to insert mathematical formulas into articles. However, by default, Hugo cannot directly render these mathematical formulas. Previously, there were many solutions available online, but recently, starting from Hugo v0.122.0, official support for mathematical formulas has been introduced. With some configuration and steps, we can successfully achieve LaTeX mathematical formula rendering in Hugo. For official documentation, you can refer to &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/mathematics/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Hugo Mathematics&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;step-1-check-and-update-hugo-version&#34;&gt;Step 1: Check and Update Hugo Version&lt;/h2&gt;
 &lt;p&gt;First, we need to ensure that we are using Hugo v0.122.0 or higher. You can check your current Hugo version with the following command:&lt;/p&gt;
