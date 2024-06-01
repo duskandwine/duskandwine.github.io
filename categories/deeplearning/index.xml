@@ -5,7 +5,7 @@
         <link>https://duskandwine.github.io/categories/deeplearning/</link>
         <description>Recent content in Deeplearning on Lorcan</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>en</language>
         <lastBuildDate>Wed, 01 Jun 2022 14:06:42 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/categories/deeplearning/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Neural Network Basics and Multi-Layer Perceptron</title>
         <link>https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/</link>
@@ -220,7 +220,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Converts data to a form that conforms to a probability distribution:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
-&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1.
+&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1:
 $$
 y_i = S(z)&lt;em&gt;i = \frac{e^{z_i}}{\sum&lt;/em&gt;{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$&lt;/li&gt;

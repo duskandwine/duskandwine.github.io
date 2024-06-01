@@ -5,7 +5,7 @@
         <link>https://duskandwine.github.io/</link>
         <description>Recent content on Lorcan</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>en</language>
         <lastBuildDate>Tue, 16 Apr 2024 13:19:30 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Neural Network Basics and Multi-Layer Perceptron</title>
         <link>https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/</link>
@@ -220,7 +220,7 @@ $$&lt;/p&gt;
 &lt;p&gt;Converts data to a form that conforms to a probability distribution:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
-&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1.
+&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1:
 $$
 y_i = S(z)&lt;em&gt;i = \frac{e^{z_i}}{\sum&lt;/em&gt;{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$&lt;/li&gt;
@@ -5814,14 +5814,6 @@ pip install requests&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        </item>
-        <item>
-        <title></title>
-        <link>https://duskandwine.github.io/_index.zh-cn/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://duskandwine.github.io/_index.zh-cn/</guid>
-        <description></description>
         </item>
         <item>
         <title>search</title>
