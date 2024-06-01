@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head><meta charset='utf-8'>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Artificial Neurons Artificial Neuron: A mathematical model abstracted from human neurons. Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way. Minsky proved in 1963 that Perceptron cannot solve the XOR problem. Multi-Layer Perceptron Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron. Forward propagation of MLP:'><title>Neural Network Basics and Multi-Layer Perceptron</title>
 
 <link rel='canonical' href='https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/'>
@@ -17,8 +20,8 @@
   
 
 
-    </head>
-    <body class="
+  </head>
+  <body class="
     article-page
     ">
     <script>
@@ -43,7 +46,9 @@
         }
     })();
 </script>
-<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+<div
+      class="container main-container flex on-phone--column extended"
+    ><aside class="sidebar left-sidebar sticky ">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
         <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -58,10 +63,8 @@
                 
                     
                     
-                    
                         
-                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
                 </a>
@@ -69,21 +72,18 @@
             </figure>
             
         
-        
+
         <div class="site-meta">
             <h1 class="site-name"><a href="/">Lorcan</a></h1>
             <h2 class="site-description">My journey.</h2>
         </div>
-    </header><ol class="menu-social">
+    </header>
+
+    
+        <ol class="social-menu">
             
                 <li>
-                    <a 
-                        href='https://github.com/nohairblingbling'
-                        target="_blank"
-                        title="GitHub"
-                        rel="me"
-                    >
-                        
+                    <a href="https://github.com/nohairblingbling" target="" title="GitHub">
                         
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -97,29 +97,24 @@
                 </li>
             
                 <li>
-                    <a 
-                        href='https://www.instagram.com/lorcanxoo/'
-                        target="_blank"
-                        title="instagram"
-                        rel="me"
-                    >
-                        
+                    <a href="https://www.instagram.com/lorcanxoo/" target="" title="Instagram">
                         
                             <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1713256923828" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4425" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300"><path d="M341.333333 128h341.333334a213.333333 213.333333 0 0 1 213.333333 213.333333v341.333334a213.333333 213.333333 0 0 1-213.333333 213.333333H341.333333a213.333333 213.333333 0 0 1-213.333333-213.333333V341.333333a213.333333 213.333333 0 0 1 213.333333-213.333333z m341.333334 85.333333H341.333333a128 128 0 0 0-128 128v341.333334a128 128 0 0 0 128 128h341.333334a128 128 0 0 0 128-128V341.333333a128 128 0 0 0-128-128z m-341.333334 298.666667a170.666667 170.666667 0 1 1 341.333334 0 170.666667 170.666667 0 0 1-341.333334 0z m256 0a85.333333 85.333333 0 1 0-170.666666 0 85.333333 85.333333 0 0 0 170.666666 0z m149.034667-196.992a42.666667 42.666667 0 0 0-85.034667 5.034667l0.298667 4.992A42.666667 42.666667 0 0 0 746.666667 320l-0.298667-4.992z" p-id="4426"></path></svg>
                         
                     </a>
                 </li>
             
-        </ol><ol class="menu" id="main-menu">
+        </ol>
+    
+
+    <ol class="menu" id="main-menu">
         
         
-        
-        <li >
-            <a href='/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            
+            <li >
+                <a href="/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="5 12 3 12 12 3 21 12 19 12" />
   <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
@@ -128,18 +123,16 @@
 
 
 
-                
-                <span>Home</span>
-            </a>
-        </li>
+                    
+                    <span>Home</span>
+                </a>
+            </li>
         
-        
-        <li >
-            <a href='/archives/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            
+            <li >
+                <a href="/archives/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <rect x="3" y="4" width="18" height="4" rx="2" />
   <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
@@ -148,18 +141,16 @@
 
 
 
-                
-                <span>Archives</span>
-            </a>
-        </li>
+                    
+                    <span>Archives</span>
+                </a>
+            </li>
         
-        
-        <li >
-            <a href='/search/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            
+            <li >
+                <a href="/search/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
   <line x1="21" y1="21" x2="15" y2="15" />
@@ -167,18 +158,16 @@
 
 
 
-                
-                <span>search</span>
-            </a>
-        </li>
+                    
+                    <span>search</span>
+                </a>
+            </li>
         
-        
-        <li >
-            <a href='/about/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            
+            <li >
+                <a href="/about/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="7" r="4" />
   <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
@@ -186,17 +175,20 @@
 
 
 
-                
-                <span>about</span>
-            </a>
-        </li>
+                    
+                    <span>about</span>
+                </a>
+            </li>
         
-        <li class="menu-bottom-section">
-            <ol class="menu">
+    </ol>
 
-                
-                    <li id="dark-mode-toggle">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <div class="menu-bottom-section">
+        
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="8" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -204,7 +196,7 @@
 
 
 
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="16" cy="12" r="2" />
   <rect x="2" y="6" width="20" height="12" rx="6" />
@@ -212,12 +204,10 @@
 
 
 
-                        <span>Dark Mode</span>
-                    </li>
-                
-            </ol>
-        </li>
-    </ol>
+                <span>Dark Mode</span>
+            </li>
+        
+    </div>
 </aside>
 <main class="main full-width">
     <article class="main-article">
@@ -334,21 +324,23 @@
 <ul>
 <li>
 <p>Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
+</p>
 $$
-H = XW_h + b_h
+  H = XW_h + b_h
+  $$
 $$
-$$
-O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
-$$</p>
+  O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+  $$
 </li>
 <li>
 <p>Adding activation function to hidden layer can prevent network degeneration:
+</p>
 $$
-h = \sigma(W_1x + b_1)
+  h = \sigma(W_1x + b_1)
+  $$
 $$
-$$
-o = \mathbf{w}_2^T h + b_2
-$$</p>
+  o = \mathbf{w}_2^T h + b_2
+  $$
 </li>
 </ul>
 <h1 id="activation-function">Activation Function</h1>
@@ -379,17 +371,19 @@ $$</p>
 <p>Used for weight updates to make the network output closer to the labels.</p>
 <h3 id="loss-function">Loss Function</h3>
 <p>Measures the difference between the model output and the true labels.
+</p>
 $$
 Loss = f(\hat{y}, y)
-$$</p>
+$$
 <h3 id="principle-of-backpropagation">Principle of Backpropagation</h3>
 <p>Chain rule in calculus:
+</p>
 $$
 y = f(u), u = g(x)
 $$
 $$
 \frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
-$$</p>
+$$
 <p>Network computation graph:
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png"
 	
@@ -430,13 +424,16 @@ $$</p>
 <h3 id="learning-rate">Learning Rate</h3>
 <p>Learning rate (LR): Controls the step size of the update.</p>
 <p>Without learning rate:
+</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
-$$</p>
+$$
 <p>With learning rate:
+</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
 $$
+<p>
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png"
 	
 	
@@ -450,36 +447,42 @@ $$
 <h1 id="loss-function-1">Loss Function</h1>
 <p>Measures the gap between model output and true labels.</p>
 <h3 id="loss-function-2">Loss Function</h3>
-<p>$$
+$$
 Loss = f(\hat{y}, y)
 $$
+<p>
 Single sample.</p>
 <h3 id="cost-function">Cost Function</h3>
-<p>$$
+$$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
+<p>
 Overall samples.</p>
 <h3 id="objective-function">Objective Function</h3>
-<p>$$
+$$
 Obj = Cost + \text{Regularization Term}
-$$</p>
+$$
 <h3 id="two-common-loss-functions">Two Common Loss Functions</h3>
 <ol>
 <li>
 <p>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
+</p>
 $$
-MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+  MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
+<p>
 Example: label = (1, 2) pred = (1.5, 1.5)
+</p>
 $$
-MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
-$$</p>
+  MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$
 </li>
 <li>
 <p>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
+</p>
 $$
-H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
-$$</p>
+  H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$
 </li>
 </ol>
 <p>Cross entropy&rsquo;s good partner &ndash; Softmax function: Converts data to a form that conforms to a probability distribution.</p>
@@ -494,7 +497,7 @@ $$</p>
 <li>Takes the exponent to achieve non-negativity.</li>
 <li>Divides by the sum of exponents to achieve a sum of 1:
 $$
-y_i = S(z)<em>i = \frac{e^{z_i}}{\sum</em>{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$</li>
 </ol>
 <h1 id="weight-initialization">Weight Initialization</h1>
@@ -515,9 +518,11 @@ $$</li>
 <ul>
 <li>
 <p>Xavier Initialization: From &ldquo;Understanding the difficulty of training deep feedforward neural networks&rdquo;:
+</p>
 $$
-U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
-$$
+  U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+  $$
+<p>
 where <code>a</code> is the number of input neurons, and <code>b</code> is the number of output neurons.</p>
 </li>
 <li>
@@ -788,8 +793,7 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
                 rel="stylesheet" 
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
-
-            </main>
+</main>
     <aside class="sidebar right-sidebar sticky">
         
             
@@ -843,8 +847,8 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
     </aside>
 
 
-        </div>
-        <script 
+    </div>
+    <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
@@ -860,6 +864,15 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
         document.head.appendChild(customFont);
     }());
 </script>
-
-    </body>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+ 
+  </body>
 </html>
