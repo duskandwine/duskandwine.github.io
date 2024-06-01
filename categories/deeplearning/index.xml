@@ -12,7 +12,7 @@
         <pubDate>Wed, 01 Jun 2022 14:06:42 +1000</pubDate>
         
         <guid>https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/</guid>
-        <description>&lt;h1 id=&#34;artificial-neurons&#34;&gt;Artificial Neurons&lt;/h1&gt;
+        <description>&lt;h2 id=&#34;artificial-neurons&#34;&gt;Artificial Neurons&lt;/h2&gt;
 &lt;p&gt;Artificial Neuron: A mathematical model abstracted from human neurons.
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525150247.png&#34;
 	
@@ -46,7 +46,7 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;multi-layer-perceptron&#34;&gt;Multi-Layer Perceptron&lt;/h1&gt;
+&lt;h3 id=&#34;multi-layer-perceptron&#34;&gt;Multi-Layer Perceptron&lt;/h3&gt;
 &lt;p&gt;Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron.
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525152206.png&#34;
 	
@@ -81,7 +81,7 @@ $$
   $$
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;activation-function&#34;&gt;Activation Function&lt;/h1&gt;
+&lt;h3 id=&#34;activation-function&#34;&gt;Activation Function&lt;/h3&gt;
 &lt;p&gt;Makes MLP truly multi-layered; otherwise, it&amp;rsquo;s equivalent to a single layer.&lt;/p&gt;
 &lt;p&gt;Introduces non-linearity, enabling the network to approximate any non-linear function (universal approximator theorem).&lt;/p&gt;
 &lt;p&gt;An activation function should have the following properties:&lt;/p&gt;
@@ -101,17 +101,17 @@ $$
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;backpropagation&#34;&gt;Backpropagation&lt;/h1&gt;
+&lt;h3 id=&#34;backpropagation&#34;&gt;Backpropagation&lt;/h3&gt;
 &lt;p&gt;Forward propagation: Data starts from the input layer and gradually passes to the output.&lt;/p&gt;
 &lt;p&gt;Backpropagation: Gradients are passed backward from the loss function to the first layer.&lt;/p&gt;
 &lt;p&gt;Purpose of backpropagation: Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
-&lt;h3 id=&#34;loss-function&#34;&gt;Loss Function&lt;/h3&gt;
+&lt;h4 id=&#34;loss-function&#34;&gt;Loss Function&lt;/h4&gt;
 &lt;p&gt;Measures the difference between the model output and the true labels.
 &lt;/p&gt;
 $$
 Loss = f(\hat{y}, y)
 $$
-&lt;h3 id=&#34;principle-of-backpropagation&#34;&gt;Principle of Backpropagation&lt;/h3&gt;
+&lt;h4 id=&#34;principle-of-backpropagation&#34;&gt;Principle of Backpropagation&lt;/h4&gt;
 &lt;p&gt;Chain rule in calculus:
 &lt;/p&gt;
 $$
@@ -142,7 +142,7 @@ $$
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h3&gt;
+&lt;h4 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h4&gt;
 &lt;p&gt;Weights are updated along the negative gradient direction to reduce the function value.&lt;/p&gt;
 &lt;p&gt;Derivative: The rate of change of a function with respect to a coordinate axis.&lt;/p&gt;
 &lt;p&gt;Directional derivative: The rate of change in a specified direction.&lt;/p&gt;
@@ -157,7 +157,7 @@ $$
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;learning-rate&#34;&gt;Learning Rate&lt;/h3&gt;
+&lt;h4 id=&#34;learning-rate&#34;&gt;Learning Rate&lt;/h4&gt;
 &lt;p&gt;Learning rate (LR): Controls the step size of the update.&lt;/p&gt;
 &lt;p&gt;Without learning rate:
 &lt;/p&gt;
@@ -180,23 +180,23 @@ $$
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;loss-function-and-objective-function&#34;&gt;Loss Function and Objective Function&lt;/h1&gt;
+&lt;h3 id=&#34;loss-function-and-objective-function&#34;&gt;Loss Function and Objective Function&lt;/h3&gt;
 &lt;p&gt;Measures the gap between model output and true labels.&lt;/p&gt;
-&lt;h3 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h3&gt;
+&lt;h4 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h4&gt;
 $$
 Loss = f(\hat{y}, y)
 $$
 &lt;p&gt;Single sample.&lt;/p&gt;
-&lt;h3 id=&#34;cost-function&#34;&gt;Cost Function&lt;/h3&gt;
+&lt;h4 id=&#34;cost-function&#34;&gt;Cost Function&lt;/h4&gt;
 $$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
 &lt;p&gt;Overall samples.&lt;/p&gt;
-&lt;h3 id=&#34;objective-function&#34;&gt;Objective Function&lt;/h3&gt;
+&lt;h4 id=&#34;objective-function&#34;&gt;Objective Function&lt;/h4&gt;
 $$
 Obj = Cost + \text{Regularization Term}
 $$
-&lt;h3 id=&#34;two-common-loss-functions&#34;&gt;Two Common Loss Functions&lt;/h3&gt;
+&lt;h4 id=&#34;two-common-loss-functions&#34;&gt;Two Common Loss Functions&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:&lt;/li&gt;
 &lt;/ol&gt;
@@ -220,7 +220,7 @@ $$
 &lt;li&gt;Probability values are non-negative.&lt;/li&gt;
 &lt;li&gt;The sum of probabilities is 1.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&#34;softmax-function&#34;&gt;Softmax Function&lt;/h3&gt;
+&lt;h4 id=&#34;softmax-function&#34;&gt;Softmax Function&lt;/h4&gt;
 &lt;p&gt;Converts data to a form that conforms to a probability distribution:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
@@ -229,7 +229,7 @@ $$
 $$
 y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$
-&lt;h1 id=&#34;weight-initialization&#34;&gt;Weight Initialization&lt;/h1&gt;
+&lt;h3 id=&#34;weight-initialization&#34;&gt;Weight Initialization&lt;/h3&gt;
 &lt;p&gt;Assigning values to weight parameters before training; good weight initialization is beneficial for model training.&lt;/p&gt;
 &lt;p&gt;Random initialization method: Randomly initializing weights from a Gaussian distribution, e.g., N~(0, 0.01). The 30-rule: The probability that the value is within (u-3o, u+3o) is 99.73%.
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601120218.png&#34;
@@ -258,7 +258,7 @@ where &lt;code&gt;a&lt;/code&gt; is the number of input neurons, and &lt;code&gt
 &lt;p&gt;Kaiming Initialization: From &amp;ldquo;Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification&amp;rdquo;:&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;regularization-methods&#34;&gt;Regularization Methods&lt;/h1&gt;
+&lt;h3 id=&#34;regularization-methods&#34;&gt;Regularization Methods&lt;/h3&gt;
 &lt;p&gt;Regularization: Strategies to reduce variance, commonly understood as ways to mitigate overfitting.&lt;/p&gt;
 &lt;p&gt;Error can be decomposed into: bias, variance, and noise sum. That is, error = bias + variance + noise sum.&lt;/p&gt;
 &lt;p&gt;Bias measures the deviation of the expected prediction of the learning algorithm from the true result, indicating the fitting ability of the learning algorithm itself.&lt;/p&gt;
