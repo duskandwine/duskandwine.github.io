@@ -14,6 +14,12 @@
 <meta name="twitter:description" content="My journey."><link rel="alternate" type="application/rss&#43;xml" href="https://duskandwine.github.io/page/index.xml">
     <link rel="shortcut icon" href="img/yourfavicon.png" />
 
+  
+
+
+	
+
+	
     </head>
     <body class="">
     <script>
@@ -130,6 +136,27 @@
         
 
         <li >
+            <a href='/_index.zh-cn/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
             <a href='/archives/' >
                 
                 
@@ -190,6 +217,25 @@
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://duskandwine.github.io/" selected></option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -280,41 +326,6 @@
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-	<script type="text/javascript"
-async
-src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [['$','$'], ['\\(','\\)']],
-displayMath: [['$$','$$'], ['\[\[','\]\]']],
-processEscapes: true,
-processEnvironments: true,
-skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-TeX: { equationNumbers: { autoNumber: "AMS" },
-extensions: ["AMSmath.js", "AMSsymbols.js"] }
-}
-});
-
-MathJax.Hub.Queue(function() {
-
-
-
-var all = MathJax.Hub.getAllJax(), i;
-for(i = 0; i < all.length; i += 1) {
-all[i].SourceElement().parentNode.className += ' has-jax';
-}
-});
-</script>
-
-<style>
-code.has-jax {
-font: inherit;
-font-size: 100%;
-background: inherit;
-border: inherit;
-color: #515151;
-}
-</style>
     </section>
 </footer>
 
@@ -458,7 +469,7 @@ color: #515151;
             </a>
         
             <a href="/tags/tools/" class="font_size_3">
-                tools
+                Tools
             </a>
         
             <a href="/tags/pytorch/" class="font_size_2">

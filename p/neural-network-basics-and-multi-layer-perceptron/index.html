@@ -14,6 +14,12 @@
 <meta name="twitter:description" content="Artificial Neurons Artificial Neuron: A mathematical model abstracted from human neurons. Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way. Minsky proved in 1963 that Perceptron cannot solve the XOR problem. Multi-Layer Perceptron Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron. Forward propagation of MLP:">
     <link rel="shortcut icon" href="img/yourfavicon.png" />
 
+  
+
+
+	
+
+	
     </head>
     <body class="
     article-page
@@ -132,6 +138,27 @@
         
 
         <li >
+            <a href='/_index.zh-cn/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
             <a href='/archives/' >
                 
                 
@@ -192,6 +219,25 @@
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://duskandwine.github.io/" selected></option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -332,21 +378,23 @@
 <ul>
 <li>
 <p>Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
+</p>
 $$
-H = XW_h + b_h
+  H = XW_h + b_h
+  $$
 $$
-$$
-O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
-$$</p>
+  O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+  $$
 </li>
 <li>
 <p>Adding activation function to hidden layer can prevent network degeneration:
+</p>
 $$
-h = \sigma(W_1x + b_1)
+  h = \sigma(W_1x + b_1)
+  $$
 $$
-$$
-o = \mathbf{w}_2^T h + b_2
-$$</p>
+  o = \mathbf{w}_2^T h + b_2
+  $$
 </li>
 </ul>
 <h1 id="activation-function">Activation Function</h1>
@@ -377,17 +425,19 @@ $$</p>
 <p>Used for weight updates to make the network output closer to the labels.</p>
 <h3 id="loss-function">Loss Function</h3>
 <p>Measures the difference between the model output and the true labels.
+</p>
 $$
 Loss = f(\hat{y}, y)
-$$</p>
+$$
 <h3 id="principle-of-backpropagation">Principle of Backpropagation</h3>
 <p>Chain rule in calculus:
+</p>
 $$
 y = f(u), u = g(x)
 $$
 $$
 \frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
-$$</p>
+$$
 <p>Network computation graph:
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png"
 	
@@ -428,13 +478,16 @@ $$</p>
 <h3 id="learning-rate">Learning Rate</h3>
 <p>Learning rate (LR): Controls the step size of the update.</p>
 <p>Without learning rate:
+</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
-$$</p>
+$$
 <p>With learning rate:
+</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
 $$
+<p>
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png"
 	
 	
@@ -448,36 +501,42 @@ $$
 <h1 id="loss-function-1">Loss Function</h1>
 <p>Measures the gap between model output and true labels.</p>
 <h3 id="loss-function-2">Loss Function</h3>
-<p>$$
+$$
 Loss = f(\hat{y}, y)
 $$
+<p>
 Single sample.</p>
 <h3 id="cost-function">Cost Function</h3>
-<p>$$
+$$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
+<p>
 Overall samples.</p>
 <h3 id="objective-function">Objective Function</h3>
-<p>$$
+$$
 Obj = Cost + \text{Regularization Term}
-$$</p>
+$$
 <h3 id="two-common-loss-functions">Two Common Loss Functions</h3>
 <ol>
 <li>
 <p>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
+</p>
 $$
-MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+  MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
+<p>
 Example: label = (1, 2) pred = (1.5, 1.5)
+</p>
 $$
-MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
-$$</p>
+  MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$
 </li>
 <li>
 <p>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
+</p>
 $$
-H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
-$$</p>
+  H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$
 </li>
 </ol>
 <p>Cross entropy&rsquo;s good partner &ndash; Softmax function: Converts data to a form that conforms to a probability distribution.</p>
@@ -492,7 +551,7 @@ $$</p>
 <li>Takes the exponent to achieve non-negativity.</li>
 <li>Divides by the sum of exponents to achieve a sum of 1.
 $$
-y_i = S(z)<em>i = \frac{e^{z_i}}{\sum</em>{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$</li>
 </ol>
 <h1 id="weight-initialization">Weight Initialization</h1>
@@ -513,9 +572,11 @@ $$</li>
 <ul>
 <li>
 <p>Xavier Initialization: From &ldquo;Understanding the difficulty of training deep feedforward neural networks&rdquo;:
+</p>
 $$
-U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
-$$
+  U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+  $$
+<p>
 where <code>a</code> is the number of input neurons, and <code>b</code> is the number of output neurons.</p>
 </li>
 <li>
@@ -584,6 +645,29 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
 
 
     
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
 </article>
 
     
@@ -628,7 +712,7 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
         
     <div class="disqus-container">
     <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     window.disqus_config = function () {
     
     
@@ -682,41 +766,6 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-	<script type="text/javascript"
-async
-src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [['$','$'], ['\\(','\\)']],
-displayMath: [['$$','$$'], ['\[\[','\]\]']],
-processEscapes: true,
-processEnvironments: true,
-skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-TeX: { equationNumbers: { autoNumber: "AMS" },
-extensions: ["AMSmath.js", "AMSsymbols.js"] }
-}
-});
-
-MathJax.Hub.Queue(function() {
-
-
-
-var all = MathJax.Hub.getAllJax(), i;
-for(i = 0; i < all.length; i += 1) {
-all[i].SourceElement().parentNode.className += ' has-jax';
-}
-});
-</script>
-
-<style>
-code.has-jax {
-font: inherit;
-font-size: 100%;
-background: inherit;
-border: inherit;
-color: #515151;
-}
-</style>
     </section>
 </footer>
 

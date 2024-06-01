@@ -59,6 +59,12 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
 架构设计：Swin Transformer主要设计为用于图像识别和分类的通用特征提取器，而Swin-Unet特别设计为用于图像分割任务的编码器-解码器结构。 输出：Swin Transformer通常输出类别标签或特征表示，适用于分类或检测任务；而Swin-Unet的输出是像素级的图像分割图，直接对图像各部分进行语义标注。 特征/模型 U-Net Swin Transformer Swin-Unet 核心构件 卷积层 Transformer块 Swin Transformer块 主要技术 卷积和池化 自注意力、移动窗口 自注意力、移动窗口 架构设计 对称的编码器-解码器结构，跳跃连接 通用特征提取器，多层Transformer结构 对称的编码器-解码器结构，跳跃连接 处理方式 局部特征提取 全局依赖关系处理 全局和局部特征融合 输出 像素级图像分割图 类别标签或特征表示 像素级图像分割图 应用领域 图像分割（特别是医学图像） 图像识别、分类 图像分割（特别是医学图像） 优势 结构简单，易于实现和理解 强大的全局信息处理能力 结合全局信息处理与高效的图像分割结构 性能与效率 在局部特征提取方面表现良好 需要较大的数据集和计算资源进行训练 旨在提供高效率和高性能的分割 Thinking 能否将Swin-Unet应用于遥感图像分割：">
     <link rel="shortcut icon" href="img/yourfavicon.png" />
 
+  
+
+
+	
+
+	
     </head>
     <body class="
     article-page
@@ -177,6 +183,27 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
         
 
         <li >
+            <a href='/_index.zh-cn/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
             <a href='/archives/' >
                 
                 
@@ -237,6 +264,25 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
         
 
         <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://duskandwine.github.io/" selected></option>
+                        
+                    </select>
+                </li>
+            
             
             
                 <li id="dark-mode-toggle">
@@ -927,6 +973,29 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
 
 
     
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
 </article>
 
     
@@ -938,7 +1007,7 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
         
     <div class="disqus-container">
     <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     window.disqus_config = function () {
     
     
@@ -992,41 +1061,6 @@ Compare Different Algorithms Swin-Unet与U-Net 联系：
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
-	<script type="text/javascript"
-async
-src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-tex2jax: {
-inlineMath: [['$','$'], ['\\(','\\)']],
-displayMath: [['$$','$$'], ['\[\[','\]\]']],
-processEscapes: true,
-processEnvironments: true,
-skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-TeX: { equationNumbers: { autoNumber: "AMS" },
-extensions: ["AMSmath.js", "AMSsymbols.js"] }
-}
-});
-
-MathJax.Hub.Queue(function() {
-
-
-
-var all = MathJax.Hub.getAllJax(), i;
-for(i = 0; i < all.length; i += 1) {
-all[i].SourceElement().parentNode.className += ' has-jax';
-}
-});
-</script>
-
-<style>
-code.has-jax {
-font: inherit;
-font-size: 100%;
-background: inherit;
-border: inherit;
-color: #515151;
-}
-</style>
     </section>
 </footer>
 

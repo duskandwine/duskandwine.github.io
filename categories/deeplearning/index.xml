@@ -62,21 +62,23 @@
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
+&lt;/p&gt;
 $$
-H = XW_h + b_h
+  H = XW_h + b_h
+  $$
 $$
-$$
-O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
-$$&lt;/p&gt;
+  O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+  $$
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Adding activation function to hidden layer can prevent network degeneration:
+&lt;/p&gt;
 $$
-h = \sigma(W_1x + b_1)
+  h = \sigma(W_1x + b_1)
+  $$
 $$
-$$
-o = \mathbf{w}_2^T h + b_2
-$$&lt;/p&gt;
+  o = \mathbf{w}_2^T h + b_2
+  $$
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;activation-function&#34;&gt;Activation Function&lt;/h1&gt;
@@ -107,17 +109,19 @@ $$&lt;/p&gt;
 &lt;p&gt;Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
 &lt;h3 id=&#34;loss-function&#34;&gt;Loss Function&lt;/h3&gt;
 &lt;p&gt;Measures the difference between the model output and the true labels.
+&lt;/p&gt;
 $$
 Loss = f(\hat{y}, y)
-$$&lt;/p&gt;
+$$
 &lt;h3 id=&#34;principle-of-backpropagation&#34;&gt;Principle of Backpropagation&lt;/h3&gt;
 &lt;p&gt;Chain rule in calculus:
+&lt;/p&gt;
 $$
 y = f(u), u = g(x)
 $$
 $$
 \frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
-$$&lt;/p&gt;
+$$
 &lt;p&gt;Network computation graph:
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png&#34;
 	
@@ -158,13 +162,16 @@ $$&lt;/p&gt;
 &lt;h3 id=&#34;learning-rate&#34;&gt;Learning Rate&lt;/h3&gt;
 &lt;p&gt;Learning rate (LR): Controls the step size of the update.&lt;/p&gt;
 &lt;p&gt;Without learning rate:
+&lt;/p&gt;
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
-$$&lt;/p&gt;
+$$
 &lt;p&gt;With learning rate:
+&lt;/p&gt;
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
 $$
+&lt;p&gt;
 &lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png&#34;
 	
 	
@@ -178,36 +185,42 @@ $$
 &lt;h1 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h1&gt;
 &lt;p&gt;Measures the gap between model output and true labels.&lt;/p&gt;
 &lt;h3 id=&#34;loss-function-2&#34;&gt;Loss Function&lt;/h3&gt;
-&lt;p&gt;$$
+$$
 Loss = f(\hat{y}, y)
 $$
+&lt;p&gt;
 Single sample.&lt;/p&gt;
 &lt;h3 id=&#34;cost-function&#34;&gt;Cost Function&lt;/h3&gt;
-&lt;p&gt;$$
+$$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
+&lt;p&gt;
 Overall samples.&lt;/p&gt;
 &lt;h3 id=&#34;objective-function&#34;&gt;Objective Function&lt;/h3&gt;
-&lt;p&gt;$$
+$$
 Obj = Cost + \text{Regularization Term}
-$$&lt;/p&gt;
+$$
 &lt;h3 id=&#34;two-common-loss-functions&#34;&gt;Two Common Loss Functions&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
+&lt;/p&gt;
 $$
-MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+  MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
+&lt;p&gt;
 Example: label = (1, 2) pred = (1.5, 1.5)
+&lt;/p&gt;
 $$
-MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
-$$&lt;/p&gt;
+  MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
+&lt;/p&gt;
 $$
-H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
-$$&lt;/p&gt;
+  H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Cross entropy&amp;rsquo;s good partner &amp;ndash; Softmax function: Converts data to a form that conforms to a probability distribution.&lt;/p&gt;
@@ -222,7 +235,7 @@ $$&lt;/p&gt;
 &lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
 &lt;li&gt;Divides by the sum of exponents to achieve a sum of 1.
 $$
-y_i = S(z)&lt;em&gt;i = \frac{e^{z_i}}{\sum&lt;/em&gt;{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;weight-initialization&#34;&gt;Weight Initialization&lt;/h1&gt;
@@ -243,9 +256,11 @@ $$&lt;/li&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;Xavier Initialization: From &amp;ldquo;Understanding the difficulty of training deep feedforward neural networks&amp;rdquo;:
+&lt;/p&gt;
 $$
-U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
-$$
+  U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+  $$
+&lt;p&gt;
 where &lt;code&gt;a&lt;/code&gt; is the number of input neurons, and &lt;code&gt;b&lt;/code&gt; is the number of output neurons.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
