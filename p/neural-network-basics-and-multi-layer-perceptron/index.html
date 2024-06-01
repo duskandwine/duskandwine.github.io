@@ -102,7 +102,7 @@
                     <a 
                         href='https://www.instagram.com/lorcanxoo/'
                         target="_blank"
-                        title="Instagram"
+                        title="instagram"
                     >
                         
                         
@@ -378,23 +378,21 @@
 <ul>
 <li>
 <p>Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
-</p>
 $$
-  H = XW_h + b_h
-  $$
+H = XW_h + b_h
 $$
-  O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
-  $$
+$$
+O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+$$</p>
 </li>
 <li>
 <p>Adding activation function to hidden layer can prevent network degeneration:
-</p>
 $$
-  h = \sigma(W_1x + b_1)
-  $$
+h = \sigma(W_1x + b_1)
 $$
-  o = \mathbf{w}_2^T h + b_2
-  $$
+$$
+o = \mathbf{w}_2^T h + b_2
+$$</p>
 </li>
 </ul>
 <h1 id="activation-function">Activation Function</h1>
@@ -425,19 +423,17 @@ $$
 <p>Used for weight updates to make the network output closer to the labels.</p>
 <h3 id="loss-function">Loss Function</h3>
 <p>Measures the difference between the model output and the true labels.
-</p>
 $$
 Loss = f(\hat{y}, y)
-$$
+$$</p>
 <h3 id="principle-of-backpropagation">Principle of Backpropagation</h3>
 <p>Chain rule in calculus:
-</p>
 $$
 y = f(u), u = g(x)
 $$
 $$
 \frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
-$$
+$$</p>
 <p>Network computation graph:
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png"
 	
@@ -478,16 +474,13 @@ $$
 <h3 id="learning-rate">Learning Rate</h3>
 <p>Learning rate (LR): Controls the step size of the update.</p>
 <p>Without learning rate:
-</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
-$$
+$$</p>
 <p>With learning rate:
-</p>
 $$
 \mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
 $$
-<p>
 <img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png"
 	
 	
@@ -501,42 +494,36 @@ $$
 <h1 id="loss-function-1">Loss Function</h1>
 <p>Measures the gap between model output and true labels.</p>
 <h3 id="loss-function-2">Loss Function</h3>
-$$
+<p>$$
 Loss = f(\hat{y}, y)
 $$
-<p>
 Single sample.</p>
 <h3 id="cost-function">Cost Function</h3>
-$$
+<p>$$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
-<p>
 Overall samples.</p>
 <h3 id="objective-function">Objective Function</h3>
-$$
+<p>$$
 Obj = Cost + \text{Regularization Term}
-$$
+$$</p>
 <h3 id="two-common-loss-functions">Two Common Loss Functions</h3>
 <ol>
 <li>
 <p>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
-</p>
 $$
-  MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
-<p>
 Example: label = (1, 2) pred = (1.5, 1.5)
-</p>
 $$
-  MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
-$$
+MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$</p>
 </li>
 <li>
 <p>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
-</p>
 $$
-  H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
-$$
+H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$</p>
 </li>
 </ol>
 <p>Cross entropy&rsquo;s good partner &ndash; Softmax function: Converts data to a form that conforms to a probability distribution.</p>
@@ -551,7 +538,7 @@ $$
 <li>Takes the exponent to achieve non-negativity.</li>
 <li>Divides by the sum of exponents to achieve a sum of 1.
 $$
-y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+y_i = S(z)<em>i = \frac{e^{z_i}}{\sum</em>{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
 $$</li>
 </ol>
 <h1 id="weight-initialization">Weight Initialization</h1>
@@ -572,11 +559,9 @@ $$</li>
 <ul>
 <li>
 <p>Xavier Initialization: From &ldquo;Understanding the difficulty of training deep feedforward neural networks&rdquo;:
-</p>
 $$
-  U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
-  $$
-<p>
+U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+$$
 where <code>a</code> is the number of input neurons, and <code>b</code> is the number of output neurons.</p>
 </li>
 <li>
@@ -644,29 +629,6 @@ where <code>a</code> is the number of input neurons, and <code>b</code> is the n
     </footer>
 
 
-    
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.querySelector(`.article-content`), {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ]
-        });})
-</script>
     
 </article>
 
