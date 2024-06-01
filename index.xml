@@ -7,6 +7,293 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Tue, 16 Apr 2024 13:19:30 +1000</lastBuildDate><atom:link href="https://duskandwine.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Neural Network Basics and Multi-Layer Perceptron</title>
+        <link>https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/</link>
+        <pubDate>Wed, 01 Jun 2022 14:06:42 +1000</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/</guid>
+        <description>&lt;h1 id=&#34;artificial-neurons&#34;&gt;Artificial Neurons&lt;/h1&gt;
+&lt;p&gt;Artificial Neuron: A mathematical model abstracted from human neurons.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525150247.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525151200.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Minsky proved in 1963 that Perceptron cannot solve the XOR problem.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525152019.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;multi-layer-perceptron&#34;&gt;Multi-Layer Perceptron&lt;/h1&gt;
+&lt;p&gt;Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525152206.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Forward propagation of MLP:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
+$$
+H = XW_h + b_h
+$$
+$$
+O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Adding activation function to hidden layer can prevent network degeneration:
+$$
+h = \sigma(W_1x + b_1)
+$$
+$$
+o = \mathbf{w}_2^T h + b_2
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;activation-function&#34;&gt;Activation Function&lt;/h1&gt;
+&lt;p&gt;Makes MLP truly multi-layered; otherwise, it&amp;rsquo;s equivalent to a single layer.&lt;/p&gt;
+&lt;p&gt;Introduces non-linearity, enabling the network to approximate any non-linear function (universal approximator theorem).&lt;/p&gt;
+&lt;p&gt;An activation function should have the following properties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Continuous and differentiable (a few points can be non-differentiable) to facilitate numerical optimization methods for learning network parameters.&lt;/li&gt;
+&lt;li&gt;The activation function and its derivative should be as simple as possible to enhance computational efficiency.&lt;/li&gt;
+&lt;li&gt;The range of the derivative of the activation function should be in a suitable range, neither too large nor too small, to ensure training efficiency and stability.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Common activation functions: Sigmoid, Tanh, &lt;strong&gt;ReLU&lt;/strong&gt; (Rectified Linear Unit):
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525153804.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;backpropagation&#34;&gt;Backpropagation&lt;/h1&gt;
+&lt;p&gt;Forward propagation: Data starts from the input layer and gradually passes to the output.&lt;/p&gt;
+&lt;p&gt;Backpropagation: Gradients are passed backward from the loss function to the first layer.&lt;/p&gt;
+&lt;p&gt;Purpose of backpropagation: Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
+&lt;h3 id=&#34;purpose-of-backpropagation&#34;&gt;Purpose of Backpropagation&lt;/h3&gt;
+&lt;p&gt;Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
+&lt;h3 id=&#34;loss-function&#34;&gt;Loss Function&lt;/h3&gt;
+&lt;p&gt;Measures the difference between the model output and the true labels.
+$$
+Loss = f(\hat{y}, y)
+$$&lt;/p&gt;
+&lt;h3 id=&#34;principle-of-backpropagation&#34;&gt;Principle of Backpropagation&lt;/h3&gt;
+&lt;p&gt;Chain rule in calculus:
+$$
+y = f(u), u = g(x)
+$$
+$$
+\frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
+$$&lt;/p&gt;
+&lt;p&gt;Network computation graph:
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Definition of computation symbol: &lt;code&gt;prod(x,y)&lt;/code&gt;, represents multiplying &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; after necessary shape transformations.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531140103.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;gradient-descent&#34;&gt;Gradient Descent&lt;/h3&gt;
+&lt;p&gt;Weights are updated along the negative gradient direction to reduce the function value.&lt;/p&gt;
+&lt;p&gt;Derivative: The rate of change of a function with respect to a coordinate axis.&lt;/p&gt;
+&lt;p&gt;Directional derivative: The rate of change in a specified direction.&lt;/p&gt;
+&lt;p&gt;Gradient: A vector, the direction in which the directional derivative is maximized.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531141335.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;learning-rate&#34;&gt;Learning Rate&lt;/h3&gt;
+&lt;p&gt;Learning rate (LR): Controls the step size of the update.&lt;/p&gt;
+&lt;p&gt;Without learning rate:
+$$
+\mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
+$$&lt;/p&gt;
+&lt;p&gt;With learning rate:
+$$
+\mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
+$$
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h1&gt;
+&lt;p&gt;Measures the gap between model output and true labels.&lt;/p&gt;
+&lt;h3 id=&#34;loss-function-2&#34;&gt;Loss Function&lt;/h3&gt;
+&lt;p&gt;$$
+Loss = f(\hat{y}, y)
+$$
+Single sample.&lt;/p&gt;
+&lt;h3 id=&#34;cost-function&#34;&gt;Cost Function&lt;/h3&gt;
+&lt;p&gt;$$
+Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
+$$
+Overall samples.&lt;/p&gt;
+&lt;h3 id=&#34;objective-function&#34;&gt;Objective Function&lt;/h3&gt;
+&lt;p&gt;$$
+Obj = Cost + \text{Regularization Term}
+$$&lt;/p&gt;
+&lt;h3 id=&#34;two-common-loss-functions&#34;&gt;Two Common Loss Functions&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
+$$
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+$$
+Example: label = (1, 2) pred = (1.5, 1.5)
+$$
+MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
+$$
+H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Cross entropy&amp;rsquo;s good partner &amp;ndash; Softmax function: Converts data to a form that conforms to a probability distribution.&lt;/p&gt;
+&lt;p&gt;Properties of probability:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Probability values are non-negative.&lt;/li&gt;
+&lt;li&gt;The sum of probabilities is 1.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;softmax-function&#34;&gt;Softmax Function&lt;/h3&gt;
+&lt;p&gt;Converts data to a form that conforms to a probability distribution:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
+&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1.
+$$
+y_i = S(z)&lt;em&gt;i = \frac{e^{z_i}}{\sum&lt;/em&gt;{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+$$&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;weight-initialization&#34;&gt;Weight Initialization&lt;/h1&gt;
+&lt;p&gt;Assigning values to weight parameters before training; good weight initialization is beneficial for model training.&lt;/p&gt;
+&lt;p&gt;Random initialization method: Randomly initializing weights from a Gaussian distribution, e.g., N~(0, 0.01). The 30-rule: The probability that the value is within (u-3o, u+3o) is 99.73%.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601120218.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Controlling the scale of weights (key parameter is the standard deviation in the probability distribution) is important because excessively large weights can cause the values to fall into some saturated regions of the activation function, leading to gradient vanishing.&lt;/p&gt;
+&lt;p&gt;Adaptive standard deviation: The standard deviation in the adaptive random distribution.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Xavier Initialization: From &amp;ldquo;Understanding the difficulty of training deep feedforward neural networks&amp;rdquo;:
+$$
+U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+$$
+where &lt;code&gt;a&lt;/code&gt; is the number of input neurons, and &lt;code&gt;b&lt;/code&gt; is the number of output neurons.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kaiming Initialization: From &amp;ldquo;Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification&amp;rdquo;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;regularization-methods&#34;&gt;Regularization Methods&lt;/h1&gt;
+&lt;p&gt;Regularization: Strategies to reduce variance, commonly understood as ways to mitigate overfitting.&lt;/p&gt;
+&lt;p&gt;Error can be decomposed into: bias, variance, and noise sum. That is, error = bias + variance + noise sum.&lt;/p&gt;
+&lt;p&gt;Bias measures the deviation of the expected prediction of the learning algorithm from the true result, indicating the fitting ability of the learning algorithm itself.&lt;/p&gt;
+&lt;p&gt;Variance measures the changes in learning performance caused by variations in the training set of the same size, indicating the impact of data perturbations.&lt;/p&gt;
+&lt;p&gt;Noise expresses the lower bound of the expected generalization error that any learning algorithm can achieve on the current task.&lt;/p&gt;
+&lt;p&gt;Overfitting phenomenon: Excessively high variance performs well on the training set but poorly on the test set.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601124233.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Dropout: Random deactivation&lt;/p&gt;
+&lt;p&gt;Advantages: Avoids over-reliance on a particular neuron, thereby reducing overfitting.&lt;/p&gt;
+&lt;p&gt;Random: dropout probability (e.g., p=0.5)&lt;/p&gt;
+&lt;p&gt;Deactivation: weight = 0&lt;/p&gt;
+&lt;p&gt;Considerations: Scale changes during training and testing phases. During testing, neuron output values need to be multiplied by &lt;code&gt;p&lt;/code&gt;.
+&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601132206.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Other Regularization Methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Batch normalization: &amp;ldquo;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Layer Normalization: &amp;ldquo;Layer Normalization&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Instance Normalization: &amp;ldquo;Instance Normalization: The Missing Ingredient for Fast Stylization&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Group Normalization: &amp;ldquo;Group Normalization&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>Introduction_of_CV</title>
         <link>https://duskandwine.github.io/p/introduction_of_cv/</link>
         <pubDate>Tue, 19 Apr 2022 19:07:53 +1000</pubDate>

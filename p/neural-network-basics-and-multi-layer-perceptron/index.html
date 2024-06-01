@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='What deep learning is good for **Problems with long lists of rules****一when the traditional approach fails, machine learning/deep learning may help. **Continually changing environments****一deep learning canadapt (‘learn’) to new scenarios. **Discovering insights within large collections of data****一can you imagine trying to hand-craft rules for what 101 different kinds of food look like? What deep learning is not good for When you need explainability一the patterns learned by a deep learning model are typically uninterpretable by a human.'><title>PyTorch_Fundamental_1</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Artificial Neurons Artificial Neuron: A mathematical model abstracted from human neurons. Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way. Minsky proved in 1963 that Perceptron cannot solve the XOR problem. Multi-Layer Perceptron Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron. Forward propagation of MLP:'><title>Neural Network Basics and Multi-Layer Perceptron</title>
 
-<link rel='canonical' href='https://duskandwine.github.io/p/pytorch_fundamental_1/'>
+<link rel='canonical' href='https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/'>
 
-<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='PyTorch_Fundamental_1'>
-<meta property='og:description' content='What deep learning is good for **Problems with long lists of rules****一when the traditional approach fails, machine learning/deep learning may help. **Continually changing environments****一deep learning canadapt (‘learn’) to new scenarios. **Discovering insights within large collections of data****一can you imagine trying to hand-craft rules for what 101 different kinds of food look like? What deep learning is not good for When you need explainability一the patterns learned by a deep learning model are typically uninterpretable by a human.'>
-<meta property='og:url' content='https://duskandwine.github.io/p/pytorch_fundamental_1/'>
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='Neural Network Basics and Multi-Layer Perceptron'>
+<meta property='og:description' content='Artificial Neurons Artificial Neuron: A mathematical model abstracted from human neurons. Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way. Minsky proved in 1963 that Perceptron cannot solve the XOR problem. Multi-Layer Perceptron Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron. Forward propagation of MLP:'>
+<meta property='og:url' content='https://duskandwine.github.io/p/neural-network-basics-and-multi-layer-perceptron/'>
 <meta property='og:site_name' content='Lorcan'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Pytorch' /><meta property='article:published_time' content='2022-03-08T09:14:53&#43;11:00'/><meta property='article:modified_time' content='2022-03-08T09:14:53&#43;11:00'/>
-<meta name="twitter:title" content="PyTorch_Fundamental_1">
-<meta name="twitter:description" content="What deep learning is good for **Problems with long lists of rules****一when the traditional approach fails, machine learning/deep learning may help. **Continually changing environments****一deep learning canadapt (‘learn’) to new scenarios. **Discovering insights within large collections of data****一can you imagine trying to hand-craft rules for what 101 different kinds of food look like? What deep learning is not good for When you need explainability一the patterns learned by a deep learning model are typically uninterpretable by a human.">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-06-01T14:06:42&#43;10:00'/><meta property='article:modified_time' content='2022-06-01T14:06:42&#43;10:00'/>
+<meta name="twitter:title" content="Neural Network Basics and Multi-Layer Perceptron">
+<meta name="twitter:description" content="Artificial Neurons Artificial Neuron: A mathematical model abstracted from human neurons. Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way. Minsky proved in 1963 that Perceptron cannot solve the XOR problem. Multi-Layer Perceptron Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron. Forward propagation of MLP:">
     <link rel="shortcut icon" href="img/yourfavicon.png" />
 
     </head>
@@ -229,16 +229,12 @@
                 Deeplearning
             </a>
         
-            <a href="/categories/python/" style="background-color: #2a9d8f; color: #fff;">
-                Python
-            </a>
-        
     </header>
     
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/pytorch_fundamental_1/">PyTorch_Fundamental_1</a>
+            <a href="/p/neural-network-basics-and-multi-layer-perceptron/">Neural Network Basics and Multi-Layer Perceptron</a>
         </h2>
     
         
@@ -257,7 +253,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">Mar 08, 2022</time>
+                <time class="article-time--published">Jun 01, 2022</time>
             </div>
         
 
@@ -272,7 +268,7 @@
 
 
                 <time class="article-time--reading">
-                    2 minute read
+                    5 minute read
                 </time>
             </div>
         
@@ -286,84 +282,291 @@
     <section class="article-content">
     
     
-    <hr>
-<h3 id="what-deep-learning-is-good-for">What deep learning is good for</h3>
-<ul>
-<li>**Problems with long lists of rules****一when the traditional approach fails, machine learning/deep learning may help.</li>
-<li>**Continually changing environments****一deep learning canadapt (‘learn’) to new scenarios.</li>
-<li>**Discovering insights within large collections of data****一can you imagine trying to hand-craft rules for what 101 different kinds of food look like?</li>
-</ul>
-<h3 id="what-deep-learning-is-not-good-for">What deep learning is not good for</h3>
-<ul>
-<li><strong>When you need explainability</strong>一the patterns learned by a deep learning model are typically uninterpretable by a human.</li>
-<li><strong>When the traditional approach is a better option</strong>一if you can accomplish what you need with a simple rule-based system.</li>
-<li><strong>When errors are unacceptable</strong>一since the outputs of deeplearning model aren&rsquo;t always predictable.</li>
-<li><strong>When you don&rsquo;t have much data</strong>一deep learning models usually require a fairly large amount of data to produce great resulits.</li>
-</ul>
-<h3 id="machine-learning-vs-deep-learning">Machine Learning VS. Deep Learning</h3>
-<p>Machine learning(more suited for structured data):</p>
-<ul>
-<li>Random forest</li>
-<li>Gradient boosted models</li>
-<li>Naive Bayes</li>
-<li>Nearest neighbour</li>
-<li>Support vector machine</li>
-<li>&hellip;many more</li>
-</ul>
-<p>Deep learning(more suited for unstructured data):</p>
-<ul>
-<li>Neural networks</li>
-<li>Fully connected neural network</li>
-<li>Convolutional neural network</li>
-<li>Recurrent neuralnetwork</li>
-<li>Transtormer</li>
-<li>&hellip;many more</li>
-</ul>
-<h3 id="what-are-neural-networks">What are neural networks?</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20240308094423565.png"
+    <h1 id="artificial-neurons">Artificial Neurons</h1>
+<p>Artificial Neuron: A mathematical model abstracted from human neurons.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525150247.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="image-20240308094423565"
+		alt="image.png"
 	
 	
 ></p>
-<h3 id="types-of-learning">Types of Learning</h3>
+<p>Artificial Neural Network: A machine learning model composed of a large number of neurons connected in a certain way.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525151200.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Minsky proved in 1963 that Perceptron cannot solve the XOR problem.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525152019.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="multi-layer-perceptron">Multi-Layer Perceptron</h1>
+<p>Multi-Layer Perceptron (MLP): Introduces one or more hidden layers based on a single-layer neural network, resulting in multiple network layers, hence the term multi-layer perceptron.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525152206.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Forward propagation of MLP:</p>
 <ul>
-<li>Supervised Learning</li>
-<li>Unsupervised &amp; Self -supervised Learning</li>
-<li>Transfer Learning</li>
+<li>
+<p>Activation function of MLP: Without activation function, the network degenerates into a single-layer network:
+$$
+H = XW_h + b_h
+$$
+$$
+O = HW_o + b_o = (XW_h + b_h)W_o + b_o = XW_hW_o + b_hW_o + b_o
+$$</p>
+</li>
+<li>
+<p>Adding activation function to hidden layer can prevent network degeneration:
+$$
+h = \sigma(W_1x + b_1)
+$$
+$$
+o = \mathbf{w}_2^T h + b_2
+$$</p>
+</li>
 </ul>
-<h4 id="what-is-deep-learning-actually-used-for">What is deep learning actually used for?</h4>
+<h1 id="activation-function">Activation Function</h1>
+<p>Makes MLP truly multi-layered; otherwise, it&rsquo;s equivalent to a single layer.</p>
+<p>Introduces non-linearity, enabling the network to approximate any non-linear function (universal approximator theorem).</p>
+<p>An activation function should have the following properties:</p>
+<ol>
+<li>Continuous and differentiable (a few points can be non-differentiable) to facilitate numerical optimization methods for learning network parameters.</li>
+<li>The activation function and its derivative should be as simple as possible to enhance computational efficiency.</li>
+<li>The range of the derivative of the activation function should be in a suitable range, neither too large nor too small, to ensure training efficiency and stability.</li>
+</ol>
+<p>Common activation functions: Sigmoid, Tanh, <strong>ReLU</strong> (Rectified Linear Unit):
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240525153804.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="backpropagation">Backpropagation</h1>
+<p>Forward propagation: Data starts from the input layer and gradually passes to the output.</p>
+<p>Backpropagation: Gradients are passed backward from the loss function to the first layer.</p>
+<p>Purpose of backpropagation: Used for weight updates to make the network output closer to the labels.</p>
+<h3 id="purpose-of-backpropagation">Purpose of Backpropagation</h3>
+<p>Used for weight updates to make the network output closer to the labels.</p>
+<h3 id="loss-function">Loss Function</h3>
+<p>Measures the difference between the model output and the true labels.
+$$
+Loss = f(\hat{y}, y)
+$$</p>
+<h3 id="principle-of-backpropagation">Principle of Backpropagation</h3>
+<p>Chain rule in calculus:
+$$
+y = f(u), u = g(x)
+$$
+$$
+\frac{\partial y}{\partial x} = \frac{\partial y}{\partial u} \frac{\partial u}{\partial x}
+$$</p>
+<p>Network computation graph:
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D202405311356139.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Definition of computation symbol: <code>prod(x,y)</code>, represents multiplying <code>x</code> and <code>y</code> after necessary shape transformations.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531140103.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p>Weights are updated along the negative gradient direction to reduce the function value.</p>
+<p>Derivative: The rate of change of a function with respect to a coordinate axis.</p>
+<p>Directional derivative: The rate of change in a specified direction.</p>
+<p>Gradient: A vector, the direction in which the directional derivative is maximized.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531141335.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h3 id="learning-rate">Learning Rate</h3>
+<p>Learning rate (LR): Controls the step size of the update.</p>
+<p>Without learning rate:
+$$
+\mathbf{w}_{i+1} = \mathbf{w}_i - g(\mathbf{w}_i)
+$$</p>
+<p>With learning rate:
+$$
+\mathbf{w}_{i+1} = \mathbf{w}_i - \text{LR} \cdot g(\mathbf{w}_i)
+$$
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240531142557.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<h1 id="loss-function-1">Loss Function</h1>
+<p>Measures the gap between model output and true labels.</p>
+<h3 id="loss-function-2">Loss Function</h3>
+<p>$$
+Loss = f(\hat{y}, y)
+$$
+Single sample.</p>
+<h3 id="cost-function">Cost Function</h3>
+<p>$$
+Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
+$$
+Overall samples.</p>
+<h3 id="objective-function">Objective Function</h3>
+<p>$$
+Obj = Cost + \text{Regularization Term}
+$$</p>
+<h3 id="two-common-loss-functions">Two Common Loss Functions</h3>
+<ol>
+<li>
+<p>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
+$$
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
+$$
+Example: label = (1, 2) pred = (1.5, 1.5)
+$$
+MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
+$$</p>
+</li>
+<li>
+<p>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
+$$
+H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
+$$</p>
+</li>
+</ol>
+<p>Cross entropy&rsquo;s good partner &ndash; Softmax function: Converts data to a form that conforms to a probability distribution.</p>
+<p>Properties of probability:</p>
+<ol>
+<li>Probability values are non-negative.</li>
+<li>The sum of probabilities is 1.</li>
+</ol>
+<h3 id="softmax-function">Softmax Function</h3>
+<p>Converts data to a form that conforms to a probability distribution:</p>
+<ol>
+<li>Takes the exponent to achieve non-negativity.</li>
+<li>Divides by the sum of exponents to achieve a sum of 1.
+$$
+y_i = S(z)<em>i = \frac{e^{z_i}}{\sum</em>{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
+$$</li>
+</ol>
+<h1 id="weight-initialization">Weight Initialization</h1>
+<p>Assigning values to weight parameters before training; good weight initialization is beneficial for model training.</p>
+<p>Random initialization method: Randomly initializing weights from a Gaussian distribution, e.g., N~(0, 0.01). The 30-rule: The probability that the value is within (u-3o, u+3o) is 99.73%.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601120218.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Controlling the scale of weights (key parameter is the standard deviation in the probability distribution) is important because excessively large weights can cause the values to fall into some saturated regions of the activation function, leading to gradient vanishing.</p>
+<p>Adaptive standard deviation: The standard deviation in the adaptive random distribution.</p>
 <ul>
-<li>Recommendation</li>
-<li>Translation, Speech recognition</li>
-<li>Computer Vision, NLP</li>
+<li>
+<p>Xavier Initialization: From &ldquo;Understanding the difficulty of training deep feedforward neural networks&rdquo;:
+$$
+U \left( -\sqrt{\frac{6}{a+b}}, \sqrt{\frac{6}{a+b}} \right)
+$$
+where <code>a</code> is the number of input neurons, and <code>b</code> is the number of output neurons.</p>
+</li>
+<li>
+<p>Kaiming Initialization: From &ldquo;Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification&rdquo;:</p>
+</li>
 </ul>
-<h4 id="what-is-the-pytorch">What is the pytorch</h4>
+<h1 id="regularization-methods">Regularization Methods</h1>
+<p>Regularization: Strategies to reduce variance, commonly understood as ways to mitigate overfitting.</p>
+<p>Error can be decomposed into: bias, variance, and noise sum. That is, error = bias + variance + noise sum.</p>
+<p>Bias measures the deviation of the expected prediction of the learning algorithm from the true result, indicating the fitting ability of the learning algorithm itself.</p>
+<p>Variance measures the changes in learning performance caused by variations in the training set of the same size, indicating the impact of data perturbations.</p>
+<p>Noise expresses the lower bound of the expected generalization error that any learning algorithm can achieve on the current task.</p>
+<p>Overfitting phenomenon: Excessively high variance performs well on the training set but poorly on the test set.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601124233.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Dropout: Random deactivation</p>
+<p>Advantages: Avoids over-reliance on a particular neuron, thereby reducing overfitting.</p>
+<p>Random: dropout probability (e.g., p=0.5)</p>
+<p>Deactivation: weight = 0</p>
+<p>Considerations: Scale changes during training and testing phases. During testing, neuron output values need to be multiplied by <code>p</code>.
+<img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/PicGo/%7Bfilename%7D%7B.suffix%7D20240601132206.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image.png"
+	
+	
+></p>
+<p>Other Regularization Methods:</p>
 <ul>
-<li>Most popular research deep learning framework</li>
-<li>Write fast deep learning code in Python (able to run on a GPU/many GPUs)</li>
-<li>Able to access many pre-built deep learning models(Torch Hub, torchvision.models)</li>
-<li>Whole stack: preprocess data, model data, deploy model in your application/cloud</li>
-<li>Originally designed and Used in-house by Facebook/Meta (now open- source and Used by companies SUch as Tesla, Microsoft, OpenAl)</li>
+<li>Batch normalization: &ldquo;Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift&rdquo;</li>
+<li>Layer Normalization: &ldquo;Layer Normalization&rdquo;</li>
+<li>Instance Normalization: &ldquo;Instance Normalization: The Missing Ingredient for Fast Stylization&rdquo;</li>
+<li>Group Normalization: &ldquo;Group Normalization&rdquo;</li>
 </ul>
-<h4 id="what-is-a-tensor">What is a tensor？</h4>
-<p>Go google hahahaha</p>
 
 </section>
 
 
     <footer class="article-footer">
     
-    <section class="article-tags">
-        
-            <a href="/tags/pytorch/">Pytorch</a>
-        
-    </section>
-
 
     
     <section class="article-copyright">
@@ -406,48 +609,12 @@
             
                 
 <article class="">
-    <a href="/p/neural-network-basics-and-multi-layer-perceptron/">
+    <a href="/p/pytorch_fundamental_1/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Neural Network Basics and Multi-Layer Perceptron</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/introduction_of_cv/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Introduction_of_CV</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/mac%E4%B8%8Bpython%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Mac下python版本管理</h2>
-        </div>
-    </a>
-</article>
-            
-                
-<article class="">
-    <a href="/p/django%E7%AC%94%E8%AE%B0/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Django笔记</h2>
+            <h2 class="article-title">PyTorch_Fundamental_1</h2>
         </div>
     </a>
 </article>
@@ -622,17 +789,23 @@
   <ol>
     <li>
       <ol>
-        <li><a href="#what-deep-learning-is-good-for">What deep learning is good for</a></li>
-        <li><a href="#what-deep-learning-is-not-good-for">What deep learning is not good for</a></li>
-        <li><a href="#machine-learning-vs-deep-learning">Machine Learning VS. Deep Learning</a></li>
-        <li><a href="#what-are-neural-networks">What are neural networks?</a></li>
-        <li><a href="#types-of-learning">Types of Learning</a>
-          <ol>
-            <li><a href="#what-is-deep-learning-actually-used-for">What is deep learning actually used for?</a></li>
-            <li><a href="#what-is-the-pytorch">What is the pytorch</a></li>
-            <li><a href="#what-is-a-tensor">What is a tensor？</a></li>
-          </ol>
-        </li>
+        <li><a href="#purpose-of-backpropagation">Purpose of Backpropagation</a></li>
+        <li><a href="#loss-function">Loss Function</a></li>
+        <li><a href="#principle-of-backpropagation">Principle of Backpropagation</a></li>
+        <li><a href="#gradient-descent">Gradient Descent</a></li>
+        <li><a href="#learning-rate">Learning Rate</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#loss-function-2">Loss Function</a></li>
+        <li><a href="#cost-function">Cost Function</a></li>
+        <li><a href="#objective-function">Objective Function</a></li>
+        <li><a href="#two-common-loss-functions">Two Common Loss Functions</a></li>
+        <li><a href="#softmax-function">Softmax Function</a></li>
       </ol>
     </li>
   </ol>
