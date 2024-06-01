@@ -188,41 +188,34 @@ $$
 $$
 Loss = f(\hat{y}, y)
 $$
-&lt;p&gt;
-Single sample.&lt;/p&gt;
+&lt;p&gt;Single sample.&lt;/p&gt;
 &lt;h3 id=&#34;cost-function&#34;&gt;Cost Function&lt;/h3&gt;
 $$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
-&lt;p&gt;
-Overall samples.&lt;/p&gt;
+&lt;p&gt;Overall samples.&lt;/p&gt;
 &lt;h3 id=&#34;objective-function&#34;&gt;Objective Function&lt;/h3&gt;
 $$
 Obj = Cost + \text{Regularization Term}
 $$
 &lt;h3 id=&#34;two-common-loss-functions&#34;&gt;Two Common Loss Functions&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
-&lt;/p&gt;
+&lt;li&gt;MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:&lt;/li&gt;
+&lt;/ol&gt;
 $$
   MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
-&lt;p&gt;
-Example: label = (1, 2) pred = (1.5, 1.5)
+&lt;p&gt;Example: label = (1, 2) pred = (1.5, 1.5)
 &lt;/p&gt;
 $$
   MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
 $$
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
-&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:&lt;/li&gt;
+&lt;/ol&gt;
 $$
   H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
 $$
-&lt;/li&gt;
-&lt;/ol&gt;
 &lt;p&gt;Cross entropy&amp;rsquo;s good partner &amp;ndash; Softmax function: Converts data to a form that conforms to a probability distribution.&lt;/p&gt;
 &lt;p&gt;Properties of probability:&lt;/p&gt;
 &lt;ol&gt;
@@ -233,11 +226,11 @@ $$
 &lt;p&gt;Converts data to a form that conforms to a probability distribution:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Takes the exponent to achieve non-negativity.&lt;/li&gt;
-&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1:
+&lt;li&gt;Divides by the sum of exponents to achieve a sum of 1:&lt;/li&gt;
+&lt;/ol&gt;
 $$
 y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
-$$&lt;/li&gt;
-&lt;/ol&gt;
+$$
 &lt;h1 id=&#34;weight-initialization&#34;&gt;Weight Initialization&lt;/h1&gt;
 &lt;p&gt;Assigning values to weight parameters before training; good weight initialization is beneficial for model training.&lt;/p&gt;
 &lt;p&gt;Random initialization method: Randomly initializing weights from a Gaussian distribution, e.g., N~(0, 0.01). The 30-rule: The probability that the value is within (u-3o, u+3o) is 99.73%.

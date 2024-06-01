@@ -450,41 +450,34 @@ $$
 $$
 Loss = f(\hat{y}, y)
 $$
-<p>
-Single sample.</p>
+<p>Single sample.</p>
 <h3 id="cost-function">Cost Function</h3>
 $$
 Cost = \frac{1}{N} \sum_{i=1}^N f(\hat{y_i}, y_i)
 $$
-<p>
-Overall samples.</p>
+<p>Overall samples.</p>
 <h3 id="objective-function">Objective Function</h3>
 $$
 Obj = Cost + \text{Regularization Term}
 $$
 <h3 id="two-common-loss-functions">Two Common Loss Functions</h3>
 <ol>
-<li>
-<p>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:
-</p>
+<li>MSE (Mean Squared Error): The mean of the squared differences between the output and the labels, often used in regression tasks. Formula:</li>
+</ol>
 $$
   MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y_i})^2
 $$
-<p>
-Example: label = (1, 2) pred = (1.5, 1.5)
+<p>Example: label = (1, 2) pred = (1.5, 1.5)
 </p>
 $$
   MSE = \frac{(1 - 1.5)^2 + (2 - 1.5)^2}{2} = 0.25
 $$
-</li>
-<li>
-<p>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:
-</p>
+<ol start="2">
+<li>CE (Cross Entropy): Derived from information theory, used to measure the difference between two distributions, often used in classification tasks. Formula:</li>
+</ol>
 $$
   H(p, q) = - \sum_{i=1}^n p(x_i) \log q(x_i)
 $$
-</li>
-</ol>
 <p>Cross entropy&rsquo;s good partner &ndash; Softmax function: Converts data to a form that conforms to a probability distribution.</p>
 <p>Properties of probability:</p>
 <ol>
@@ -495,11 +488,11 @@ $$
 <p>Converts data to a form that conforms to a probability distribution:</p>
 <ol>
 <li>Takes the exponent to achieve non-negativity.</li>
-<li>Divides by the sum of exponents to achieve a sum of 1:
+<li>Divides by the sum of exponents to achieve a sum of 1:</li>
+</ol>
 $$
 y_i = S(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}}, \quad i = 1, \ldots, C
-$$</li>
-</ol>
+$$
 <h1 id="weight-initialization">Weight Initialization</h1>
 <p>Assigning values to weight parameters before training; good weight initialization is beneficial for model training.</p>
 <p>Random initialization method: Randomly initializing weights from a Gaussian distribution, e.g., N~(0, 0.01). The 30-rule: The probability that the value is within (u-3o, u+3o) is 99.73%.
