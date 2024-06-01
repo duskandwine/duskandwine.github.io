@@ -105,8 +105,6 @@ $$
 &lt;p&gt;Forward propagation: Data starts from the input layer and gradually passes to the output.&lt;/p&gt;
 &lt;p&gt;Backpropagation: Gradients are passed backward from the loss function to the first layer.&lt;/p&gt;
 &lt;p&gt;Purpose of backpropagation: Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
-&lt;h3 id=&#34;purpose-of-backpropagation&#34;&gt;Purpose of Backpropagation&lt;/h3&gt;
-&lt;p&gt;Used for weight updates to make the network output closer to the labels.&lt;/p&gt;
 &lt;h3 id=&#34;loss-function&#34;&gt;Loss Function&lt;/h3&gt;
 &lt;p&gt;Measures the difference between the model output and the true labels.
 &lt;/p&gt;
@@ -182,9 +180,9 @@ $$
 	
 	
 &gt;&lt;/p&gt;
-&lt;h1 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h1&gt;
+&lt;h1 id=&#34;loss-function-and-objective-function&#34;&gt;Loss Function and Objective Function&lt;/h1&gt;
 &lt;p&gt;Measures the gap between model output and true labels.&lt;/p&gt;
-&lt;h3 id=&#34;loss-function-2&#34;&gt;Loss Function&lt;/h3&gt;
+&lt;h3 id=&#34;loss-function-1&#34;&gt;Loss Function&lt;/h3&gt;
 $$
 Loss = f(\hat{y}, y)
 $$
