@@ -3,25 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://duskandwine.github.io/</loc>
-    <lastmod>2024-04-16T13:19:30+10:00</lastmod>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
   </url><url>
-    <loc>https://duskandwine.github.io/p/paperreadingcode/</loc>
-    <lastmod>2024-04-16T13:19:30+10:00</lastmod>
+    <loc>https://duskandwine.github.io/categories/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
+  </url><url>
+    <loc>https://duskandwine.github.io/tags/mr/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
   </url><url>
     <loc>https://duskandwine.github.io/post/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
+  </url><url>
+    <loc>https://duskandwine.github.io/p/ref_reading_day1/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
+  </url><url>
+    <loc>https://duskandwine.github.io/categories/reference_reading/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
+  </url><url>
+    <loc>https://duskandwine.github.io/tags/</loc>
+    <lastmod>2025-01-06T15:43:16+08:00</lastmod>
+  </url><url>
+    <loc>https://duskandwine.github.io/p/paperreadingcode/</loc>
     <lastmod>2024-04-16T13:19:30+10:00</lastmod>
   </url><url>
     <loc>https://duskandwine.github.io/tags/blog/</loc>
     <lastmod>2024-02-01T15:15:35+10:00</lastmod>
   </url><url>
+    <loc>https://duskandwine.github.io/categories/software/</loc>
+    <lastmod>2024-02-01T15:15:35+10:00</lastmod>
+  </url><url>
     <loc>https://duskandwine.github.io/p/successfully-using-latex-to-render-mathematical-formulas-in-hugo/</loc>
     <lastmod>2024-02-01T15:15:35+10:00</lastmod>
-  </url><url>
-    <loc>https://duskandwine.github.io/tags/</loc>
-    <lastmod>2024-02-01T15:15:35+10:00</lastmod>
-  </url><url>
-    <loc>https://duskandwine.github.io/categories/</loc>
-    <lastmod>2022-06-01T14:06:42+10:00</lastmod>
   </url><url>
     <loc>https://duskandwine.github.io/categories/deeplearning/</loc>
     <lastmod>2022-06-01T14:06:42+10:00</lastmod>
@@ -45,9 +57,6 @@
     <lastmod>2022-03-17T21:02:08+08:00</lastmod>
   </url><url>
     <loc>https://duskandwine.github.io/p/macbook%E4%B8%8Biterm2%E7%9A%84%E7%BE%8E%E5%8C%96%E5%92%8Chomebrew%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2022-03-17T17:35:15+08:00</lastmod>
-  </url><url>
-    <loc>https://duskandwine.github.io/categories/software/</loc>
     <lastmod>2022-03-17T17:35:15+08:00</lastmod>
   </url><url>
     <loc>https://duskandwine.github.io/tags/tools/</loc>

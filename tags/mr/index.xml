@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>MR on Lorcan</title>
+        <link>https://duskandwine.github.io/tags/mr/</link>
+        <description>Recent content in MR on Lorcan</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 06 Jan 2025 15:43:16 +0800</lastBuildDate><atom:link href="https://duskandwine.github.io/tags/mr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ref_reading_day1</title>
+        <link>https://duskandwine.github.io/p/ref_reading_day1/</link>
+        <pubDate>Mon, 06 Jan 2025 15:43:16 +0800</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/ref_reading_day1/</guid>
+        <description>&lt;hr&gt;
+&lt;h3 id=&#34;vr-system-for-rehabilitation-based-on-hand-gestural-and-olfactory-interaction---2015&#34;&gt;VR system for rehabilitation based on hand gestural and olfactory interaction - 2015&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;内容说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;文章标题&lt;/td&gt;
+&lt;td&gt;基于手部手势和嗅觉交互的 VR 康复系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表时间&lt;/td&gt;
+&lt;td&gt;2015&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表期刊&lt;/td&gt;
+&lt;td&gt;VRST&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心问题&lt;/td&gt;
+&lt;td&gt;如何开发一个基于手势和嗅觉交互的VR康复系统，以支持上肢康复训练&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究目的&lt;/td&gt;
+&lt;td&gt;提出一个多感官VR系统用于上肢运动康复，通过手势交互和气味反馈来提高患者的康复效果和参与度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究假设&lt;/td&gt;
+&lt;td&gt;通过立体视觉显示、手势交互和气味反馈的多感官交互方式，可以提高康复训练的沉浸感和参与度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究方法&lt;/td&gt;
+&lt;td&gt;1.开发了一个集成Oculus Rift显示器、Leap Motion控制器和专门开发的多香气嗅觉( 固体香气释放，通过控制气流冲击固体香料片来释放气味)的VR系统. 2.系统评估：对15名健康用户和2名患者进行了初步测试，通过问卷调查收集反馈. 3.设计了虚拟厨房场景，包含巧克力、玫瑰和橙子三个可交互的虚拟物体.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心结论&lt;/td&gt;
+&lt;td&gt;1.立体视觉显示相比非立体显示更受欢迎，因为能提供更好的沉浸感. 2.手势交互被认为是自然且易于完成的. 3.气味反馈作为任务完成的奖励很受欢迎，不会分散注意力. 4.  系统在某些情况下对手部跟踪存在局限性，特别是对于手部开合存在困难的患者.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实践启示&lt;/td&gt;
+&lt;td&gt;1. 需要考虑佩戴头显时间长度，因为可能导致眼疲劳. 2.对于初期康复的患者，可以考虑使用工具(如笔)代替直接手势交互. 3.嗅觉反馈可以作为完成任务的奖励机制.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;未来方向&lt;/td&gt;
+&lt;td&gt;1.探索不同的免手势交互方式和工具. 2.进一步研究气味对提升存在感和患者注意力的影响. 3.改进系统以适应更多类型的患者需求&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;个人思考&lt;/td&gt;
+&lt;td&gt;可以加入气味浓度的调节，毕竟嗅觉是一个高度私人化的体验，每个人对嗅觉的感受程度不一定够能统一。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;trigeminal-based-temperature-illusions---2020&#34;&gt;Trigeminal-based Temperature Illusions - 2020&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;内容说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;文章标题&lt;/td&gt;
+&lt;td&gt;基于三叉神经的温度错觉&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表时间&lt;/td&gt;
+&lt;td&gt;2020&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表期刊&lt;/td&gt;
+&lt;td&gt;CHI&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心问题&lt;/td&gt;
+&lt;td&gt;如何使用三叉神经(trigeminal nerve)刺激来创造温度错觉，从而在不使用实际加热/制冷的情况下实现温度感知&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究目的&lt;/td&gt;
+&lt;td&gt;开发一个基于气味的低功耗便携式温度幻觉设备，使用特定气味(如薄荷的凉感和辣椒的热感)来刺激三叉神经，实现温暖和寒冷感知&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究假设&lt;/td&gt;
+&lt;td&gt;1.不同的三叉神经刺激物会产生不同程度的冷热感觉. 2.这些温度错觉可以增加虚拟现实体验中的沉浸感&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究方法&lt;/td&gt;
+&lt;td&gt;1.开发可穿戴设备：使用超声换能器和微型泵来传递刺激物. 2. 开展两项用户研究：a：测试6种不同刺激物的温度效果(10名参与者)- b：在VR场景中验证温度错觉效果(12名参与者)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心结论&lt;/td&gt;
+&lt;td&gt;1.开发了低功耗的温度幻觉设备. 2.用户研究验证了该方法可以产生可感知的温度变化. 3.VR环境中的温度错觉显著提高了用户的沉浸感. 4.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实践启示&lt;/td&gt;
+&lt;td&gt;1. 该技术可用于便携式VR设备的温度反馈. 2. 适合嗅觉障碍者使用，因为三叉神经感知不受影响. 3. 建议在与虚拟环境相符的场景中使用气味. 4. 开发者可以使用辣椒素(无味)或稀释的桉树醇来减少气味识别度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;未来方向未来方向&lt;/td&gt;
+&lt;td&gt;1. 探索更多新型三叉神经刺激物. 2. 研究温度变化的速度和层次. 3. 与其他温度反馈方法进行对比. 4. 开发更精确的温度控制方法&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;个人思考&lt;/td&gt;
+&lt;td&gt;文中提到该装置具有200ms的延迟，具体游戏细节没找到，但是可以通过游戏内的优化解决延迟，也就是在游戏(场景)中增加2s的功能性等待时间(比如进屋时可以增加一个玄关等设置用来配合延迟时间，气味功能可以提前触发，这样可以和游戏内实现无缝延迟)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;exploring-potential-scenarios-and-design-implications-through-a-camera-like-physical-odor-capture-prototype---2020&#34;&gt;Exploring Potential Scenarios and Design Implications Through A Camera-like Physical Odor Capture Prototype - 2020&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;内容说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;文章标题&lt;/td&gt;
+&lt;td&gt;探索潜在方案和设计影响通过类似相机的物理气味捕获原型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表时间&lt;/td&gt;
+&lt;td&gt;2020&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表期刊&lt;/td&gt;
+&lt;td&gt;DIS ’20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心问题&lt;/td&gt;
+&lt;td&gt;如何探索使用物理气味捕捉设备来实现新的交互体验，以及让普通用户也能使用气味捕捉技术&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究目的&lt;/td&gt;
+&lt;td&gt;1. 设计一个便携、快速的气味捕捉原型，采用类似相机的拍摄体验. 2. 探索用户在实际使用场景中的行为和动机. 3. 收集用户对设备设计参数的反馈，为未来的设计迭代提供指导&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究假设&lt;/td&gt;
+&lt;td&gt;1. 物理气味捕捉可以为用户带来有价值的新交互体验. 2. 通过仿照相机的交互方式可以让普通用户也能掌握气味捕捉. 3. 从用户实际使用中可以发现更多应用场景&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究方法&lt;/td&gt;
+&lt;td&gt;1. 先进行初步访谈以指导设计. 2. 开发基于headspace技术的原型设备. 3. 进行为期两周的日记研究，让13名参与者自由使用原型. 4. 通过日记和访谈收集数据并分析&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心结论&lt;/td&gt;
+&lt;td&gt;1. 用户使用气味捕捉的主要动机包括:记录愉悦气味、保留有意义的感受和记忆、分享气味. 2. 气味捕捉能积极影响用户的情绪、记忆和感知. 3. 获得了用户对设备外观、交互、忠实度等设计参数的反馈. 4. 发现多个潜在应用场景:面对面社交、讲故事和教育、气味摄影等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实践启示&lt;/td&gt;
+&lt;td&gt;1. 需要平衡便携性和性能. 2. 考虑伦理和安全问题. 3. 改进捕捉和存储技术. 4. 与其他感知模态结合. 5. 针对特定场景优化设计&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;未来方向&lt;/td&gt;
+&lt;td&gt;1. 探索更好的捕捉和存储方法. 2. 优化设备尺寸和交互. 3. 开发特定应用领域的解决方案. 4. 研究多感官体验设计. 5. 加入健康和安全保护措施&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;个人思考&lt;/td&gt;
+&lt;td&gt;1. 如果能够存储复现气味，那在VR环境中用户能否自定义不同操作的气味，类似于PC游戏中的改键位操作，这样的交互体验和可玩性会不会提高？2. 在现实生活中，我们有时会用特定气味来描述特定的人，比如“他经常臭臭的”，“他的香水和特别”，本质上气味也是一种名片，在网络环境或者VR环境下的多人交互中，能否实现自定义气味并气味的远距离传输，从而达到一种“赛博气味名片”的效果？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
