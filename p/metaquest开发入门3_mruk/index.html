@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Mixed Reality Utility Kit Meta的MR模块 官方文档 透视 Passthrough Depth API(目前Quest3特有)基于深度的前后遮挡，例如手部抠像 空间锚点Spatial Anchor 将虚拟物体固定在现实中的某个位置。 分享给其他用户，实现多人MR体验。比如两个人在同个房间打MR乒乓球，需要保证他们看到的虚拟球桌在同个位置。 场景理解 Scene Understanding(前提是要扫描房间) 场景/房间模型:根据扫描的结果重建出一个与现实房间相匹配的虚拟房间，能够获取房间的整体布局和轮廓大小，以及房间内标记过的各个物体的位置和范围。用2D平面和3D立方体表示房间内的不同物体。能用标签来识别房间内的某一个物体具体是哪一种类型的物体(如墙壁，桌子，天花板等) 场景锚点:房间模型中每一个标记的物体，例如房间模型中的地板、天花板、墙壁等物体都可以算作场景锚点。和空间锚点不同的是，场景锚点在Quest系统进行空间设置的时候被创建出来，由系统进行管理;而空间锚点是被应用本身创建，由用户进行管理。 场景网格:目前Quest3特有功能，扫描房间时为物体覆盖上场景网格，相比于房间模型里的2D平面和3D立方体能更精确的表示现实物体的形状。常见的用法是给场景网格加上碰撞体，实现虚拟物体和现实物体的碰撞。场景网格也是房间模型中的一个特殊的场景锚点。 MRUK 就是将场景理解的功能封装成了更高层的API，提供更加丰富的 MR功能，方便开发者使用。
+MRUK实现的些功能 Scene queries 获取房间模型内每一个物体的位置
+不依赖于Unity物理系统的射线检测
+在平面上找到一个合适的位置来生成物体
+检测某个位置是否在房间内
+得到房间和房间内物体的边界盒
+&amp;hellip;
+开发工具 SceneDebugger 空间数据调试工具(Assets &amp;gt; Samples &amp;gt;Meta MR Utility Kit &amp;gt; Basic &amp;gt; SceneDebugger)
+提供不同构造的房间模型，不连接真实的设备也能够进行调试
+测试：
+File &amp;gt; Build setting: '><title>MetaQuest开发入门3_MRUK</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='MetaQuest开发入门3_MRUK'>
+<meta property='og:description' content='Mixed Reality Utility Kit Meta的MR模块 官方文档 透视 Passthrough Depth API(目前Quest3特有)基于深度的前后遮挡，例如手部抠像 空间锚点Spatial Anchor 将虚拟物体固定在现实中的某个位置。 分享给其他用户，实现多人MR体验。比如两个人在同个房间打MR乒乓球，需要保证他们看到的虚拟球桌在同个位置。 场景理解 Scene Understanding(前提是要扫描房间) 场景/房间模型:根据扫描的结果重建出一个与现实房间相匹配的虚拟房间，能够获取房间的整体布局和轮廓大小，以及房间内标记过的各个物体的位置和范围。用2D平面和3D立方体表示房间内的不同物体。能用标签来识别房间内的某一个物体具体是哪一种类型的物体(如墙壁，桌子，天花板等) 场景锚点:房间模型中每一个标记的物体，例如房间模型中的地板、天花板、墙壁等物体都可以算作场景锚点。和空间锚点不同的是，场景锚点在Quest系统进行空间设置的时候被创建出来，由系统进行管理;而空间锚点是被应用本身创建，由用户进行管理。 场景网格:目前Quest3特有功能，扫描房间时为物体覆盖上场景网格，相比于房间模型里的2D平面和3D立方体能更精确的表示现实物体的形状。常见的用法是给场景网格加上碰撞体，实现虚拟物体和现实物体的碰撞。场景网格也是房间模型中的一个特殊的场景锚点。 MRUK 就是将场景理解的功能封装成了更高层的API，提供更加丰富的 MR功能，方便开发者使用。
+MRUK实现的些功能 Scene queries 获取房间模型内每一个物体的位置
+不依赖于Unity物理系统的射线检测
+在平面上找到一个合适的位置来生成物体
+检测某个位置是否在房间内
+得到房间和房间内物体的边界盒
+&amp;hellip;
+开发工具 SceneDebugger 空间数据调试工具(Assets &amp;gt; Samples &amp;gt;Meta MR Utility Kit &amp;gt; Basic &amp;gt; SceneDebugger)
+提供不同构造的房间模型，不连接真实的设备也能够进行调试
+测试：
+File &amp;gt; Build setting: '>
+<meta property='og:url' content='https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/'>
+<meta property='og:site_name' content='Lorcan'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MR' /><meta property='article:published_time' content='2025-01-18T17:45:23&#43;08:00'/><meta property='article:modified_time' content='2025-01-18T17:45:23&#43;08:00'/>
+<meta name="twitter:title" content="MetaQuest开发入门3_MRUK">
+<meta name="twitter:description" content="Mixed Reality Utility Kit Meta的MR模块 官方文档 透视 Passthrough Depth API(目前Quest3特有)基于深度的前后遮挡，例如手部抠像 空间锚点Spatial Anchor 将虚拟物体固定在现实中的某个位置。 分享给其他用户，实现多人MR体验。比如两个人在同个房间打MR乒乓球，需要保证他们看到的虚拟球桌在同个位置。 场景理解 Scene Understanding(前提是要扫描房间) 场景/房间模型:根据扫描的结果重建出一个与现实房间相匹配的虚拟房间，能够获取房间的整体布局和轮廓大小，以及房间内标记过的各个物体的位置和范围。用2D平面和3D立方体表示房间内的不同物体。能用标签来识别房间内的某一个物体具体是哪一种类型的物体(如墙壁，桌子，天花板等) 场景锚点:房间模型中每一个标记的物体，例如房间模型中的地板、天花板、墙壁等物体都可以算作场景锚点。和空间锚点不同的是，场景锚点在Quest系统进行空间设置的时候被创建出来，由系统进行管理;而空间锚点是被应用本身创建，由用户进行管理。 场景网格:目前Quest3特有功能，扫描房间时为物体覆盖上场景网格，相比于房间模型里的2D平面和3D立方体能更精确的表示现实物体的形状。常见的用法是给场景网格加上碰撞体，实现虚拟物体和现实物体的碰撞。场景网格也是房间模型中的一个特殊的场景锚点。 MRUK 就是将场景理解的功能封装成了更高层的API，提供更加丰富的 MR功能，方便开发者使用。
+MRUK实现的些功能 Scene queries 获取房间模型内每一个物体的位置
+不依赖于Unity物理系统的射线检测
+在平面上找到一个合适的位置来生成物体
+检测某个位置是否在房间内
+得到房间和房间内物体的边界盒
+&amp;hellip;
+开发工具 SceneDebugger 空间数据调试工具(Assets &amp;gt; Samples &amp;gt;Meta MR Utility Kit &amp;gt; Basic &amp;gt; SceneDebugger)
+提供不同构造的房间模型，不连接真实的设备也能够进行调试
+测试：
+File &amp;gt; Build setting: ">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+  
+
+
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column extended"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Lorcan</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header>
+
+    
+        <ol class="social-menu">
+            
+                <li>
+                    <a href="https://github.com/nohairblingbling" target="" title="GitHub">
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://www.instagram.com/lorcanxoo/" target="" title="Instagram">
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1713256923828" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4425" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300"><path d="M341.333333 128h341.333334a213.333333 213.333333 0 0 1 213.333333 213.333333v341.333334a213.333333 213.333333 0 0 1-213.333333 213.333333H341.333333a213.333333 213.333333 0 0 1-213.333333-213.333333V341.333333a213.333333 213.333333 0 0 1 213.333333-213.333333z m341.333334 85.333333H341.333333a128 128 0 0 0-128 128v341.333334a128 128 0 0 0 128 128h341.333334a128 128 0 0 0 128-128V341.333333a128 128 0 0 0-128-128z m-341.333334 298.666667a170.666667 170.666667 0 1 1 341.333334 0 170.666667 170.666667 0 0 1-341.333334 0z m256 0a85.333333 85.333333 0 1 0-170.666666 0 85.333333 85.333333 0 0 0 170.666666 0z m149.034667-196.992a42.666667 42.666667 0 0 0-85.034667 5.034667l0.298667 4.992A42.666667 42.666667 0 0 0 746.666667 320l-0.298667-4.992z" p-id="4426"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol>
+    
+
+    <ol class="menu" id="main-menu">
+        
+        
+            
+            <li >
+                <a href="/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                    
+                    <span>Home</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/archives/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                    
+                    <span>Archives</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/search/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    
+                    <span>search</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/about/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                    
+                    <span>about</span>
+                </a>
+            </li>
+        
+    </ol>
+
+    <div class="menu-bottom-section">
+        
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </div>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metaquestdevelopment/" >
+                MetaQuestDevelopment
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/">MetaQuest开发入门3_MRUK</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 18, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="mixed-reality-utility-kit">Mixed Reality Utility Kit</h1>
+<h2 id="meta的mr模块">Meta的MR模块</h2>
+<ul>
+<li><a class="link" href="https://developer.oculus.com/documentation/unity/unity-mr-utility-kit-gs/"  target="_blank" rel="noopener"
+    >官方文档</a></li>
+<li>透视 Passthrough</li>
+<li>Depth API(目前Quest3特有)基于深度的前后遮挡，例如手部抠像</li>
+<li>空间锚点Spatial Anchor
+<ul>
+<li>将虚拟物体固定在现实中的某个位置。</li>
+<li>分享给其他用户，实现多人MR体验。比如两个人在同个房间打MR乒乓球，需要保证他们看到的虚拟球桌在同个位置。</li>
+</ul>
+</li>
+<li>场景理解 Scene Understanding(前提是要扫描房间)
+<ul>
+<li>场景/房间模型:根据扫描的结果重建出一个与现实房间相匹配的虚拟房间，能够获取房间的整体布局和轮廓大小，以及房间内标记过的各个物体的位置和范围。用2D平面和3D立方体表示房间内的不同物体。能用标签来识别房间内的某一个物体具体是哪一种类型的物体(如墙壁，桌子，天花板等)</li>
+<li>场景锚点:房间模型中每一个标记的物体，例如房间模型中的地板、天花板、墙壁等物体都可以算作场景锚点。和空间锚点不同的是，场景锚点在Quest系统进行空间设置的时候被创建出来，由系统进行管理;而空间锚点是被应用本身创建，由用户进行管理。</li>
+<li>场景网格:目前Quest3特有功能，扫描房间时为物体覆盖上场景网格，相比于房间模型里的2D平面和3D立方体能更精确的表示现实物体的形状。常见的用法是给场景网格加上碰撞体，实现虚拟物体和现实物体的碰撞。场景网格也是房间模型中的一个特殊的场景锚点。</li>
+</ul>
+</li>
+</ul>
+<p>MRUK 就是将场景理解的功能封装成了更高层的API，提供更加丰富的 MR功能，方便开发者使用。</p>
+<h2 id="mruk实现的些功能">MRUK实现的些功能</h2>
+<h3 id="scene-queries">Scene queries</h3>
+<ul>
+<li>
+<p>获取房间模型内每一个物体的位置</p>
+</li>
+<li>
+<p>不依赖于Unity物理系统的射线检测</p>
+</li>
+<li>
+<p>在平面上找到一个合适的位置来生成物体</p>
+</li>
+<li>
+<p>检测某个位置是否在房间内</p>
+</li>
+<li>
+<p>得到房间和房间内物体的边界盒</p>
+</li>
+<li>
+<p>&hellip;</p>
+</li>
+</ul>
+<h3 id="开发工具">开发工具</h3>
+<ul>
+<li>
+<p>SceneDebugger 空间数据调试工具(Assets &gt; Samples &gt;Meta MR Utility Kit &gt; Basic &gt; SceneDebugger)</p>
+</li>
+<li>
+<p>提供不同构造的房间模型，不连接真实的设备也能够进行调试</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117195108212.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117195108212"
+	
+	
+></p>
+<p>测试：</p>
+<ol>
+<li>File &gt; Build setting:</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117195911838.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117195911838"
+	
+	
+></p>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117200006554.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117200006554"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mr/">MR</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaQuest开发入门2_场景理解</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A81_%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaQuest开发入门1_环境设置</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "Lorcan" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 Lorcan
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+</main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#meta的mr模块">Meta的MR模块</a></li>
+    <li><a href="#mruk实现的些功能">MRUK实现的些功能</a>
+      <ol>
+        <li><a href="#scene-queries">Scene queries</a></li>
+        <li><a href="#开发工具">开发工具</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+    </div>
+    <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+ 
+  </body>
+</html>

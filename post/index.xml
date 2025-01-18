@@ -6,7 +6,275 @@
         <description>Recent content in Posts on Lorcan</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 06 Jan 2025 15:43:16 +0800</lastBuildDate><atom:link href="https://duskandwine.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 18 Jan 2025 17:45:23 +0800</lastBuildDate><atom:link href="https://duskandwine.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>MetaQuest开发入门3_MRUK</title>
+        <link>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/</link>
+        <pubDate>Sat, 18 Jan 2025 17:45:23 +0800</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/</guid>
+        <description>&lt;h1 id=&#34;mixed-reality-utility-kit&#34;&gt;Mixed Reality Utility Kit&lt;/h1&gt;
+&lt;h2 id=&#34;meta的mr模块&#34;&gt;Meta的MR模块&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.oculus.com/documentation/unity/unity-mr-utility-kit-gs/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;透视 Passthrough&lt;/li&gt;
+&lt;li&gt;Depth API(目前Quest3特有)基于深度的前后遮挡，例如手部抠像&lt;/li&gt;
+&lt;li&gt;空间锚点Spatial Anchor
+&lt;ul&gt;
+&lt;li&gt;将虚拟物体固定在现实中的某个位置。&lt;/li&gt;
+&lt;li&gt;分享给其他用户，实现多人MR体验。比如两个人在同个房间打MR乒乓球，需要保证他们看到的虚拟球桌在同个位置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;场景理解 Scene Understanding(前提是要扫描房间)
+&lt;ul&gt;
+&lt;li&gt;场景/房间模型:根据扫描的结果重建出一个与现实房间相匹配的虚拟房间，能够获取房间的整体布局和轮廓大小，以及房间内标记过的各个物体的位置和范围。用2D平面和3D立方体表示房间内的不同物体。能用标签来识别房间内的某一个物体具体是哪一种类型的物体(如墙壁，桌子，天花板等)&lt;/li&gt;
+&lt;li&gt;场景锚点:房间模型中每一个标记的物体，例如房间模型中的地板、天花板、墙壁等物体都可以算作场景锚点。和空间锚点不同的是，场景锚点在Quest系统进行空间设置的时候被创建出来，由系统进行管理;而空间锚点是被应用本身创建，由用户进行管理。&lt;/li&gt;
+&lt;li&gt;场景网格:目前Quest3特有功能，扫描房间时为物体覆盖上场景网格，相比于房间模型里的2D平面和3D立方体能更精确的表示现实物体的形状。常见的用法是给场景网格加上碰撞体，实现虚拟物体和现实物体的碰撞。场景网格也是房间模型中的一个特殊的场景锚点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MRUK 就是将场景理解的功能封装成了更高层的API，提供更加丰富的 MR功能，方便开发者使用。&lt;/p&gt;
+&lt;h2 id=&#34;mruk实现的些功能&#34;&gt;MRUK实现的些功能&lt;/h2&gt;
+&lt;h3 id=&#34;scene-queries&#34;&gt;Scene queries&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;获取房间模型内每一个物体的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不依赖于Unity物理系统的射线检测&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在平面上找到一个合适的位置来生成物体&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检测某个位置是否在房间内&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;得到房间和房间内物体的边界盒&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;开发工具&#34;&gt;开发工具&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;SceneDebugger 空间数据调试工具(Assets &amp;gt; Samples &amp;gt;Meta MR Utility Kit &amp;gt; Basic &amp;gt; SceneDebugger)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;提供不同构造的房间模型，不连接真实的设备也能够进行调试&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117195108212.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117195108212&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;测试：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;File &amp;gt; Build setting:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117195911838.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117195911838&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117200006554.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117200006554&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>MetaQuest开发入门2_场景理解</title>
+        <link>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/</link>
+        <pubDate>Thu, 16 Jan 2025 17:43:01 +0800</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/</guid>
+        <description>&lt;h1 id=&#34;透视passthrough的局限&#34;&gt;透视Passthrough的局限&lt;/h1&gt;
+&lt;p&gt;透视只是将应用的背景从虚拟的图层替换成了现实图层，类似于P图换了一个背景，这个时候虚拟物体相当于叠加在现实图层之上的元素。在单纯的透视下，虚拟物体和现实物体是毫不相干的，二者之间并不会进行交互。&lt;/p&gt;
+&lt;h1 id=&#34;场景理解的作用&#34;&gt;场景理解的作用&lt;/h1&gt;
+&lt;p&gt;加上场景理解功能，设备就能够理解现实环境，分辨出现实物体在什么位置。因为MR相当于把虚拟和现实融合成了一个新世界，通过场景理解，识别出的现实物体就被当作了MR世界中的一部分，而虚拟物体也属于MR世界中的一部分，因此能够实现虚拟物体和现实物体之间的交互。&lt;/p&gt;
+&lt;p&gt;场景理解 (Scene Understanding: Meta用Scene API实现) 能用2D平面或3D立方体来代表现实物体的位置和范围，在系统眼中现实世界由不同的2D平面和3D立方体组成。此外，场景理解还能用语义标签来标识这些不同的2D平面或3D立方体，让系统理解标识出的东西具体代表哪一种现实中的物体。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117174124906.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117174124906&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;scene-model场景模型&#34;&gt;Scene Model场景模型&lt;/h1&gt;
+&lt;p&gt;场景理解使用Scene Model(场景模型)来表示现实环境。场景模型包含了几何(现实物体的范围和边界)和语义(标识一个物体具体是哪种物体)的信息。&lt;/p&gt;
+&lt;h2 id=&#34;scene-anchor场景锚点&#34;&gt;Scene Anchor场景锚点&lt;/h2&gt;
+&lt;p&gt;Scene Model由许多Scene Anchor(场景锚点)组成。 每个Scene Anchor存储着一些数据组件 (Component)，这些数据组件可能存储着不同种类的数据，用来表示几何和语义信息。&lt;/p&gt;
+&lt;h2 id=&#34;ecs结构&#34;&gt;ECS结构&lt;/h2&gt;
+&lt;p&gt;Scene Anchor的内部结构类似于ECS结构。&lt;/p&gt;
+&lt;p&gt;C代表Component，包含了数据。&lt;/p&gt;
+&lt;p&gt;E代表Entity，是一系列Component组件的集合。这一系列包含了数据Component组件组成了一个物体，Entity相当于一个ID，标识了这个物体。&lt;/p&gt;
+&lt;p&gt;S代表System，用来处理Component的数据，执行逻辑。因为ECS是面向数据的思想，所以最终处理的还是Component中 的数据。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117174456958.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117174456958&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在Scene Model当中，每一个Scene Anchor相当于一个Entity。因此一个Scene Anchor中会包含一些不同种类的Component组件，不同种类的组件里存储着不同类型的数据。&lt;/p&gt;
+&lt;h2 id=&#34;scene-anchor内部结构&#34;&gt;Scene Anchor内部结构&lt;/h2&gt;
+&lt;p&gt;因为场景理解基本是用于室内的场景，所以Scene Anchor可以用来表示整个房间，也可以用来表示房间里单独的某个物体。&lt;/p&gt;
+&lt;p&gt;如果用于表示整个房间，Scene Anchor需要包含RoomLayout组件和AnchorContainer组件。RoomLayout用来表示整个房间的布局，包含天花板，地板，墙壁的布局，因为这三个元素可以构成一个房间。AnchorContainer包含了房间内的所有Scene Anchor。&lt;/p&gt;
+&lt;p&gt;如果用于表示房间内单独的物体，Scene Anchor需要Locatable组件，Bounded2D或者Bounded3D组件(取决于物体是2D平面还是3D物体)，Semantic Classification (语义分类)组件。Locatable组件用来定位物体，表示物体在房间中的位置。Bounded2D/3D组件用来表示物体的边界框，一个Scene Anchor也可以同时拥有2D和3D组件，比如桌子，桌面可以用2D，整个桌子可以用3D。语义分类组件相当于用标签来表示物体是哪一种物体。&lt;/p&gt;
+&lt;h2 id=&#34;meta官方预定义的语义标签仍在更新中&#34;&gt;Meta官方预定义的语义标签(仍在更新中)&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175056866.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175056866&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;scene-anchor和spatial-anchor的区别&#34;&gt;Scene Anchor和Spatial Anchor的区别&lt;/h2&gt;
+&lt;p&gt;Scene anchor 是Quest系统创建的，由系统进行管理。&lt;/p&gt;
+&lt;p&gt;Spatial anchor 是由应用本身创建的，由用户进行管理。&lt;/p&gt;
+&lt;h2 id=&#34;space-setup-空间设置&#34;&gt;Space Setup 空间设置&lt;/h2&gt;
+&lt;p&gt;Space Setup 空间设置(以前称为场景捕获)是捕获场景模型的过程。它由 Quest系统管理，因此在设备上运行的所有应用都可以访问相同的环境数据。空间设置是一个用户引导的过程:在设置之前，需要先允许应用访问设备的空间数据。开启了获取空间数据的权限后，首先要扫描环境，获取空间网格，提取空间信息(如地板和天花板的高度，墙壁的位置)，然后用户通过修正错误(校准墙壁位置)和添加缺失信息(房间物体)来完成这个过程。&lt;/p&gt;
+&lt;p&gt;空间设置无法在串流模式下进行。&lt;/p&gt;
+&lt;h3 id=&#34;如何在quest中进行空间设置&#34;&gt;如何在Quest中进行空间设置&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175451753.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175451753&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;场景理解可以实现什么功能&#34;&gt;场景理解可以实现什么功能&lt;/h2&gt;
+&lt;p&gt;把虚拟物体放置在物理平面上。比如把虚拟物体放置到现实桌子上;把虚拟相框贴在现实墙壁上。&lt;/p&gt;
+&lt;h3 id=&#34;如何增加放置的真实感&#34;&gt;如何增加放置的真实感&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Shadow 给虚拟物体增加阴影&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;alignment 校准虚拟物体和现实平面之间的距离和位置，让物体贴合在现实平面上&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175617061.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175617061&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;遮挡-occlusion&#34;&gt;遮挡 Occlusion&lt;/h3&gt;
+&lt;p&gt;利用场景理解中标记的平面和立方体，我们可以实现用场景理解标记过的现实物体去遮挡虚拟物体。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175709866.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175709866&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;scene-api和depth-api中的遮挡区别&#34;&gt;Scene API和Depth API中的遮挡区别&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175755843.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175755843&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Scene API只对在空间设置过程中被标记过的，静止不动的物体有效&lt;/p&gt;
+&lt;p&gt;DepthAPI可以用于动态遮挡&lt;/p&gt;
+&lt;h3 id=&#34;物理碰撞-physics&#34;&gt;物理碰撞 Physics&lt;/h3&gt;
+&lt;p&gt;被场景理解标记过的现实物体能和虚拟物体产生物理碰撞效果。比如将虚拟的球扔到现实墙壁上，会产生反弹效果。&lt;/p&gt;
+&lt;h3 id=&#34;导航-navigation&#34;&gt;导航 Navigation&lt;/h3&gt;
+&lt;p&gt;让虚拟物体在现实平面上移动。比如让虚拟人在现实地面上行走。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175937292.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;image-20250117175937292&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>MetaQuest开发入门1_环境设置</title>
+        <link>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A81_%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE/</link>
+        <pubDate>Tue, 14 Jan 2025 17:33:46 +0800</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A81_%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE/</guid>
+        <description>&lt;h1 id=&#34;metaxr-develop-environment&#34;&gt;MetaXR develop environment&lt;/h1&gt;
+&lt;h2 id=&#34;meta-quest-link&#34;&gt;Meta Quest Link&lt;/h2&gt;
+&lt;p&gt;用途：用于串流调试，直接通过头显看到Unity中运行的画面。&lt;/p&gt;
+&lt;p&gt;Link：https://www.meta.com/en-gb/help/quest/pcvr/?srsltid=AfmBOoreyjuggqrbk-l0zMyYMUGO9m-Ld99yAnCKFOsMLJc4myqUbM0h&lt;/p&gt;
+&lt;p&gt;Open development mode&lt;/p&gt;
+&lt;h2 id=&#34;oculus-adb-drivers&#34;&gt;Oculus ADB Drivers&lt;/h2&gt;
+&lt;p&gt;用途：驱动程序&lt;/p&gt;
+&lt;p&gt;Link: &lt;a class=&#34;link&#34; href=&#34;https://developers.meta.com/horizon/downloads/package/oculus-adb-drivers/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://developers.meta.com/horizon/downloads/package/oculus-adb-drivers/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;side-quest&#34;&gt;Side Quest&lt;/h2&gt;
+&lt;p&gt;用途：文件管理和设备投屏&lt;/p&gt;
+&lt;p&gt;Link: &lt;a class=&#34;link&#34; href=&#34;https://sidequestvr.com/setup-howto&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://sidequestvr.com/setup-howto&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;meta-developer-hub&#34;&gt;Meta developer Hub&lt;/h2&gt;
+&lt;p&gt;用途：开发者调试功能以及发布应用&lt;/p&gt;
+&lt;p&gt;Link：https://developers.meta.com/horizon/downloads/package/oculus-developer-hub-win/&lt;/p&gt;
+&lt;h2 id=&#34;unity&#34;&gt;Unity&lt;/h2&gt;
+&lt;p&gt;用途：开发（使用国际版&lt;/p&gt;
+&lt;p&gt;Link: &lt;a class=&#34;link&#34; href=&#34;https://unity.com/download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Start Your Creative Projects and Download the Unity Hub | Unity&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Platform: Android&lt;/p&gt;
+&lt;p&gt;SDK: Install &lt;code&gt;Oculus XR&lt;/code&gt; , &lt;code&gt;Meta XR All-in-One&lt;/code&gt; and &lt;code&gt;Meta XR Interaction SDK&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Project setting:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Meta XR -&amp;gt; fix issue&lt;/li&gt;
+&lt;li&gt;Quality -&amp;gt; Anti Aliasing -&amp;gt; 4x&lt;/li&gt;
+&lt;li&gt;XR Plug-in Management -&amp;gt; Android/PC Oculus&lt;/li&gt;
+&lt;li&gt;XR Plug-in Management -&amp;gt; Oculus -&amp;gt; Android/PC Quest3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Assets -&amp;gt; Oculus -&amp;gt; OculusProjectConfig -&amp;gt; Target Devices / Hand Tracking Support -&amp;gt;Controllers And Hands&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Ref_reading_day1</title>
         <link>https://duskandwine.github.io/p/ref_reading_day1/</link>
         <pubDate>Mon, 06 Jan 2025 15:43:16 +0800</pubDate>
@@ -6152,6 +6420,71 @@ pip install requests&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Ref_reading_day2</title>
+        <link>https://duskandwine.github.io/p/ref_reading_day2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/ref_reading_day2/</guid>
+        <description>&lt;h3 id=&#34;development-of-a-thermal-based-olfactory-display-for-aroma-sensory-training---2020&#34;&gt;Development of a Thermal-Based Olfactory Display for Aroma Sensory Training - 2020&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;内容说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;文章标题&lt;/td&gt;
+&lt;td&gt;SmellControl: 嗅觉中的代理感研究&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表时间&lt;/td&gt;
+&lt;td&gt;2020年&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表期刊&lt;/td&gt;
+&lt;td&gt;ICMI&#39;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心问题&lt;/td&gt;
+&lt;td&gt;气味(嗅觉)如何影响人的代理感(Sense of Agency,即对自己行为的控制感)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究目的&lt;/td&gt;
+&lt;td&gt;探索不同气味诱发的情绪对代理感的影响,这在人机交互研究中尚未被研究&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究假设&lt;/td&gt;
+&lt;td&gt;愉悦的气味会比中性和不愉悦的气味带来更强的代理感&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究方法&lt;/td&gt;
+&lt;td&gt;1. 使用intentional binding范式测量代理感 2. 使用三种气味:薰衣草(愉悦)、灵猫香(不愉悦)、水(中性) 3. 测量生理反应(皮肤电反应)和主观情绪评分 4. 13名参与者进行实验&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心结论&lt;/td&gt;
+&lt;td&gt;1. 愉悦气味(薰衣草)显著提升了参与者的代理感 2. 气味确实能通过情绪影响人的代理感 3. 首次证实了嗅觉刺激对代理感的影响&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实践启示&lt;/td&gt;
+&lt;td&gt;1. 在人机交互设计中可以利用气味增强用户的控制感 2. 可应用于驾驶场景、虚拟现实等领域 3. 为多模态交互界面设计提供新思路&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;未来方向&lt;/td&gt;
+&lt;td&gt;1. 探索高唤醒度的愉悦气味对代理感的影响 2. 比较不同感官模态(视觉、听觉、触觉、嗅觉)对代理感的影响差异 3. 研究气味对整体用户体验的影响&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;个人思考&lt;/td&gt;
+&lt;td&gt;Sense of Agency可以灵活运用，提高代理感有时也会带来无聊的感觉，我认为有些像游戏开挂，适当的减少代理感是否可以提高趣味性和挑战性？以及在vr环境下，代理感程度的调控是否可以作为难度的一部分？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;virtual-environment-with-smell-using-wearable-olfactory-display-and-computational-fluid-dynamics-simulation---2020&#34;&gt;Virtual environment with smell using wearable olfactory display and computational fluid dynamics simulation - 2020&lt;/h3&gt;
 </description>
         </item>
         

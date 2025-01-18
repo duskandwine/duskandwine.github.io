@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html
+  lang="en-us"
+  dir="ltr"
+>
+  <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='透视Passthrough的局限 透视只是将应用的背景从虚拟的图层替换成了现实图层，类似于P图换了一个背景，这个时候虚拟物体相当于叠加在现实图层之上的元素。在单纯的透视下，虚拟物体和现实物体是毫不相干的，二者之间并不会进行交互。
+场景理解的作用 加上场景理解功能，设备就能够理解现实环境，分辨出现实物体在什么位置。因为MR相当于把虚拟和现实融合成了一个新世界，通过场景理解，识别出的现实物体就被当作了MR世界中的一部分，而虚拟物体也属于MR世界中的一部分，因此能够实现虚拟物体和现实物体之间的交互。
+场景理解 (Scene Understanding: Meta用Scene API实现) 能用2D平面或3D立方体来代表现实物体的位置和范围，在系统眼中现实世界由不同的2D平面和3D立方体组成。此外，场景理解还能用语义标签来标识这些不同的2D平面或3D立方体，让系统理解标识出的东西具体代表哪一种现实中的物体。
+Scene Model场景模型 场景理解使用Scene Model(场景模型)来表示现实环境。场景模型包含了几何(现实物体的范围和边界)和语义(标识一个物体具体是哪种物体)的信息。
+Scene Anchor场景锚点 Scene Model由许多Scene Anchor(场景锚点)组成。 每个Scene Anchor存储着一些数据组件 (Component)，这些数据组件可能存储着不同种类的数据，用来表示几何和语义信息。
+ECS结构 Scene Anchor的内部结构类似于ECS结构。
+C代表Component，包含了数据。
+E代表Entity，是一系列Component组件的集合。这一系列包含了数据Component组件组成了一个物体，Entity相当于一个ID，标识了这个物体。
+S代表System，用来处理Component的数据，执行逻辑。因为ECS是面向数据的思想，所以最终处理的还是Component中 的数据。
+在Scene Model当中，每一个Scene Anchor相当于一个Entity。因此一个Scene Anchor中会包含一些不同种类的Component组件，不同种类的组件里存储着不同类型的数据。
+Scene Anchor内部结构 因为场景理解基本是用于室内的场景，所以Scene Anchor可以用来表示整个房间，也可以用来表示房间里单独的某个物体。
+如果用于表示整个房间，Scene Anchor需要包含RoomLayout组件和AnchorContainer组件。RoomLayout用来表示整个房间的布局，包含天花板，地板，墙壁的布局，因为这三个元素可以构成一个房间。AnchorContainer包含了房间内的所有Scene Anchor。
+如果用于表示房间内单独的物体，Scene Anchor需要Locatable组件，Bounded2D或者Bounded3D组件(取决于物体是2D平面还是3D物体)，Semantic Classification (语义分类)组件。Locatable组件用来定位物体，表示物体在房间中的位置。Bounded2D/3D组件用来表示物体的边界框，一个Scene Anchor也可以同时拥有2D和3D组件，比如桌子，桌面可以用2D，整个桌子可以用3D。语义分类组件相当于用标签来表示物体是哪一种物体。
+Meta官方预定义的语义标签(仍在更新中) Scene Anchor和Spatial Anchor的区别 Scene anchor 是Quest系统创建的，由系统进行管理。
+Spatial anchor 是由应用本身创建的，由用户进行管理。
+Space Setup 空间设置 Space Setup 空间设置(以前称为场景捕获)是捕获场景模型的过程。它由 Quest系统管理，因此在设备上运行的所有应用都可以访问相同的环境数据。空间设置是一个用户引导的过程:在设置之前，需要先允许应用访问设备的空间数据。开启了获取空间数据的权限后，首先要扫描环境，获取空间网格，提取空间信息(如地板和天花板的高度，墙壁的位置)，然后用户通过修正错误(校准墙壁位置)和添加缺失信息(房间物体)来完成这个过程。
+空间设置无法在串流模式下进行。
+如何在Quest中进行空间设置 场景理解可以实现什么功能 把虚拟物体放置在物理平面上。比如把虚拟物体放置到现实桌子上;把虚拟相框贴在现实墙壁上。
+如何增加放置的真实感 Shadow 给虚拟物体增加阴影
+alignment 校准虚拟物体和现实平面之间的距离和位置，让物体贴合在现实平面上'><title>MetaQuest开发入门2_场景理解</title>
+
+<link rel='canonical' href='https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/'>
+
+<link rel="stylesheet" href="/scss/style.min.b80bf249ce4a22cf55e8d7340a0b37a2f2c10f54f3a9a49cb94b694a2eb0bbea.css"><meta property='og:title' content='MetaQuest开发入门2_场景理解'>
+<meta property='og:description' content='透视Passthrough的局限 透视只是将应用的背景从虚拟的图层替换成了现实图层，类似于P图换了一个背景，这个时候虚拟物体相当于叠加在现实图层之上的元素。在单纯的透视下，虚拟物体和现实物体是毫不相干的，二者之间并不会进行交互。
+场景理解的作用 加上场景理解功能，设备就能够理解现实环境，分辨出现实物体在什么位置。因为MR相当于把虚拟和现实融合成了一个新世界，通过场景理解，识别出的现实物体就被当作了MR世界中的一部分，而虚拟物体也属于MR世界中的一部分，因此能够实现虚拟物体和现实物体之间的交互。
+场景理解 (Scene Understanding: Meta用Scene API实现) 能用2D平面或3D立方体来代表现实物体的位置和范围，在系统眼中现实世界由不同的2D平面和3D立方体组成。此外，场景理解还能用语义标签来标识这些不同的2D平面或3D立方体，让系统理解标识出的东西具体代表哪一种现实中的物体。
+Scene Model场景模型 场景理解使用Scene Model(场景模型)来表示现实环境。场景模型包含了几何(现实物体的范围和边界)和语义(标识一个物体具体是哪种物体)的信息。
+Scene Anchor场景锚点 Scene Model由许多Scene Anchor(场景锚点)组成。 每个Scene Anchor存储着一些数据组件 (Component)，这些数据组件可能存储着不同种类的数据，用来表示几何和语义信息。
+ECS结构 Scene Anchor的内部结构类似于ECS结构。
+C代表Component，包含了数据。
+E代表Entity，是一系列Component组件的集合。这一系列包含了数据Component组件组成了一个物体，Entity相当于一个ID，标识了这个物体。
+S代表System，用来处理Component的数据，执行逻辑。因为ECS是面向数据的思想，所以最终处理的还是Component中 的数据。
+在Scene Model当中，每一个Scene Anchor相当于一个Entity。因此一个Scene Anchor中会包含一些不同种类的Component组件，不同种类的组件里存储着不同类型的数据。
+Scene Anchor内部结构 因为场景理解基本是用于室内的场景，所以Scene Anchor可以用来表示整个房间，也可以用来表示房间里单独的某个物体。
+如果用于表示整个房间，Scene Anchor需要包含RoomLayout组件和AnchorContainer组件。RoomLayout用来表示整个房间的布局，包含天花板，地板，墙壁的布局，因为这三个元素可以构成一个房间。AnchorContainer包含了房间内的所有Scene Anchor。
+如果用于表示房间内单独的物体，Scene Anchor需要Locatable组件，Bounded2D或者Bounded3D组件(取决于物体是2D平面还是3D物体)，Semantic Classification (语义分类)组件。Locatable组件用来定位物体，表示物体在房间中的位置。Bounded2D/3D组件用来表示物体的边界框，一个Scene Anchor也可以同时拥有2D和3D组件，比如桌子，桌面可以用2D，整个桌子可以用3D。语义分类组件相当于用标签来表示物体是哪一种物体。
+Meta官方预定义的语义标签(仍在更新中) Scene Anchor和Spatial Anchor的区别 Scene anchor 是Quest系统创建的，由系统进行管理。
+Spatial anchor 是由应用本身创建的，由用户进行管理。
+Space Setup 空间设置 Space Setup 空间设置(以前称为场景捕获)是捕获场景模型的过程。它由 Quest系统管理，因此在设备上运行的所有应用都可以访问相同的环境数据。空间设置是一个用户引导的过程:在设置之前，需要先允许应用访问设备的空间数据。开启了获取空间数据的权限后，首先要扫描环境，获取空间网格，提取空间信息(如地板和天花板的高度，墙壁的位置)，然后用户通过修正错误(校准墙壁位置)和添加缺失信息(房间物体)来完成这个过程。
+空间设置无法在串流模式下进行。
+如何在Quest中进行空间设置 场景理解可以实现什么功能 把虚拟物体放置在物理平面上。比如把虚拟物体放置到现实桌子上;把虚拟相框贴在现实墙壁上。
+如何增加放置的真实感 Shadow 给虚拟物体增加阴影
+alignment 校准虚拟物体和现实平面之间的距离和位置，让物体贴合在现实平面上'>
+<meta property='og:url' content='https://duskandwine.github.io/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/'>
+<meta property='og:site_name' content='Lorcan'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='MR' /><meta property='article:published_time' content='2025-01-16T17:43:01&#43;08:00'/><meta property='article:modified_time' content='2025-01-16T17:43:01&#43;08:00'/>
+<meta name="twitter:title" content="MetaQuest开发入门2_场景理解">
+<meta name="twitter:description" content="透视Passthrough的局限 透视只是将应用的背景从虚拟的图层替换成了现实图层，类似于P图换了一个背景，这个时候虚拟物体相当于叠加在现实图层之上的元素。在单纯的透视下，虚拟物体和现实物体是毫不相干的，二者之间并不会进行交互。
+场景理解的作用 加上场景理解功能，设备就能够理解现实环境，分辨出现实物体在什么位置。因为MR相当于把虚拟和现实融合成了一个新世界，通过场景理解，识别出的现实物体就被当作了MR世界中的一部分，而虚拟物体也属于MR世界中的一部分，因此能够实现虚拟物体和现实物体之间的交互。
+场景理解 (Scene Understanding: Meta用Scene API实现) 能用2D平面或3D立方体来代表现实物体的位置和范围，在系统眼中现实世界由不同的2D平面和3D立方体组成。此外，场景理解还能用语义标签来标识这些不同的2D平面或3D立方体，让系统理解标识出的东西具体代表哪一种现实中的物体。
+Scene Model场景模型 场景理解使用Scene Model(场景模型)来表示现实环境。场景模型包含了几何(现实物体的范围和边界)和语义(标识一个物体具体是哪种物体)的信息。
+Scene Anchor场景锚点 Scene Model由许多Scene Anchor(场景锚点)组成。 每个Scene Anchor存储着一些数据组件 (Component)，这些数据组件可能存储着不同种类的数据，用来表示几何和语义信息。
+ECS结构 Scene Anchor的内部结构类似于ECS结构。
+C代表Component，包含了数据。
+E代表Entity，是一系列Component组件的集合。这一系列包含了数据Component组件组成了一个物体，Entity相当于一个ID，标识了这个物体。
+S代表System，用来处理Component的数据，执行逻辑。因为ECS是面向数据的思想，所以最终处理的还是Component中 的数据。
+在Scene Model当中，每一个Scene Anchor相当于一个Entity。因此一个Scene Anchor中会包含一些不同种类的Component组件，不同种类的组件里存储着不同类型的数据。
+Scene Anchor内部结构 因为场景理解基本是用于室内的场景，所以Scene Anchor可以用来表示整个房间，也可以用来表示房间里单独的某个物体。
+如果用于表示整个房间，Scene Anchor需要包含RoomLayout组件和AnchorContainer组件。RoomLayout用来表示整个房间的布局，包含天花板，地板，墙壁的布局，因为这三个元素可以构成一个房间。AnchorContainer包含了房间内的所有Scene Anchor。
+如果用于表示房间内单独的物体，Scene Anchor需要Locatable组件，Bounded2D或者Bounded3D组件(取决于物体是2D平面还是3D物体)，Semantic Classification (语义分类)组件。Locatable组件用来定位物体，表示物体在房间中的位置。Bounded2D/3D组件用来表示物体的边界框，一个Scene Anchor也可以同时拥有2D和3D组件，比如桌子，桌面可以用2D，整个桌子可以用3D。语义分类组件相当于用标签来表示物体是哪一种物体。
+Meta官方预定义的语义标签(仍在更新中) Scene Anchor和Spatial Anchor的区别 Scene anchor 是Quest系统创建的，由系统进行管理。
+Spatial anchor 是由应用本身创建的，由用户进行管理。
+Space Setup 空间设置 Space Setup 空间设置(以前称为场景捕获)是捕获场景模型的过程。它由 Quest系统管理，因此在设备上运行的所有应用都可以访问相同的环境数据。空间设置是一个用户引导的过程:在设置之前，需要先允许应用访问设备的空间数据。开启了获取空间数据的权限后，首先要扫描环境，获取空间网格，提取空间信息(如地板和天花板的高度，墙壁的位置)，然后用户通过修正错误(校准墙壁位置)和添加缺失信息(房间物体)来完成这个过程。
+空间设置无法在串流模式下进行。
+如何在Quest中进行空间设置 场景理解可以实现什么功能 把虚拟物体放置在物理平面上。比如把虚拟物体放置到现实桌子上;把虚拟相框贴在现实墙壁上。
+如何增加放置的真实感 Shadow 给虚拟物体增加阴影
+alignment 校准虚拟物体和现实平面之间的距离和位置，让物体贴合在现实平面上">
+    <link rel="shortcut icon" href="img/yourfavicon.png" />
+
+  
+
+
+  </head>
+  <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div
+      class="container main-container flex on-phone--column extended"
+    ><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65904b1b4fd1ed1bf77e4038d645c63c_18508_300x0_resize_q75_box.jpg" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Lorcan</a></h1>
+            <h2 class="site-description">My journey.</h2>
+        </div>
+    </header>
+
+    
+        <ol class="social-menu">
+            
+                <li>
+                    <a href="https://github.com/nohairblingbling" target="" title="GitHub">
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://www.instagram.com/lorcanxoo/" target="" title="Instagram">
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1713256923828" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4425" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300"><path d="M341.333333 128h341.333334a213.333333 213.333333 0 0 1 213.333333 213.333333v341.333334a213.333333 213.333333 0 0 1-213.333333 213.333333H341.333333a213.333333 213.333333 0 0 1-213.333333-213.333333V341.333333a213.333333 213.333333 0 0 1 213.333333-213.333333z m341.333334 85.333333H341.333333a128 128 0 0 0-128 128v341.333334a128 128 0 0 0 128 128h341.333334a128 128 0 0 0 128-128V341.333333a128 128 0 0 0-128-128z m-341.333334 298.666667a170.666667 170.666667 0 1 1 341.333334 0 170.666667 170.666667 0 0 1-341.333334 0z m256 0a85.333333 85.333333 0 1 0-170.666666 0 85.333333 85.333333 0 0 0 170.666666 0z m149.034667-196.992a42.666667 42.666667 0 0 0-85.034667 5.034667l0.298667 4.992A42.666667 42.666667 0 0 0 746.666667 320l-0.298667-4.992z" p-id="4426"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol>
+    
+
+    <ol class="menu" id="main-menu">
+        
+        
+            
+            <li >
+                <a href="/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                    
+                    <span>Home</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/archives/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                    
+                    <span>Archives</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/search/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                    
+                    <span>search</span>
+                </a>
+            </li>
+        
+            
+            <li >
+                <a href="/about/" target="">
+                    
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                    
+                    <span>about</span>
+                </a>
+            </li>
+        
+    </ol>
+
+    <div class="menu-bottom-section">
+        
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>Dark Mode</span>
+            </li>
+        
+    </div>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metaquestdevelopment/" >
+                MetaQuestDevelopment
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A82_%E5%9C%BA%E6%99%AF%E7%90%86%E8%A7%A3/">MetaQuest开发入门2_场景理解</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 16, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="透视passthrough的局限">透视Passthrough的局限</h1>
+<p>透视只是将应用的背景从虚拟的图层替换成了现实图层，类似于P图换了一个背景，这个时候虚拟物体相当于叠加在现实图层之上的元素。在单纯的透视下，虚拟物体和现实物体是毫不相干的，二者之间并不会进行交互。</p>
+<h1 id="场景理解的作用">场景理解的作用</h1>
+<p>加上场景理解功能，设备就能够理解现实环境，分辨出现实物体在什么位置。因为MR相当于把虚拟和现实融合成了一个新世界，通过场景理解，识别出的现实物体就被当作了MR世界中的一部分，而虚拟物体也属于MR世界中的一部分，因此能够实现虚拟物体和现实物体之间的交互。</p>
+<p>场景理解 (Scene Understanding: Meta用Scene API实现) 能用2D平面或3D立方体来代表现实物体的位置和范围，在系统眼中现实世界由不同的2D平面和3D立方体组成。此外，场景理解还能用语义标签来标识这些不同的2D平面或3D立方体，让系统理解标识出的东西具体代表哪一种现实中的物体。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117174124906.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117174124906"
+	
+	
+></p>
+<h1 id="scene-model场景模型">Scene Model场景模型</h1>
+<p>场景理解使用Scene Model(场景模型)来表示现实环境。场景模型包含了几何(现实物体的范围和边界)和语义(标识一个物体具体是哪种物体)的信息。</p>
+<h2 id="scene-anchor场景锚点">Scene Anchor场景锚点</h2>
+<p>Scene Model由许多Scene Anchor(场景锚点)组成。 每个Scene Anchor存储着一些数据组件 (Component)，这些数据组件可能存储着不同种类的数据，用来表示几何和语义信息。</p>
+<h2 id="ecs结构">ECS结构</h2>
+<p>Scene Anchor的内部结构类似于ECS结构。</p>
+<p>C代表Component，包含了数据。</p>
+<p>E代表Entity，是一系列Component组件的集合。这一系列包含了数据Component组件组成了一个物体，Entity相当于一个ID，标识了这个物体。</p>
+<p>S代表System，用来处理Component的数据，执行逻辑。因为ECS是面向数据的思想，所以最终处理的还是Component中 的数据。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117174456958.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117174456958"
+	
+	
+></p>
+<p>在Scene Model当中，每一个Scene Anchor相当于一个Entity。因此一个Scene Anchor中会包含一些不同种类的Component组件，不同种类的组件里存储着不同类型的数据。</p>
+<h2 id="scene-anchor内部结构">Scene Anchor内部结构</h2>
+<p>因为场景理解基本是用于室内的场景，所以Scene Anchor可以用来表示整个房间，也可以用来表示房间里单独的某个物体。</p>
+<p>如果用于表示整个房间，Scene Anchor需要包含RoomLayout组件和AnchorContainer组件。RoomLayout用来表示整个房间的布局，包含天花板，地板，墙壁的布局，因为这三个元素可以构成一个房间。AnchorContainer包含了房间内的所有Scene Anchor。</p>
+<p>如果用于表示房间内单独的物体，Scene Anchor需要Locatable组件，Bounded2D或者Bounded3D组件(取决于物体是2D平面还是3D物体)，Semantic Classification (语义分类)组件。Locatable组件用来定位物体，表示物体在房间中的位置。Bounded2D/3D组件用来表示物体的边界框，一个Scene Anchor也可以同时拥有2D和3D组件，比如桌子，桌面可以用2D，整个桌子可以用3D。语义分类组件相当于用标签来表示物体是哪一种物体。</p>
+<h2 id="meta官方预定义的语义标签仍在更新中">Meta官方预定义的语义标签(仍在更新中)</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175056866.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175056866"
+	
+	
+></p>
+<h2 id="scene-anchor和spatial-anchor的区别">Scene Anchor和Spatial Anchor的区别</h2>
+<p>Scene anchor 是Quest系统创建的，由系统进行管理。</p>
+<p>Spatial anchor 是由应用本身创建的，由用户进行管理。</p>
+<h2 id="space-setup-空间设置">Space Setup 空间设置</h2>
+<p>Space Setup 空间设置(以前称为场景捕获)是捕获场景模型的过程。它由 Quest系统管理，因此在设备上运行的所有应用都可以访问相同的环境数据。空间设置是一个用户引导的过程:在设置之前，需要先允许应用访问设备的空间数据。开启了获取空间数据的权限后，首先要扫描环境，获取空间网格，提取空间信息(如地板和天花板的高度，墙壁的位置)，然后用户通过修正错误(校准墙壁位置)和添加缺失信息(房间物体)来完成这个过程。</p>
+<p>空间设置无法在串流模式下进行。</p>
+<h3 id="如何在quest中进行空间设置">如何在Quest中进行空间设置</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175451753.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175451753"
+	
+	
+></p>
+<h2 id="场景理解可以实现什么功能">场景理解可以实现什么功能</h2>
+<p>把虚拟物体放置在物理平面上。比如把虚拟物体放置到现实桌子上;把虚拟相框贴在现实墙壁上。</p>
+<h3 id="如何增加放置的真实感">如何增加放置的真实感</h3>
+<ol>
+<li>
+<p>Shadow 给虚拟物体增加阴影</p>
+</li>
+<li>
+<p>alignment 校准虚拟物体和现实平面之间的距离和位置，让物体贴合在现实平面上</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175617061.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175617061"
+	
+	
+></p>
+<h3 id="遮挡-occlusion">遮挡 Occlusion</h3>
+<p>利用场景理解中标记的平面和立方体，我们可以实现用场景理解标记过的现实物体去遮挡虚拟物体。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175709866.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175709866"
+	
+	
+></p>
+<h4 id="scene-api和depth-api中的遮挡区别">Scene API和Depth API中的遮挡区别</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175755843.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175755843"
+	
+	
+></p>
+<p>Scene API只对在空间设置过程中被标记过的，静止不动的物体有效</p>
+<p>DepthAPI可以用于动态遮挡</p>
+<h3 id="物理碰撞-physics">物理碰撞 Physics</h3>
+<p>被场景理解标记过的现实物体能和虚拟物体产生物理碰撞效果。比如将虚拟的球扔到现实墙壁上，会产生反弹效果。</p>
+<h3 id="导航-navigation">导航 Navigation</h3>
+<p>让虚拟物体在现实平面上移动。比如让虚拟人在现实地面上行走。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/filifili233/blogimg@master/uPic/image-20250117175937292.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image-20250117175937292"
+	
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/mr/">MR</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title"></h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A83_mruk/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaQuest开发入门3_MRUK</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="">
+    <a href="/p/metaquest%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A81_%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaQuest开发入门1_环境设置</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "Lorcan" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2025 Lorcan
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.10.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+</main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#scene-anchor场景锚点">Scene Anchor场景锚点</a></li>
+    <li><a href="#ecs结构">ECS结构</a></li>
+    <li><a href="#scene-anchor内部结构">Scene Anchor内部结构</a></li>
+    <li><a href="#meta官方预定义的语义标签仍在更新中">Meta官方预定义的语义标签(仍在更新中)</a></li>
+    <li><a href="#scene-anchor和spatial-anchor的区别">Scene Anchor和Spatial Anchor的区别</a></li>
+    <li><a href="#space-setup-空间设置">Space Setup 空间设置</a>
+      <ol>
+        <li><a href="#如何在quest中进行空间设置">如何在Quest中进行空间设置</a></li>
+      </ol>
+    </li>
+    <li><a href="#场景理解可以实现什么功能">场景理解可以实现什么功能</a>
+      <ol>
+        <li><a href="#如何增加放置的真实感">如何增加放置的真实感</a></li>
+        <li><a href="#遮挡-occlusion">遮挡 Occlusion</a>
+          <ol>
+            <li><a href="#scene-api和depth-api中的遮挡区别">Scene API和Depth API中的遮挡区别</a></li>
+          </ol>
+        </li>
+        <li><a href="#物理碰撞-physics">物理碰撞 Physics</a></li>
+        <li><a href="#导航-navigation">导航 Navigation</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+    </div>
+    <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+ 
+  </body>
+</html>

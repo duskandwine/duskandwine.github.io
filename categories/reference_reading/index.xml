@@ -183,6 +183,71 @@
 &lt;hr&gt;
 </description>
         </item>
+        <item>
+        <title>Ref_reading_day2</title>
+        <link>https://duskandwine.github.io/p/ref_reading_day2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://duskandwine.github.io/p/ref_reading_day2/</guid>
+        <description>&lt;h3 id=&#34;development-of-a-thermal-based-olfactory-display-for-aroma-sensory-training---2020&#34;&gt;Development of a Thermal-Based Olfactory Display for Aroma Sensory Training - 2020&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;内容说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;文章标题&lt;/td&gt;
+&lt;td&gt;SmellControl: 嗅觉中的代理感研究&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表时间&lt;/td&gt;
+&lt;td&gt;2020年&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;发表期刊&lt;/td&gt;
+&lt;td&gt;ICMI&#39;20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心问题&lt;/td&gt;
+&lt;td&gt;气味(嗅觉)如何影响人的代理感(Sense of Agency,即对自己行为的控制感)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究目的&lt;/td&gt;
+&lt;td&gt;探索不同气味诱发的情绪对代理感的影响,这在人机交互研究中尚未被研究&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究假设&lt;/td&gt;
+&lt;td&gt;愉悦的气味会比中性和不愉悦的气味带来更强的代理感&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;研究方法&lt;/td&gt;
+&lt;td&gt;1. 使用intentional binding范式测量代理感 2. 使用三种气味:薰衣草(愉悦)、灵猫香(不愉悦)、水(中性) 3. 测量生理反应(皮肤电反应)和主观情绪评分 4. 13名参与者进行实验&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心结论&lt;/td&gt;
+&lt;td&gt;1. 愉悦气味(薰衣草)显著提升了参与者的代理感 2. 气味确实能通过情绪影响人的代理感 3. 首次证实了嗅觉刺激对代理感的影响&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;实践启示&lt;/td&gt;
+&lt;td&gt;1. 在人机交互设计中可以利用气味增强用户的控制感 2. 可应用于驾驶场景、虚拟现实等领域 3. 为多模态交互界面设计提供新思路&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;未来方向&lt;/td&gt;
+&lt;td&gt;1. 探索高唤醒度的愉悦气味对代理感的影响 2. 比较不同感官模态(视觉、听觉、触觉、嗅觉)对代理感的影响差异 3. 研究气味对整体用户体验的影响&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;个人思考&lt;/td&gt;
+&lt;td&gt;Sense of Agency可以灵活运用，提高代理感有时也会带来无聊的感觉，我认为有些像游戏开挂，适当的减少代理感是否可以提高趣味性和挑战性？以及在vr环境下，代理感程度的调控是否可以作为难度的一部分？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;virtual-environment-with-smell-using-wearable-olfactory-display-and-computational-fluid-dynamics-simulation---2020&#34;&gt;Virtual environment with smell using wearable olfactory display and computational fluid dynamics simulation - 2020&lt;/h3&gt;
+</description>
+        </item>
         
     </channel>
 </rss>
